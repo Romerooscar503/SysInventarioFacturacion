@@ -1,0 +1,43 @@
+﻿@model SysInventarioFacturacion.EntidadesDeNegocio.CompraProveedor
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+<h1>Ver CompraProveedor</h1>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalCompras)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TotalCompras)
+        </dd>
+    </dl>
+    
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            @Html.ActionLink("Ir a modificar", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+            <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@model SysInventarioFacturacion.EntidadesDeNegocio.Usuario
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="login-box">
+    <h2>𝐋𝐨𝐠𝐢𝐧</h2>
+    <div class="image-box">
+        <img src="IMG/Logo.png" alt="Logo" />
+    </div>
+
+    <form asp-action="Login" style="width: 15rem;">
+       
+        <div class="user-box">
+            <input asp-for="Login" class="form-control form-control-lg"
+                   placeholder="Ingrese su usuario" />
+            
+            <label asp-for="Login" class="control-label"></label>
+            <span asp-validation-for="Login" class="text-danger"></span>
+        </div>
+        
+
+        <div class="user-box">
+            <input asp-for="Password" class="form-control form-control-lg"
+                   placeholder="Introduce la contraseña" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+            <label asp-for="Password" class="control-label"></label>
+        </div>
+       
+        <a href="https://codepen.io">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="form-group">   
+                <input type="submit" value="Login" style="color: white" class="btn" />
+            </div>
+            <span class="text-danger">@ViewBag.Error</span>
+            
+        </a>
+       
+       
+    </form>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Inventario y Facturacion</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Home.css" />
+    <link rel="stylesheet" href="~/js/JavaScriptHome.js" />
+</head>
+<body>
+    <header>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class='link'>
+                <div class="dashboard-nav">
+                    <header>
+                        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#"
+                                                                                       class="brand-logo">
+                            <i class="fas fa-anchor"></i> <span>IMPERIAL SHOES</span>
+
+                        </a>
+                    </header>
+                    <nav class="dashboard-nav-list">
+                       
+                        <li class="nav-item">
+                            <a class="dashboard-nav-item" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+                        <div class='dashboard-nav-dropdown'>
+                            <a href="#" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                                <i class="fas fa-tachometer-alt"></i> Usuario
+                            </a>
+
+                            <div class='dashboard-nav-dropdown-menu'>
+                                @* <a href="#"
+                            class="dashboard-nav-dropdown-item">usuario</a>*@
+                                <li class="nav-item">
+                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Usuario" asp-action="Index">Usuario</a>
+                                </li>
+                                @*<a href="#" class="dashboard-nav-dropdown-item">Rol</a>*@
+                                <li class="nav-item">
+                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Rol" asp-action="Index">Rol</a>
+                                </li>
+                                @* <a href="#" class="dashboard-nav-dropdown-item">Cambiar password</a>*@
+                                <li class="nav-item">
+                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Usuario" asp-action="CambiarPassword">Cambiar password</a>
+                                </li>
+                            </div>
+                        </div>
+                        <div class='dashboard-nav-dropdown'>
+                            <a href="#" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                                <i class="fas fa-file-upload"></i> Producto
+                            </a>
+                            <div class='dashboard-nav-dropdown-menu'>
+                                @*<a href="#"
+                            class="dashboard-nav-dropdown-item">producto</a>*@
+                                <li class="nav-item">
+                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Producto" asp-action="Index">Producto</a>
+                                </li>
+                                @* <a href="#" class="dashboard-nav-dropdown-item">inventario</a>*@
+                                <li class="nav-item">
+                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Inventario" asp-action="Index">inventario</a>
+                                </li>
+                            </div>
+                        </div>
+
+                        <li class="nav-item">
+                            <a class="dashboard-nav-item" asp-area="" asp-controller="Categoria" asp-action="Index">Categoria</a>
+                        </li>
+                        <div class='dashboard-nav-dropdown'>
+                            <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                                <i class="fas fa-photo-video"></i> Proveedor
+                            </a>
+                            <div class='dashboard-nav-dropdown-menu'>
+                                @*<a href="#"
+                            class="dashboard-nav-dropdown-item">proveedor</a>*@
+                                <li class="nav-item">
+                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Proveedor" asp-action="Index">Proveedor</a>
+                                </li>
+                                @*<a href="#" class="dashboard-nav-dropdown-item">Compra proveedor</a>*@
+                                <li class="nav-item">
+                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="CompraProveedor" asp-action="Index">CompraProveedor</a>
+                                </li>
+                            </div>
+                        </div>
+                        <div class='dashboard-nav-dropdown'>
+                            <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                                <i class="fas fa-users"></i> Factura
+                            </a>
+                            <div class='dashboard-nav-dropdown-menu'>
+                                @*<a href="#"
+                            class="dashboard-nav-dropdown-item">factura</a>*@
+                                <li class="nav-item">
+                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Factura" asp-action="Index">Factura</a>
+                                </li>
+                                @*<a href="#" class="dashboard-nav-dropdown-item">Detalle factura</a>*@
+                                <li class="nav-item">
+                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="DetalleFactura" asp-action="Index">DetalleFactura</a>
+                                </li>
+                            </div>
+                        </div>
+                        <div class='dashboard-nav-dropdown'>
+                            <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                                <i class="fas fa-money-check-alt"></i> Payments
+                            </a>
+                            <div class='dashboard-nav-dropdown-menu'>
+                                <a href="#"
+                               class="dashboard-nav-dropdown-item">All</a><a href="#" class="dashboard-nav-dropdown-item">Recent</a><a href="#" class="dashboard-nav-dropdown-item"> Projections</a>
+                            </div>
+                        </div>
+                        <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Settings </a>
+                        <div class="nav-item-divider"></div>
+                        <li class="nav-item">
+                            <a class="dashboard-nav-item" asp-area="" asp-controller="Usuario" asp-action="CerrarSesion">Cerrar sesión</a>
+                        </li>
+                        @*<a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>*@
+                    </nav>
+                </div>
+
+            </div>
+
+
+        }
+    </header>
+    <div class='dashboard-app'>
+        @* <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>*@
+        <div class='dashboard-content'>
+            <div class='container'>
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/JavaScriptHome.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "SysInventarioFacturacion.AccesoADatos": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:59109;http://localhost:59111"
+    }
+  }
+}

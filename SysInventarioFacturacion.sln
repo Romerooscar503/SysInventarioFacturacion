@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysInventarioFacturacion.EntidadesDeNegocio", "SysInventarioFacturacion.EntidadesDeNegocio\SysInventarioFacturacion.EntidadesDeNegocio.csproj", "{5EF8D453-519B-4CD3-8B87-1278775C0551}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysInventarioFacturacion.AccesoADatos", "SysInventarioFacturacion.AccesoADatos\SysInventarioFacturacion.AccesoADatos.csproj", "{B3289008-E049-4FE3-B40E-B989120FA21F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysInventarioFacturacion.LogicaDeNegocio", "SysInventarioFacturacion.LogicaDeNegocio\SysInventarioFacturacion.LogicaDeNegocio.csproj", "{43939B6D-C341-4200-A452-168A46B183A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysInventarioFacturacion.PruebasUnitarias", "SysInventarioFacturacion.PruebasUnitarias\SysInventarioFacturacion.PruebasUnitarias.csproj", "{271D9109-DF23-4E77-BA43-60F1288812DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysInventarioFacturacion.UI.AppWebAspNetCore", "SysInventarioFacturacion.UI.AppWebAspNetCore\SysInventarioFacturacion.UI.AppWebAspNetCore.csproj", "{C545359B-8900-4508-A615-50988A3AFCFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EF8D453-519B-4CD3-8B87-1278775C0551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EF8D453-519B-4CD3-8B87-1278775C0551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EF8D453-519B-4CD3-8B87-1278775C0551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EF8D453-519B-4CD3-8B87-1278775C0551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3289008-E049-4FE3-B40E-B989120FA21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3289008-E049-4FE3-B40E-B989120FA21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3289008-E049-4FE3-B40E-B989120FA21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3289008-E049-4FE3-B40E-B989120FA21F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43939B6D-C341-4200-A452-168A46B183A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43939B6D-C341-4200-A452-168A46B183A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43939B6D-C341-4200-A452-168A46B183A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43939B6D-C341-4200-A452-168A46B183A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{271D9109-DF23-4E77-BA43-60F1288812DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{271D9109-DF23-4E77-BA43-60F1288812DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{271D9109-DF23-4E77-BA43-60F1288812DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{271D9109-DF23-4E77-BA43-60F1288812DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C545359B-8900-4508-A615-50988A3AFCFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C545359B-8900-4508-A615-50988A3AFCFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C545359B-8900-4508-A615-50988A3AFCFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C545359B-8900-4508-A615-50988A3AFCFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C9DB48C8-E891-43A7-919F-9F6725D0C0F2}
+	EndGlobalSection
+EndGlobal
