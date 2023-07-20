@@ -11,11 +11,9 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
     public class Factura
     {
         [Key]
+         
         public int IdFactura { get; set; }
-        [ForeignKey("Usuario")]
-        [Required(ErrorMessage = "Usuario es obligatorio")]
-        [Display(Name = "Usuario")]
-        public int IdUsuario { get; set; }
+       
 
         [Required(ErrorMessage = "Numero factura es obligatorio")]
         public int NumeroFactura { get; set; }
@@ -47,6 +45,8 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         public decimal TotalPagado { get; set; }
         [NotMapped]
         public int Top_Aux { get; set; }
+
+        
         //cambios
     }
 }

@@ -11,6 +11,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
     public class Proveedor
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required(ErrorMessage = "El codigo es obligatorio")]
 
