@@ -18,7 +18,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
     {
         InventarioBL InventarioBL = new InventarioBL();
         // GET: InventarioController
-        public async Task<IActionResult> Index(Inventario? pInventario = null)
+        public async Task<IActionResult> Index(Inventario pInventario = null)
         {
             if (pInventario == null)
                 pInventario = new Inventario();
@@ -26,16 +26,16 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
                 pInventario.Top_Aux = 10;
             else if (pInventario.Top_Aux == -1)
                 pInventario.Top_Aux = 0;
-            var Inventario = await InventarioBL.BuscarAsync(pInventario);
+            var Inventarios = await InventarioBL.BuscarAsync(pInventario);
             ViewBag.Top = pInventario.Top_Aux;
-            return View(Inventario);
+            return View(Inventarios);
         }
 
         // GET: InventarioController/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var Inventario = await InventarioBL.ObtenerPorIdAsync(new Inventario { IdInventario = id });
-            return View(Inventario);
+            var inventario = await InventarioBL.ObtenerPorIdAsync(new Inventario { IdInventario = id });
+            return View(inventario);
         }
 
         // GET: InventarioController/Create
@@ -65,9 +65,9 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: InventarioController/Edit/5
         public async Task<IActionResult> Edit(Inventario pInventario)
         {
-            var Inventario = await InventarioBL.ObtenerPorIdAsync(pInventario);
+            var inventario = await InventarioBL.ObtenerPorIdAsync(pInventario);
             ViewBag.Error = "";
-            return View(Inventario);
+            return View(inventario);
         }
 
         // POST: InventarioController/Edit/5
@@ -90,8 +90,8 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: InventarioController/Delete/5
         public async Task<IActionResult> Delete(Inventario pInventario)
         {
-            var Inventario = await InventarioBL.ObtenerPorIdAsync(pInventario);
-            return View(Inventario);
+            var inventario = await InventarioBL.ObtenerPorIdAsync(pInventario);
+            return View(inventario);
         }
 
         // POST: InventarioController/Delete/5

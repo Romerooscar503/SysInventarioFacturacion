@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-//COMENTO JEJE que se modifique
-
 /********************************/
 using SysInventarioFacturacion.EntidadesDeNegocio;
 using SysInventarioFacturacion.LogicaDeNegocio;
@@ -28,16 +26,16 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
                 pProducto.Top_Aux = 10;
             else if (pProducto.Top_Aux == -1)
                 pProducto.Top_Aux = 0;
-            var roles = await ProductoBL.BuscarAsync(pProducto);
+            var Productos = await ProductoBL.BuscarAsync(pProducto);
             ViewBag.Top = pProducto.Top_Aux;
-            return View(pProducto);
+            return View(Productos);
         }
 
         // GET: ProductoController/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var Producto = await ProductoBL.ObtenerPorIdAsync(new Producto { IdProducto = id });
-            return View(Producto);
+            var producto = await ProductoBL.ObtenerPorIdAsync(new Producto { IdProducto = id });
+            return View(producto);
         }
 
         // GET: ProductoController/Create
@@ -67,9 +65,9 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: ProductoController/Edit/5
         public async Task<IActionResult> Edit(Producto pProducto)
         {
-            var rol = await ProductoBL.ObtenerPorIdAsync(pProducto);
+            var producto = await ProductoBL.ObtenerPorIdAsync(pProducto);
             ViewBag.Error = "";
-            return View(pProducto);
+            return View(producto);
         }
 
         // POST: ProductoController/Edit/5
@@ -93,8 +91,8 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         public async Task<IActionResult> Delete(Producto pProducto)
         {
             ViewBag.Error = "";
-            var Producto = await ProductoBL.ObtenerPorIdAsync(pProducto);
-            return View(Producto);
+            var producto = await ProductoBL.ObtenerPorIdAsync(pProducto);
+            return View(producto);
         }
 
         // POST: ProductoController/Delete/5

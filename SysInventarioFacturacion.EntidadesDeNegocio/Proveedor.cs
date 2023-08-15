@@ -12,7 +12,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int IdProveedor { get; set; }
         [Required(ErrorMessage = "El codigo es obligatorio")]
 
         public int Codigo { get; set; }

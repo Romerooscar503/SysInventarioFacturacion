@@ -25,9 +25,9 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var DetalleFactura = await bdContexto.DetalleFactura.FirstOrDefaultAsync(s => s.Id == pDetalleFactura.Id);
-                DetalleFactura.Id = pDetalleFactura.Id;
-                bdContexto.Update(DetalleFactura);
+                var detalleFactura = await bdContexto.DetalleFactura.FirstOrDefaultAsync(s => s.IdDetalleFactura == pDetalleFactura.IdDetalleFactura);
+                detalleFactura.IdDetalleFactura = pDetalleFactura.IdDetalleFactura;
+                bdContexto.Update(detalleFactura);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
@@ -37,29 +37,29 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var DetalleFactura = await bdContexto.DetalleFactura.FirstOrDefaultAsync(s => s.Id == pDetalleFactura.Id);
-                bdContexto.DetalleFactura.Remove(DetalleFactura);
+                var detalleFactura = await bdContexto.DetalleFactura.FirstOrDefaultAsync(s => s.IdDetalleFactura == pDetalleFactura.IdDetalleFactura);
+                bdContexto.DetalleFactura.Remove(detalleFactura);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
         }
         public static async Task<DetalleFactura> ObtenerPorIdAsync(DetalleFactura pDetalleFactura)
         {
-            var DetalleFactura = new DetalleFactura();
+            var detalleFactura = new DetalleFactura();
             using (var bdContexto = new BDContexto())
             {
-                DetalleFactura = await bdContexto.DetalleFactura.FirstOrDefaultAsync(s => s.Id == pDetalleFactura.Id);
+                detalleFactura = await bdContexto.DetalleFactura.FirstOrDefaultAsync(s => s.IdDetalleFactura == pDetalleFactura.IdDetalleFactura);
             }
-            return DetalleFactura;
+            return detalleFactura;
         }
         public static async Task<List<DetalleFactura>> ObtenerTodosAsync()
         {
-            var DetalleFactura = new List<DetalleFactura>();
+            var DetalleFacturas = new List<DetalleFactura>();
             using (var bdContexto = new BDContexto())
             {
-                DetalleFactura = await bdContexto.DetalleFactura.ToListAsync();
+                DetalleFacturas = await bdContexto.DetalleFactura.ToListAsync();
             }
-            return DetalleFactura;
+            return DetalleFacturas;
         }
         internal static IQueryable<DetalleFactura> QuerySelect(IQueryable<DetalleFactura> pQuery, DetalleFactura pDetalleFactura)
         {
@@ -83,21 +83,21 @@ namespace SysInventarioFacturacion.AccesoADatos
 
 
 
-            pQuery = pQuery.OrderByDescending(s => s.Id).AsQueryable();
+            pQuery = pQuery.OrderByDescending(s => s.IdDetalleFactura).AsQueryable();
             if (pDetalleFactura.Top_Aux > 0)
                 pQuery = pQuery.Take(pDetalleFactura.Top_Aux).AsQueryable();
             return pQuery;
         }
         public static async Task<List<DetalleFactura>> BuscarAsync(DetalleFactura pDetalleFactura)
         {
-            var DetalleFactura = new List<DetalleFactura>();
+            var DetalleFacturas = new List<DetalleFactura>();
             using (var bdContexto = new BDContexto())
             {
                 var select = bdContexto.DetalleFactura.AsQueryable();
                 select = QuerySelect(select, pDetalleFactura);
-                DetalleFactura = await select.ToListAsync();
+                DetalleFacturas = await select.ToListAsync();
             }
-            return DetalleFactura;
+            return DetalleFacturas;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
     public class Factura
     {
         [Key]
-         
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdFactura { get; set; }
        
 
@@ -43,6 +43,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         public decimal Impuesto { get; set; }
         [Required(ErrorMessage = "Total pagado es obligatorio")]
         public decimal TotalPagado { get; set; }
+        public List<DetalleFactura> DetalleFactura { get; set; }
         [NotMapped]
         public int Top_Aux { get; set; }
 

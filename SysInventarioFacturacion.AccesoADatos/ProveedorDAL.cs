@@ -25,8 +25,11 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var Proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.Id == pProveedor.Id);
+                var Proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.IdProveedor == pProveedor.IdProveedor);
+                Proveedor.Codigo = pProveedor.Codigo;
                 Proveedor.Nombre = pProveedor.Nombre;
+                Proveedor.Direccion = pProveedor.Direccion;
+                Proveedor.Telefono = pProveedor.Telefono;
                 bdContexto.Update(Proveedor);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -37,7 +40,7 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var Proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.Id == pProveedor.Id);
+                var Proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.IdProveedor == pProveedor.IdProveedor);
                 bdContexto.Proveedor.Remove(Proveedor);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -48,7 +51,7 @@ namespace SysInventarioFacturacion.AccesoADatos
             var Proveedor = new Proveedor();
             using (var bdContexto = new BDContexto())
             {
-                Proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.Id == pProveedor.Id);
+                Proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.IdProveedor == pProveedor.IdProveedor);
             }
             return Proveedor;
         }
@@ -63,11 +66,16 @@ namespace SysInventarioFacturacion.AccesoADatos
         }
         internal static IQueryable<Proveedor> QuerySelect(IQueryable<Proveedor> pQuery, Proveedor pProveedor)
         {
-            if (pProveedor.Id > 0)
-                pQuery = pQuery.Where(s => s.Id == pProveedor.Id);
+            if (pProveedor.IdProveedor > 0)
+                pQuery = pQuery.Where(s => s.IdProveedor == pProveedor.IdProveedor);
             if (!string.IsNullOrWhiteSpace(pProveedor.Nombre))
                 pQuery = pQuery.Where(s => s.Nombre.Contains(pProveedor.Nombre));
-            pQuery = pQuery.OrderByDescending(s => s.Id).AsQueryable();
+            if (!string.IsNullOrWhiteSpace(pProveedor.Direccion))
+                pQuery = pQuery.Where(s => s.Direccion.Contains(pProveedor.Direccion));
+            if (!string.IsNullOrWhiteSpace(pProveedor.Telefono))
+                pQuery = pQuery.Where(s => s.Telefono.Contains(pProveedor.Telefono));
+
+            pQuery = pQuery.OrderByDescending(s => s.IdProveedor).AsQueryable();
             if (pProveedor.Top_Aux > 0)
                 pQuery = pQuery.Take(pProveedor.Top_Aux).AsQueryable();
             return pQuery;

@@ -27,19 +27,23 @@
             <span asp-validation-for="Password" class="text-danger"></span>
             <label asp-for="Password" class="control-label"></label>
         </div>
-       
-        <a href="https://codepen.io">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <div class="form-group">   
-                <input type="submit" value="Login" style="color: white" class="btn" />
-            </div>
-            <span class="text-danger">@ViewBag.Error</span>
-            
-        </a>
-       
+
+        <center>
+            <a href="">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="form-group">
+
+                    <input type="submit" value="Login" style="color: white" class="btn wider-button" />
+
+                </div>
+                <span class="text-danger">@ViewBag.Error</span>
+                @Html.ActionLink("Sign Up", "Create",null,null,  new { @class = "custom-link btn btn-singup-style" })
+            </a>
+
+        </center>
        
     </form>
 </div>

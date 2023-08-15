@@ -27,16 +27,16 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
                 pDetalleFactura.Top_Aux = 10;
             else if (pDetalleFactura.Top_Aux == -1)
                 pDetalleFactura.Top_Aux = 0;
-            var DetalleFactura = await detalle_facturaBL.BuscarAsync(pDetalleFactura);
+            var DetalleFacturas = await detalle_facturaBL.BuscarAsync(pDetalleFactura);
             ViewBag.Top = pDetalleFactura.Top_Aux;
-            return View(DetalleFactura);
+            return View(DetalleFacturas);
         }
 
         // GET: DetalleFacturaController/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var DetalleFactura = await detalle_facturaBL.ObtenerPorIdAsync(new DetalleFactura { Id = id });
-            return View(DetalleFactura);
+            var detalleFactura = await detalle_facturaBL.ObtenerPorIdAsync(new DetalleFactura { IdDetalleFactura = id });
+            return View(detalleFactura);
         }
 
         // GET: DetalleFacturaController/Create
@@ -66,9 +66,9 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: DeatlleFacturaController/Edit/5
         public async Task<IActionResult> Edit(DetalleFactura pDetalleFactura)
         {
-            var DetalleFactura = await detalle_facturaBL.ObtenerPorIdAsync(pDetalleFactura);
+            var detalleFactura = await detalle_facturaBL.ObtenerPorIdAsync(pDetalleFactura);
             ViewBag.Error = "";
-            return View(DetalleFactura);
+            return View(detalleFactura);
         }
 
         // POST: DetalleFacturaController/Edit/5
@@ -92,8 +92,8 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         public async Task<IActionResult> Delete(DetalleFactura pDetalleFactura)
         {
             ViewBag.Error = "";
-            var DetalleFactura = await detalle_facturaBL.ObtenerPorIdAsync(pDetalleFactura);
-            return View(DetalleFactura);
+            var detalleFactura = await detalle_facturaBL.ObtenerPorIdAsync(pDetalleFactura);
+            return View(detalleFactura);
         }
 
         // POST: DetalleFacturaController/Delete/5

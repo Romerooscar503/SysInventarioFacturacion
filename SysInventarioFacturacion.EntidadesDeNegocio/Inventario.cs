@@ -11,6 +11,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
     public class Inventario
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdInventario { get; set; }
         [Required(ErrorMessage = "Cantidad inicial de produto es obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
@@ -18,6 +19,8 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [Required(ErrorMessage = "Cantidad disponible de producto es obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         public string? CantidadDisponibleProducto { get; set; }
+        [NotMapped]
+        public List<Producto> Producto { get; set; }
         [NotMapped]
         public int Top_Aux { get; set; }
     }

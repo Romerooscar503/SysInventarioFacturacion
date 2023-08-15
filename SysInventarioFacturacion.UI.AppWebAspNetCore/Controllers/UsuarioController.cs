@@ -39,14 +39,15 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         }
 
         // GET: UsuarioController/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int Id)
         {
-            var usuario = await usuarioBL.ObtenerPorIdAsync(new Usuario { Id = id });
+            var usuario = await usuarioBL.ObtenerPorIdAsync(new Usuario { Id = Id });
             usuario.Rol = await rolBL.ObtenerPorIdAsync(new Rol { Id = usuario.IdRol });
             return View(usuario);
         }
 
         // GET: UsuarioController/Create
+        [AllowAnonymous]
         public async Task<IActionResult> Create()
         {
             ViewBag.Roles = await rolBL.ObtenerTodosAsync();
@@ -55,6 +56,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         }
 
         // POST: UsuarioController/Create
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Usuario pUsuario)
@@ -104,16 +106,17 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: UsuarioController/Delete/5
         public async Task<IActionResult> Delete(Usuario pUsuario)
         {
-            var usuario = await usuarioBL.ObtenerPorIdAsync(pUsuario);
-            usuario.Rol = await rolBL.ObtenerPorIdAsync(new Rol { Id = usuario.IdRol });
+            var Usuario = await usuarioBL.ObtenerPorIdAsync(pUsuario);
+            Usuario.Rol = await rolBL.ObtenerPorIdAsync(new Rol { Id = Usuario.IdRol });
             ViewBag.Error = "";
-            return View(usuario);
+
+            return View(Usuario);
         }
 
         // POST: UsuarioController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Usuario pUsuario)
+        public async Task<IActionResult> Delete(int Id, Usuario pUsuario)
         {
             try
             {

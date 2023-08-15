@@ -25,9 +25,9 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var Inventario = await bdContexto.Inventario.FirstOrDefaultAsync(s => s.IdInventario == pInventario.IdInventario);
-                Inventario.CantidadInicialProducto = pInventario.CantidadInicialProducto;
-                bdContexto.Update(Inventario);
+                var inventario = await bdContexto.Inventario.FirstOrDefaultAsync(s => s.IdInventario == pInventario.IdInventario);
+                inventario.CantidadInicialProducto = pInventario.CantidadInicialProducto;
+                bdContexto.Update(inventario);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
@@ -37,29 +37,29 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var Inventario = await bdContexto.Inventario.FirstOrDefaultAsync(s => s.IdInventario == pInventario.IdInventario);
-                bdContexto.Inventario.Remove(Inventario);
+                var inventario = await bdContexto.Inventario.FirstOrDefaultAsync(s => s.IdInventario == pInventario.IdInventario);
+                bdContexto.Inventario.Remove(inventario);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
         }
         public static async Task<Inventario> ObtenerPorIdInventarioAsync(Inventario pInventario)
         {
-            var Inventario = new Inventario();
+            var inventario = new Inventario();
             using (var bdContexto = new BDContexto())
             {
-                Inventario = await bdContexto.Inventario.FirstOrDefaultAsync(s => s.IdInventario == pInventario.IdInventario);
+                inventario = await bdContexto.Inventario.FirstOrDefaultAsync(s => s.IdInventario == pInventario.IdInventario);
             }
-            return Inventario;
+            return inventario;
         }
         public static async Task<List<Inventario>> ObtenerTodosAsync()
         {
-            var Inventario = new List<Inventario>();
+            var Inventarios = new List<Inventario>();
             using (var bdContexto = new BDContexto())
             {
-                Inventario = await bdContexto.Inventario.ToListAsync();
+                Inventarios = await bdContexto.Inventario.ToListAsync();
             }
-            return Inventario;
+            return Inventarios;
         }
         internal static IQueryable<Inventario> QuerySelect(IQueryable<Inventario> pQuery, Inventario pInventario)
         {
@@ -74,14 +74,14 @@ namespace SysInventarioFacturacion.AccesoADatos
         }
         public static async Task<List<Inventario>> BuscarAsync(Inventario pInventario)
         {
-            var Inventario = new List<Inventario>();
+            var Inventarios = new List<Inventario>();
             using (var bdContexto = new BDContexto())
             {
                 var select = bdContexto.Inventario.AsQueryable();
                 select = QuerySelect(select, pInventario);
-                Inventario = await select.ToListAsync();
+                Inventarios = await select.ToListAsync();
             }
-            return Inventario;
+            return Inventarios;
         }
     }
 }

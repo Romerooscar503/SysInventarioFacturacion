@@ -11,6 +11,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
     public class Categoria
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCategoria { get; set; }
         [Required(ErrorMessage = "Codigo es obligatorio")]
 
@@ -21,6 +22,8 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [Required(ErrorMessage = "Descripcion es obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         public string? Descripcion { get; set;}
+        [NotMapped]
+        public List<Producto> Producto { get; set; }
         [NotMapped]
         public int Top_Aux { get; set; }
 

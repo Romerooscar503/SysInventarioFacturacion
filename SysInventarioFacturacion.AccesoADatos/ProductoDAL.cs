@@ -25,9 +25,9 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var Producto = await bdContexto.Producto.FirstOrDefaultAsync(s => s.IdProducto == pProducto.IdProducto);
-                Producto.Nombre = pProducto.Nombre;
-                bdContexto.Update(Producto);
+                var producto = await bdContexto.Producto.FirstOrDefaultAsync(s => s.IdProducto == pProducto.IdProducto);
+                producto.Nombre = pProducto.Nombre;
+                bdContexto.Update(producto);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
@@ -37,29 +37,29 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var Producto = await bdContexto.Producto.FirstOrDefaultAsync(s => s.IdProducto == pProducto.IdProducto);
-                bdContexto.Producto.Remove(Producto);
+                var producto = await bdContexto.Producto.FirstOrDefaultAsync(s => s.IdProducto == pProducto.IdProducto);
+                bdContexto.Producto.Remove(producto);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
         }
         public static async Task<Producto> ObtenerPorIdProductoAsync(Producto pProducto)
         {
-            var Producto = new Producto();
+            var producto = new Producto();
             using (var bdContexto = new BDContexto())
             {
-                Producto = await bdContexto.Producto.FirstOrDefaultAsync(s => s.IdProducto == pProducto.IdProducto);
+                producto = await bdContexto.Producto.FirstOrDefaultAsync(s => s.IdProducto == pProducto.IdProducto);
             }
-            return Producto;
+            return producto;
         }
         public static async Task<List<Producto>> ObtenerTodosAsync()
         {
-            var Productoes = new List<Producto>();
+            var Productos = new List<Producto>();
             using (var bdContexto = new BDContexto())
             {
-                Productoes = await bdContexto.Producto.ToListAsync();
+                Productos = await bdContexto.Producto.ToListAsync();
             }
-            return Productoes;
+            return Productos;
         }
         internal static IQueryable<Producto> QuerySelect(IQueryable<Producto> pQuery, Producto pProducto)
         {
@@ -74,14 +74,14 @@ namespace SysInventarioFacturacion.AccesoADatos
         }
         public static async Task<List<Producto>> BuscarAsync(Producto pProducto)
         {
-            var Productoes = new List<Producto>();
+            var Productos = new List<Producto>();
             using (var bdContexto = new BDContexto())
             {
                 var select = bdContexto.Producto.AsQueryable();
                 select = QuerySelect(select, pProducto);
-                Productoes = await select.ToListAsync();
+                Productos = await select.ToListAsync();
             }
-            return Productoes;
+            return Productos;
         }
     }
 }

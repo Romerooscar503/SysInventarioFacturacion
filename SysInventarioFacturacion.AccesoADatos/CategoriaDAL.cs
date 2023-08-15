@@ -26,7 +26,9 @@ namespace SysInventarioFacturacion.AccesoADatos
             using (var bdContexto = new BDContexto())
             {
                 var Categoria = await bdContexto.Categoria.FirstOrDefaultAsync(s => s.IdCategoria == pCategoria.IdCategoria);
+                Categoria.Codigo = pCategoria.Codigo;
                 Categoria.Nombre = pCategoria.Nombre;
+                Categoria.Descripcion = pCategoria.Descripcion;
                 bdContexto.Update(Categoria);
                 result = await bdContexto.SaveChangesAsync();
             }

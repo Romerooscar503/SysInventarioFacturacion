@@ -26,8 +26,8 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var CompraProveedor = await bdContexto.CompraProveedor.FirstOrDefaultAsync(s => s.Id == pCompraProveedor.Id);
-                CompraProveedor.Id = pCompraProveedor.Id;
+                var CompraProveedor = await bdContexto.CompraProveedor.FirstOrDefaultAsync(s => s.IdCompraProveedor == pCompraProveedor.IdCompraProveedor);
+                CompraProveedor.IdCompraProveedor = pCompraProveedor.IdCompraProveedor;
                 bdContexto.Update(CompraProveedor);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -38,7 +38,7 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var CompraProveedor = await bdContexto.CompraProveedor.FirstOrDefaultAsync(s => s.Id == pCompraProveedor.Id);
+                var CompraProveedor = await bdContexto.CompraProveedor.FirstOrDefaultAsync(s => s.IdCompraProveedor == pCompraProveedor.IdCompraProveedor);
                 bdContexto.CompraProveedor.Remove(CompraProveedor);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -49,7 +49,7 @@ namespace SysInventarioFacturacion.AccesoADatos
             var CompraProveedor = new CompraProveedor();
             using (var bdContexto = new BDContexto())
             {
-                CompraProveedor = await bdContexto.CompraProveedor.FirstOrDefaultAsync(s => s.Id == pCompraProveedor.Id);
+                CompraProveedor = await bdContexto.CompraProveedor.FirstOrDefaultAsync(s => s.IdCompraProveedor == pCompraProveedor.IdCompraProveedor);
             }
             return CompraProveedor;
         }
@@ -65,8 +65,8 @@ namespace SysInventarioFacturacion.AccesoADatos
         internal static IQueryable<CompraProveedor> QuerySelect(IQueryable<CompraProveedor> pQuery, CompraProveedor pCompraProveedor)
         {
             //Para enteros y decimales
-            if (pCompraProveedor.Id > 0)
-                pQuery = pQuery.Where(s => s.Id == pCompraProveedor.Id);
+            if (pCompraProveedor.IdCompraProveedor > 0)
+                pQuery = pQuery.Where(s => s.IdCompraProveedor == pCompraProveedor.IdCompraProveedor);
 
             if (pCompraProveedor.Codigo > 0)
                 pQuery = pQuery.Where(s => s.Codigo == pCompraProveedor.Codigo);
@@ -80,7 +80,7 @@ namespace SysInventarioFacturacion.AccesoADatos
                 pQuery = pQuery.Where(s => s.TotalCompras == pCompraProveedor.TotalCompras);
 
 
-            pQuery = pQuery.OrderByDescending(s => s.Id).AsQueryable();
+            pQuery = pQuery.OrderByDescending(s => s.IdCompraProveedor).AsQueryable();
             if (pCompraProveedor.Top_Aux > 0)
                 pQuery = pQuery.Take(pCompraProveedor.Top_Aux).AsQueryable();
             return pQuery; 

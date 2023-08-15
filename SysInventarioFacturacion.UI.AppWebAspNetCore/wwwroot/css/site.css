@@ -272,7 +272,45 @@ form {
 	text-align: center;
 }
 
+/*diseño del boton sing up*/
+.btn-singup-style {
+	background-color: #063489;
+	border-color: #063489;
+	padding: 12px 50px;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 5px;
+	color: #f8f9fa;
+	text-decoration: none;
+}
 
+	.btn-singup-style:hover {
+		background-color: #f2af36ee;
+		border-color: #f2af36ee;
+		color: #f8f9fa;
+		text-decoration: none;
+	}
+
+/* Estilo personalizado para el texto del enlace de layout en el Users */
+/* Estilo personalizado para el texto del enlace */
+.custom-link-text {
+	color: purple; /* Cambia el color del texto a morado */
+}
+
+
+/* Estilo para el botón más ancho */
+.wider-button {
+	height: 40px;
+	width: 120px; /* Puedes ajustar el valor del ancho según tus necesidades */
+}
+
+.wider-button {
+	font-size: 23px; /* Ajusta el tamaño de la fuente aquí */
+}
+
+.btn-singup-style {
+	width: 150px;
+}
 
 
 

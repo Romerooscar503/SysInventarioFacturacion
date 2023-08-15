@@ -13,7 +13,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int IdCompraProveedor { get; set; }
         [Required(ErrorMessage = "El codigo es obligatorio")]
         
         public int Codigo { get; set; }
@@ -24,8 +24,11 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [Required(ErrorMessage = "el total compras es obligatorio")]
         public decimal? TotalCompras { get; set; }
         [NotMapped]
-        public Proveedor? Proveedor { get; set; }
-
+        public Factura Factura { get; set; }
+        [NotMapped]
+        public Proveedor Proveedor { get; set; }
+        [NotMapped]
+        public List<Producto> Producto { get; set; }
 
         [NotMapped]
         public int Top_Aux { get; set; }
