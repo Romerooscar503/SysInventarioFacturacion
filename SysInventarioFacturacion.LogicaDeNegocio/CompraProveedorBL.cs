@@ -37,6 +37,10 @@ namespace SysInventarioFacturacion.LogicaDeNegocio
             return await CompraProveedorDAL.BuscarAsync(pCompraProveedor);
         }
 
+        public async Task<List<CompraProveedor>> BuscarIncluirProveedorAsync(CompraProveedor pCompraProveedor)
+        {
+            return await CompraProveedorDAL.BuscarIncluirProveedorAsync(pCompraProveedor);
+        }
 
     }
 }

@@ -27,8 +27,8 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [StringLength(20, ErrorMessage = "Maximo 20 caracteres")]
         public string? Telefono { get; set;  }
         [NotMapped]
-        public List <CompraProveedor>? CompraProveedor { get; set; }
-        [NotMapped]
         public int Top_Aux { get; set; }
+        public  ICollection<CompraProveedor>? CompraProveedores { get; set; }
+        
     }
 }

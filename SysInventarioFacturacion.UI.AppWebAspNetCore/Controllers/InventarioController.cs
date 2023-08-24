@@ -32,9 +32,9 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         }
 
         // GET: InventarioController/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int IdInventario)
         {
-            var inventario = await InventarioBL.ObtenerPorIdAsync(new Inventario { IdInventario = id });
+            var inventario = await InventarioBL.ObtenerPorIdAsync(new Inventario { IdInventario = IdInventario });
             return View(inventario);
         }
 
@@ -73,7 +73,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // POST: InventarioController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Inventario pInventario)
+        public async Task<IActionResult> Edit(int IdInventario, Inventario pInventario)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // POST: InventarioController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Inventario pInventario)
+        public async Task<IActionResult> Delete(int IdInventario, Inventario pInventario)
         {
             try
             {

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Proveedor> proveedores = ViewBag.Proveedores as List<SysInventarioFacturacion.EntidadesDeNegocio.Proveedor>;
 }
 
 <h1>Modificar CompraProveedor</h1>
@@ -31,6 +32,29 @@
                 <span asp-validation-for="TotalCompras" class="text-danger"></span>
               
             </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="IdProveedor" class="control-label"></label>
+                        <select asp-for="IdProveedor" class="form-control">
+                            <option selected value="">SELECCIONAR</option>
+                            @foreach (var item in proveedores)
+                            {
+                                if (Model.IdProveedor == item.IdProveedor)
+                                {
+                                    <option selected value="@item.IdProveedor">@item.Nombre</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.IdProveedor">@item.Nombre</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="IdProveedor" class="text-danger"></span>
+                    </div>
+                </div>
+
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-dark">Cancelar</a>

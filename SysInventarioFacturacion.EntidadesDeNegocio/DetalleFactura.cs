@@ -13,6 +13,10 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [Key ]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdDetalleFactura { get; set; }
+        [ForeignKey("Factura")]
+        [Required(ErrorMessage = "Factura es obligatorio")]
+        [Display(Name = "Factura")]
+        public int IdFactura { get; set; }
 
         [Required(ErrorMessage = "El codigo es obligatorio")]
        
@@ -32,9 +36,12 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
 
         [Required(ErrorMessage = "el valor total es obligatorio")]
         public decimal ValorTotal { get; set; }
-        [NotMapped]
-        public List<Producto> Producto { get; set; }
 
+       
+        public Factura? Factura { get; set; }
+
+        [NotMapped]
+        public List<Producto> Productos { get; set; }
         [NotMapped]
         public int Top_Aux { get; set; }
 

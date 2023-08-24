@@ -56,12 +56,12 @@ namespace SysInventarioFacturacion.AccesoADatos
         }
         public static async Task<List<Categoria>> ObtenerTodosAsync()
         {
-            var Categoria = new List<Categoria>();
+            var Categorias = new List<Categoria>();
             using (var bdContexto = new BDContexto())
             {
-                Categoria = await bdContexto.Categoria.ToListAsync();
+                Categorias = await bdContexto.Categoria.ToListAsync();
             }
-            return Categoria;
+            return Categorias;
         }
         internal static IQueryable<Categoria> QuerySelect(IQueryable<Categoria> pQuery, Categoria pCategoria)
         {

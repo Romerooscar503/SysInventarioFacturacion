@@ -27,6 +27,7 @@ namespace SysInventarioFacturacion.AccesoADatos
             {
                 var inventario = await bdContexto.Inventario.FirstOrDefaultAsync(s => s.IdInventario == pInventario.IdInventario);
                 inventario.CantidadInicialProducto = pInventario.CantidadInicialProducto;
+                inventario.CantidadDisponibleProducto = pInventario.CantidadDisponibleProducto;
                 bdContexto.Update(inventario);
                 result = await bdContexto.SaveChangesAsync();
             }

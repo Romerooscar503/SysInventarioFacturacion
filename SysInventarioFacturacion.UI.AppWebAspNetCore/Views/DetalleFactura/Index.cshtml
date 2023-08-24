@@ -7,6 +7,7 @@
     int numRegistrosPorPage = 10;
     int[] tops = { 10, 20, 50, 100, 500, 1000, 10000, -1 };
     int topActual = Convert.ToInt32(ViewBag.Top);
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Factura> facturas = ViewBag.Facturas as List<SysInventarioFacturacion.EntidadesDeNegocio.Factura>;
 }
 <h1>Buscar</h1>
 <div class="row">
@@ -17,6 +18,18 @@
                     <div class="form-group">
                         <label class="control-label">Codigo</label>
                         <input type="text" class="form-control" name="codigo" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Factura</label>
+                        <select name="IdFactura" class="form-control">
+                            <option selected value="0">SELECCIONAR</option>
+                            @foreach (var item in facturas)
+                            {
+                                <option value="@item.IdFactura">@item.NumeroFactura</option>
+                            }
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -72,6 +85,10 @@
                 @Html.DisplayNameFor(model => model.ValorTotal)
 
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdFactura)
+
+            </th>
             <th colspan="3">Acciones</th>
         </tr>
      </thead>
@@ -94,14 +111,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ValorTotal)
                 </td>
-                <td class="botonestabla">
-                    @Html.ActionLink("Modificar", "Edit", new { id = item.IdDetalleFactura }, new { @class = "btn btn-success" })
+                <td>
+                    @Html.DisplayFor(modelItem => item.Factura.NumeroFactura)
                 </td>
                 <td class="botonestabla">
-                    @Html.ActionLink("Ver", "Details", new { id = item.IdDetalleFactura }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Modificar", "Edit", new { IdDetalleFactura = item.IdDetalleFactura }, new { @class = "btn btn-success" })
                 </td>
                 <td class="botonestabla">
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdDetalleFactura }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Ver", "Details", new { IdDetalleFactura = item.IdDetalleFactura }, new { @class = "btn btn-info" })
+                </td>
+                <td class="botonestabla">
+                    @Html.ActionLink("Eliminar", "Delete", new { IdDetalleFactura = item.IdDetalleFactura }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
             

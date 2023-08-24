@@ -22,10 +22,11 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [Required(ErrorMessage = "Descripcion es obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         public string? Descripcion { get; set;}
-        [NotMapped]
-        public List<Producto> Producto { get; set; }
+
         [NotMapped]
         public int Top_Aux { get; set; }
+        public ICollection<Producto>? Productos { get; set; }
+       
 
     }
 }

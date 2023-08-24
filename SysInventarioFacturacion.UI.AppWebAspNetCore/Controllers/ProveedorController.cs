@@ -20,7 +20,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
     {    
         ProveedorBL ProveedorBL = new ProveedorBL();
         // GET: ProveedorController
-        public async Task<IActionResult> Index(Proveedor? pProveedor = null)
+        public async Task<IActionResult> Index(Proveedor pProveedor = null)
         {
             if (pProveedor == null)
                pProveedor = new Proveedor();
@@ -28,16 +28,16 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
                 pProveedor.Top_Aux = 10;
             else if (pProveedor.Top_Aux == -1)
                 pProveedor.Top_Aux = 0;
-            var Proveedor = await ProveedorBL.BuscarAsync(pProveedor);
+            var proveedores= await ProveedorBL.BuscarAsync(pProveedor);
             ViewBag.Top = pProveedor.Top_Aux;
-            return View(Proveedor);
+            return View(proveedores);
         }
 
         // GET: ProveedorController/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int IdProveedor)
         {
-            var Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = id });
-            return View(Proveedor);
+            var proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = IdProveedor });
+            return View(proveedor);
         }
 
         // GET: ProveedorController/Create
@@ -67,15 +67,15 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: ProveedorController/Edit/5
         public async Task<IActionResult> Edit(Proveedor pProveedor)
         {
-            var Proveedor = await ProveedorBL.ObtenerPorIdAsync(pProveedor);
+            var proveedor = await ProveedorBL.ObtenerPorIdAsync(pProveedor);
             ViewBag.Error = "";
-            return View(Proveedor);
+            return View(proveedor);
         }
 
         // POST: ProveedorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Proveedor pProveedor)
+        public async Task<IActionResult> Edit(int IdProveedor, Proveedor pProveedor)
         {
             try
             {
@@ -92,14 +92,14 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: ProveedorController/Delete/5
         public async Task<IActionResult> Delete(Proveedor pProveedor)
         {
-            var Proveedor = await ProveedorBL.ObtenerPorIdAsync(pProveedor);
-            return View(Proveedor);
+            var proveedor = await ProveedorBL.ObtenerPorIdAsync(pProveedor);
+            return View(proveedor);
         }
 
         // POST: ProveedorController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Proveedor pProveedor)
+        public async Task<IActionResult> Delete(int IdProveedor, Proveedor pProveedor)
         {
             try
             {   

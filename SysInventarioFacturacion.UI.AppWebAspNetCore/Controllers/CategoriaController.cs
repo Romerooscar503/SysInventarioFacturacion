@@ -32,9 +32,9 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         }
 
         // GET: CategoriaController/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int IdCategoria)
         {
-            var Categoria = await CategoriaBL.ObtenerPorIdAsync(new Categoria { IdCategoria = id });
+            var Categoria = await CategoriaBL.ObtenerPorIdAsync(new Categoria { IdCategoria = IdCategoria });
             return View(Categoria);
         }
 
@@ -73,7 +73,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // POST: CategoriaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Categoria pCategoria)
+        public async Task<IActionResult> Edit(int IdCategoria, Categoria pCategoria)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // POST: CategoriaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Categoria pCategoria)
+        public async Task<IActionResult> Delete(int IdCategoria, Categoria pCategoria)
         {
             try
             {

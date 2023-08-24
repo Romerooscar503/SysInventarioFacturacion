@@ -25,12 +25,12 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var Proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.IdProveedor == pProveedor.IdProveedor);
-                Proveedor.Codigo = pProveedor.Codigo;
-                Proveedor.Nombre = pProveedor.Nombre;
-                Proveedor.Direccion = pProveedor.Direccion;
-                Proveedor.Telefono = pProveedor.Telefono;
-                bdContexto.Update(Proveedor);
+                var proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.IdProveedor == pProveedor.IdProveedor);
+                proveedor.Codigo = pProveedor.Codigo;
+                proveedor.Nombre = pProveedor.Nombre;
+                proveedor.Direccion = pProveedor.Direccion;
+                proveedor.Telefono = pProveedor.Telefono;
+                bdContexto.Update(proveedor);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
@@ -40,29 +40,29 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var Proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.IdProveedor == pProveedor.IdProveedor);
-                bdContexto.Proveedor.Remove(Proveedor);
+                var proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.IdProveedor == pProveedor.IdProveedor);
+                bdContexto.Proveedor.Remove(proveedor);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
         }
         public static async Task<Proveedor> ObtenerPorIdProveedorAsync(Proveedor pProveedor)
         {
-            var Proveedor = new Proveedor();
+            var proveedor = new Proveedor();
             using (var bdContexto = new BDContexto())
             {
-                Proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.IdProveedor == pProveedor.IdProveedor);
+                proveedor = await bdContexto.Proveedor.FirstOrDefaultAsync(s => s.IdProveedor == pProveedor.IdProveedor);
             }
-            return Proveedor;
+            return proveedor;
         }
         public static async Task<List<Proveedor>> ObtenerTodosAsync()
         {
-            var Proveedores = new List<Proveedor>();
+            var proveedores = new List<Proveedor>();
             using (var bdContexto = new BDContexto())
             {
-                Proveedores = await bdContexto.Proveedor.ToListAsync();
+                proveedores = await bdContexto.Proveedor.ToListAsync();
             }
-            return Proveedores;
+            return proveedores;
         }
         internal static IQueryable<Proveedor> QuerySelect(IQueryable<Proveedor> pQuery, Proveedor pProveedor)
         {
@@ -82,14 +82,14 @@ namespace SysInventarioFacturacion.AccesoADatos
         }
         public static async Task<List<Proveedor>> BuscarAsync(Proveedor pProveedor)
         {
-            var Proveedores = new List<Proveedor>();
+            var proveedores = new List<Proveedor>();
             using (var bdContexto = new BDContexto())
             {
                 var select = bdContexto.Proveedor.AsQueryable();
                 select = QuerySelect(select, pProveedor);
-                Proveedores = await select.ToListAsync();
+                proveedores = await select.ToListAsync();
             }
-            return Proveedores;
+            return proveedores;
         }
     }
 }

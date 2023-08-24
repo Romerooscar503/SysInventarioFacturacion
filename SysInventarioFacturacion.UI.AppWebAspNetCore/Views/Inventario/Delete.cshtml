@@ -29,9 +29,16 @@
     </dl>
 
 
-    <form asp-action="Delete">
+    @* FUNCTION ELIMINAR CATEGORIA*@
+    @using (Html.BeginForm("Delete", "Inventario", new { IdInventario = Model.IdInventario }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger" onclick="return confirm('seguro'?);">Eliminar</button>
+        <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+    }
+    @*<form asp-action="Delete">
         <input type="submit" value="Eliminar" class="btn btn-danger" />
         <a asp-action="Index" class="btn btn-dark">Cancelar</a>
     </form>
-    <span class="text-danger">@ViewBag.Error</span>
+    <span class="text-danger">@ViewBag.Error</span>*@
 </div>

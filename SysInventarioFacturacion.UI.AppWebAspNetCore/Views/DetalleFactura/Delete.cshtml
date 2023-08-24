@@ -48,6 +48,12 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ValorTotal)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdFactura)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Factura.NumeroFactura)
+        </dd>
     </dl>
 
     <form asp-action="Delete">

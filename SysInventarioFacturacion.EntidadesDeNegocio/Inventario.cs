@@ -20,7 +20,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         public string? CantidadDisponibleProducto { get; set; }
         [NotMapped]
-        public List<Producto> Producto { get; set; }
+        public ICollection<Producto>? Productos { get; set; }
         [NotMapped]
         public int Top_Aux { get; set; }
     }

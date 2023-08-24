@@ -7,6 +7,7 @@
     int numRegistrosPorPage = 10;
     int[] tops = { 10, 20, 50, 100, 500, 1000, 10000, -1 };
     int topActual = Convert.ToInt32(ViewBag.Top);
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Proveedor> proveedores = ViewBag.Proveedores as List<SysInventarioFacturacion.EntidadesDeNegocio.Proveedor>;
 }
 <h1>Buscar</h1>
 <div class="row">
@@ -15,8 +16,20 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="control-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" />
+                        <label class="control-label">Codigo</label>
+                        <input type="text" class="form-control" name="codigo" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Proveedor</label>
+                        <select name="IdProveedor" class="form-control">
+                            <option selected value="0">SELECCIONAR</option>
+                            @foreach (var item in proveedores)
+                            {
+                                <option value="@item.IdProveedor">@item.Nombre</option>
+                            }
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -64,6 +77,9 @@
                 @Html.DisplayNameFor(model => model.TotalCompras)
 
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdProveedor)
+            </th>
            
             <th colspan="3">Acciones</th>
         </tr>
@@ -81,15 +97,18 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.TotalCompras)
                 </td>
-               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proveedor.Nombre)
+                </td>
+
                 <td class="botonestabla">
-                    @Html.ActionLink("Modificar", "Edit", new { id = item.IdCompraProveedor }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Modificar", "Edit", new { IdCompraProveedor = item.IdCompraProveedor }, new { @class = "btn btn-success" })
                 </td>
                 <td class="botonestabla">
-                    @Html.ActionLink("Ver", "Details", new { id = item.IdCompraProveedor }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Ver", "Details", new { IdCompraProveedor = item.IdCompraProveedor }, new { @class = "btn btn-info" })
                 </td>
                 <td class="botonestabla">
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdCompraProveedor }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Eliminar", "Delete", new { IdCompraProveedor = item.IdCompraProveedor }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
 

@@ -15,8 +15,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="control-label">Codigo</label>
-                        <input type="text" class="form-control" name="codigo" />
+                        <label class="control-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" />
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -83,13 +83,13 @@
                 </td>
                
                 <td class="botonestabla">
-                    @Html.ActionLink("Modificar", "Edit", new { id = item. Codigo }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Modificar", "Edit", new { IdCategoria = item.IdCategoria }, new { @class = "btn btn-success" })
                 </td>
                 <td class="botonestabla">
-                    @Html.ActionLink("Ver", "Details", new { id = item. Codigo }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Ver", "Details", new { IdCategoria = item.IdCategoria }, new { @class = "btn btn-info" })
                 </td>
                 <td class="botonestabla">
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Codigo }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Eliminar", "Delete", new { IdCategoria = item.IdCategoria }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
 

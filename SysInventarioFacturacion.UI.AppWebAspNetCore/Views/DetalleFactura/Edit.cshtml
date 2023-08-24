@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Factura> facturas = ViewBag.Facturas as List<SysInventarioFacturacion.EntidadesDeNegocio.Factura>;
 }
 
 <h1>Modificar DetalleFactura</h1>
@@ -41,6 +42,30 @@
                 <span asp-validation-for="ValorTotal" class="text-danger"></span>
 
             </div>
+            <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="IdFactura" class="control-label"></label>
+                    <select asp-for="IdFactura" class="form-control">
+                        <option selected value="">SELECCIONAR</option>
+                        @foreach (var item in facturas)
+                        {
+                            if (Model.IdFactura == item.IdFactura)
+                            {
+                                <option selected value="@item.IdFactura">@item.NumeroFactura</option>
+                            }
+                            else
+                            {
+                                <option value="@item.IdFactura">@item.NumeroFactura</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="IdFactura" class="text-danger"></span>
+                </div>
+            </div>
+          </div>
+
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-dark">Cancelar</a>

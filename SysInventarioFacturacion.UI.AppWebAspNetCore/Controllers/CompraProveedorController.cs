@@ -10,14 +10,18 @@ using SysInventarioFacturacion.EntidadesDeNegocio;
 using SysInventarioFacturacion.LogicaDeNegocio;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+
 
 
 namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 {
-    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+   // [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class CompraProveedorController : Controller
     {
         CompraProveedorBL compraProveedorBL = new CompraProveedorBL();
+        ProveedorBL ProveedorBL = new ProveedorBL();
         // GET: CompraProveedorController
         public async Task<IActionResult> Index(CompraProveedor pCompraProveedor = null)
         {
@@ -27,25 +31,33 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
                 pCompraProveedor.Top_Aux = 10;
             else if (pCompraProveedor.Top_Aux == -1)
                 pCompraProveedor.Top_Aux = 0;
-            var CompraProveedor = await compraProveedorBL.BuscarAsync(pCompraProveedor);
+            var taskBuscar = compraProveedorBL.BuscarIncluirProveedorAsync(pCompraProveedor);
+            var taskObtenerTodosProveedores = ProveedorBL.ObtenerTodosAsync();
+            var CompraProveedores = await taskBuscar;
             ViewBag.Top = pCompraProveedor.Top_Aux;
-            return View(CompraProveedor);
+            ViewBag.Proveedores = await taskObtenerTodosProveedores;
+            return View(CompraProveedores);
         }
 
         // GET: CompraProveedorController/Details/5
-        public async Task<IActionResult> Details(int id, CompraProveedorBL compraProveedorBL)
+        public async Task<IActionResult> Details(int IdCompraProveedor, CompraProveedorBL compraProveedorBL)
         {
-            var CompraProveedor = await compraProveedorBL.ObtenerPorIdAsync(new CompraProveedor { IdCompraProveedor = id });
+            var CompraProveedor = await compraProveedorBL.ObtenerPorIdAsync(new CompraProveedor { IdCompraProveedor = IdCompraProveedor });
+            CompraProveedor.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = CompraProveedor.IdProveedor });
             return View(CompraProveedor);
         }
 
         // GET: CompraProveedorController/Create
-        public IActionResult Create()
+       
+        public async Task<IActionResult> Create()
         {
+            ViewBag.Proveedores = await ProveedorBL.ObtenerTodosAsync();
+            ViewBag.Error = "";
             return View();
         }
 
         // POST: CompraProveedorController/Create
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CompraProveedor pCompraProveedor)
@@ -58,6 +70,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
+                ViewBag.Proveedores = await ProveedorBL.ObtenerTodosAsync();
                 return View(pCompraProveedor);
             }
         }
@@ -65,7 +78,10 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: CompraProveedorController/Edit/5
         public async Task<IActionResult> Edit(CompraProveedor pCompraProveedor)
         {
-            var CompraProveedor = await compraProveedorBL.ObtenerPorIdAsync(pCompraProveedor);
+            var taskObtenerPorIdCompraProveedor = compraProveedorBL.ObtenerPorIdAsync(pCompraProveedor);
+            var taskObtenerTodosProveedores = ProveedorBL.ObtenerTodosAsync();
+            var CompraProveedor = await taskObtenerPorIdCompraProveedor;
+            ViewBag.Proveedores = await taskObtenerTodosProveedores;
             ViewBag.Error = "";
             return View(CompraProveedor);
         }
@@ -73,7 +89,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // POST: CompraProveedorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, CompraProveedor pCompraProveedor)
+        public async Task<IActionResult> Edit(int IdCompraProveedor, CompraProveedor pCompraProveedor)
         {
             try
             {
@@ -83,6 +99,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
+                ViewBag.Proveedores = await ProveedorBL.ObtenerTodosAsync();
                 return View(pCompraProveedor);
             }
         }
@@ -91,13 +108,14 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         public async Task<IActionResult> Delete(CompraProveedor pCompraProveedor)
         {
             var CompraProveedor = await compraProveedorBL.ObtenerPorIdAsync(pCompraProveedor);
+            CompraProveedor.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = CompraProveedor.IdProveedor });
             return View(CompraProveedor);
         }
 
         // POST: CompraProveedorController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, CompraProveedor pCompraProveedor)
+        public async Task<IActionResult> Delete(int IdCompraProveedor, CompraProveedor pCompraProveedor)
         { 
             try
             {
@@ -107,6 +125,11 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
+                var CompraProveedor = await compraProveedorBL.ObtenerPorIdAsync(pCompraProveedor);
+                if (CompraProveedor == null)
+                    CompraProveedor = new CompraProveedor();
+                if (CompraProveedor.IdCompraProveedor > 0)
+                    CompraProveedor.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = CompraProveedor.IdProveedor });
                 return View(pCompraProveedor);
             }
         }

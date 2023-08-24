@@ -25,8 +25,13 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var detalleFactura = await bdContexto.DetalleFactura.FirstOrDefaultAsync(s => s.IdDetalleFactura == pDetalleFactura.IdDetalleFactura);
-                detalleFactura.IdDetalleFactura = pDetalleFactura.IdDetalleFactura;
+                var detalleFactura = await bdContexto.DetalleFactura.FirstOrDefaultAsync(s => s.IdDetalleFactura == pDetalleFactura.IdDetalleFactura);               
+                detalleFactura.IdFactura = pDetalleFactura.IdFactura;
+                detalleFactura.Codigo = pDetalleFactura.Codigo;
+                detalleFactura.Cantidad = pDetalleFactura.Cantidad;
+                detalleFactura.FormaDePago = pDetalleFactura.FormaDePago;
+                detalleFactura.FechaEmision = pDetalleFactura.FechaEmision;
+                detalleFactura.ValorTotal = pDetalleFactura.ValorTotal;
                 bdContexto.Update(detalleFactura);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -63,14 +68,14 @@ namespace SysInventarioFacturacion.AccesoADatos
         }
         internal static IQueryable<DetalleFactura> QuerySelect(IQueryable<DetalleFactura> pQuery, DetalleFactura pDetalleFactura)
         {
-            if (pDetalleFactura.Cantidad > 0)
-                pQuery = pQuery.Where(s => s.Cantidad == pDetalleFactura.Cantidad);
-
-
+            if (pDetalleFactura.IdDetalleFactura > 0)
+                pQuery = pQuery.Where(s => s.IdDetalleFactura == pDetalleFactura.IdDetalleFactura);
+            if (pDetalleFactura.IdFactura > 0)
+                pQuery = pQuery.Where(s => s.IdFactura == pDetalleFactura.IdFactura);
             if (pDetalleFactura.Codigo > 0)
                 pQuery = pQuery.Where(s => s.Codigo == pDetalleFactura.Codigo);
-
-
+            if (pDetalleFactura.Cantidad > 0)
+                pQuery = pQuery.Where(s => s.Cantidad == pDetalleFactura.Cantidad);          
             if (!string.IsNullOrWhiteSpace(pDetalleFactura.FormaDePago))
                 pQuery = pQuery.Where(s => s.FormaDePago.Contains(pDetalleFactura.FormaDePago));
 
@@ -95,6 +100,18 @@ namespace SysInventarioFacturacion.AccesoADatos
             {
                 var select = bdContexto.DetalleFactura.AsQueryable();
                 select = QuerySelect(select, pDetalleFactura);
+                DetalleFacturas = await select.ToListAsync();
+            }
+            return DetalleFacturas;
+        }
+
+         public static async Task<List<DetalleFactura>> BuscarIncluirFacturasAsync(DetalleFactura pDetalleFactura)
+        {
+            var DetalleFacturas = new List<DetalleFactura>();
+            using (var bdContexto = new BDContexto())
+            {
+                var select = bdContexto.DetalleFactura.AsQueryable();
+                select = QuerySelect(select, pDetalleFactura).Include(s => s.Factura).AsQueryable();
                 DetalleFacturas = await select.ToListAsync();
             }
             return DetalleFacturas;
