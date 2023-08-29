@@ -72,19 +72,17 @@ namespace SysInventarioFacturacion.AccesoADatos
                 pQuery = pQuery.Where(s => s.IdDetalleFactura == pDetalleFactura.IdDetalleFactura);
             if (pDetalleFactura.IdFactura > 0)
                 pQuery = pQuery.Where(s => s.IdFactura == pDetalleFactura.IdFactura);
-            if (pDetalleFactura.Codigo > 0)
-                pQuery = pQuery.Where(s => s.Codigo == pDetalleFactura.Codigo);
-            if (pDetalleFactura.Cantidad > 0)
-                pQuery = pQuery.Where(s => s.Cantidad == pDetalleFactura.Cantidad);          
-            if (!string.IsNullOrWhiteSpace(pDetalleFactura.FormaDePago))
-                pQuery = pQuery.Where(s => s.FormaDePago.Contains(pDetalleFactura.FormaDePago));
+            //if (pDetalleFactura.Codigo > 0)
+            //    pQuery = pQuery.Where(s => s.Codigo == pDetalleFactura.Codigo);
+            //if (pDetalleFactura.Cantidad > 0)
+            //    pQuery = pQuery.Where(s => s.Cantidad == pDetalleFactura.Cantidad);          
+            //if (!string.IsNullOrWhiteSpace(pDetalleFactura.FormaDePago))
+            //    pQuery = pQuery.Where(s => s.FormaDePago.Contains(pDetalleFactura.FormaDePago));
 
-            if (!string.IsNullOrWhiteSpace(pDetalleFactura.FechaEmision.ToString()))
-                pQuery = pQuery.Where(s => s.FechaEmision.ToString().Contains(pDetalleFactura.FechaEmision.ToString()));
-
-
-            if (pDetalleFactura.ValorTotal > 0)
-                pQuery = pQuery.Where(s => s.ValorTotal== pDetalleFactura.ValorTotal);
+            //if (!string.IsNullOrWhiteSpace(pDetalleFactura.FechaEmision.ToString()))
+            //    pQuery = pQuery.Where(s => s.FechaEmision.ToString().Contains(pDetalleFactura.FechaEmision.ToString()));
+            //if (pDetalleFactura.ValorTotal > 0)
+            //    pQuery = pQuery.Where(s => s.ValorTotal == pDetalleFactura.ValorTotal);
 
 
 

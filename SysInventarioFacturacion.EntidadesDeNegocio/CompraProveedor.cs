@@ -32,7 +32,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         
         public Proveedor? Proveedor { get; set; }
               
-        [NotMapped]
+        
         public List<Producto> Productos { get; set; }
 
         [NotMapped]

@@ -10,13 +10,14 @@ namespace SysInventarioFacturacion.LogicaDeNegocio
 {
     public class FacturaBL
     {
-        public async Task<int> AgregarAsync(Factura pFactura)
+
+        public async Task<int> CrearAsync(Factura pFactura)
         {
-            return await FacturaDAL.AgregarAsync(pFactura);
+            return await FacturaDAL.CrearAsync(pFactura);
         }
-        public async Task<int> EditarAsync(Factura pFactura)
+        public async Task<int> ModificarAsync(Factura pFactura)
         {
-            return await FacturaDAL.EditarAsync(pFactura);
+            return await FacturaDAL.ModificarAsync(pFactura);
         }
         public async Task<int> EliminarAsync(Factura pFactura)
         {
@@ -24,7 +25,7 @@ namespace SysInventarioFacturacion.LogicaDeNegocio
         }
         public async Task<Factura> ObtenerPorIdAsync(Factura pFactura)
         {
-            return await FacturaDAL.ObtenerPorIdFacturaAsync(pFactura);
+            return await FacturaDAL.ObtenerPorIdAsync(pFactura);
         }
         public async Task<List<Factura>> ObtenerTodosAsync()
         {
@@ -34,5 +35,11 @@ namespace SysInventarioFacturacion.LogicaDeNegocio
         {
             return await FacturaDAL.BuscarAsync(pFactura);
         }
+
+        public async Task<List<Factura>> BuscarIncluirUsuarioAsync(Factura pFactura)
+        {
+            return await FacturaDAL.BuscarIncluirUsuarioAsync(pFactura);
+        }
+
     }
 }

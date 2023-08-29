@@ -10,6 +10,7 @@ using SysInventarioFacturacion.EntidadesDeNegocio;
 using SysInventarioFacturacion.LogicaDeNegocio;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 using SysInventarioFacturacion.AccesoADatos;
 
 
@@ -46,7 +47,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         }
 
         // GET: DetalleFacturaController/Create
-        [AllowAnonymous]
+       
         public async Task<IActionResult> Create()
         {
             ViewBag.Facturas = await FacturaBL.ObtenerTodosAsync();
@@ -55,7 +56,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         }
 
         // POST: DeatlleFacturaController/Create
-        [AllowAnonymous]
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DetalleFactura pDetalleFactura)

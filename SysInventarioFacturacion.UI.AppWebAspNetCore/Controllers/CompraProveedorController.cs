@@ -40,7 +40,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         }
 
         // GET: CompraProveedorController/Details/5
-        public async Task<IActionResult> Details(int IdCompraProveedor, CompraProveedorBL compraProveedorBL)
+        public async Task<IActionResult> Details(int IdCompraProveedor)
         {
             var CompraProveedor = await compraProveedorBL.ObtenerPorIdAsync(new CompraProveedor { IdCompraProveedor = IdCompraProveedor });
             CompraProveedor.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = CompraProveedor.IdProveedor });
