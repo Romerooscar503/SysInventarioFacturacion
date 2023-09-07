@@ -15,6 +15,17 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProducto { get; set; }
 
+        [ForeignKey("Proveedor")]
+        [Required(ErrorMessage = "Proveedor es obligatorio")]
+        [Display(Name = "Proveedor")]
+        public int IdProveedor { get; set; }
+
+        [ForeignKey("Categoria")]
+        [Required(ErrorMessage = "Categoria es obligatorio")]
+        [Display(Name = "Categoria")]
+        public int IdCategoria { get; set; }
+
+
         [Required(ErrorMessage = "el codigo es obligatorio")]
         
         public int Codigo { get; set; }
@@ -35,6 +46,9 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [StringLength(30, ErrorMessage = "Maximo 30 caracteres")]
         public string? Marca { get; set;}
 
+        [Required(ErrorMessage = "El cantidad es obligatorio")]
+        public int Cantidad { get; set; }
+
         [Required(ErrorMessage = "El color es obligatorio")]
         [StringLength(20, ErrorMessage = "Maximo 20 caracteres")]
         public string? Color { get; set;}
@@ -42,13 +56,14 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [Required(ErrorMessage = "El precio unitario es obligatorio")]
 
         public decimal PrecioUnitario { get; set;}
-        [NotMapped]
-        public CompraProveedor CompraProveedor { get;set;}
+
+        public Proveedor? Proveedor { get; set; }
+
+        public Categoria? Categoria { get; set; }
         
-        [NotMapped]
-        public Categoria Categoria { get; set; }
-        [NotMapped]
-        public DetalleFactura DetalleFactura { get; set; }
+       public ICollection<DetallePedido>? DetallePedido { get;set; }
+
+        public ICollection<DetalleFactura>? DetalleFactura { get; set; }
        
         [NotMapped]
         public int Top_Aux { get; set;}

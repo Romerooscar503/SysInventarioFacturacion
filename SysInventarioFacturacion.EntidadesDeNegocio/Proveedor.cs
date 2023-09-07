@@ -28,7 +28,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         public string? Telefono { get; set;  }
         [NotMapped]
         public int Top_Aux { get; set; }
-        public  ICollection<CompraProveedor>? CompraProveedores { get; set; }
+        public  ICollection<Producto>? Producto { get; set; }
         
     }
 }

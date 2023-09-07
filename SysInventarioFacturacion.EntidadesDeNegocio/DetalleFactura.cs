@@ -17,6 +17,10 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [Required(ErrorMessage = "Factura es obligatorio")]
         [Display(Name = "Factura")]
         public int IdFactura { get; set; }
+        [ForeignKey("Producto")]
+        [Required(ErrorMessage = "Producto es obligatorio")]
+        [Display(Name = "Producto")]
+        public int IdProducto { get; set; }
 
         [Required(ErrorMessage = "El codigo es obligatorio")]
        
@@ -41,8 +45,10 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         public int Top_Aux { get; set; }
         public Factura? Factura { get; set; }
 
-        public List<Producto> Productos { get; set; }
-       
+        public Producto? Producto { get; set; }
+
+
+
 
 
     }
