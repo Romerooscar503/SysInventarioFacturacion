@@ -44,8 +44,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         public decimal PrecioUnitario { get; set;}
         [NotMapped]
         public CompraProveedor CompraProveedor { get;set;}
-        [NotMapped]
-        public Inventario Inventario { get; set; }
+        
         [NotMapped]
         public Categoria Categoria { get; set; }
         [NotMapped]
