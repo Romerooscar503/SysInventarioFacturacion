@@ -15,7 +15,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
 		public int IdPedido { get; set; }
 
 		[Required(ErrorMessage = "Telefono es obligatorio")]
-		[StringLength(9, ErrorMessage = "Escriba su numero de telefono con guion")]
+		[StringLength(8, ErrorMessage = "Escriba su numero de telefono sin guion")]
 		public string? Telefono { get; set; }    
 
         [ForeignKey("Usuario")]
@@ -25,7 +25,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
 
         public Usuario? Usuario { get; set; }
 
-        [NotMapped]
+       
         public ICollection<DetallePedido>? DetallePedido { get; set; }
 
 		[NotMapped]
