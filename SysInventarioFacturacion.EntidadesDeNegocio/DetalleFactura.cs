@@ -45,6 +45,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         public int Top_Aux { get; set; }
         public Factura? Factura { get; set; }
 
+        [NotMapped]
         public Producto? Producto { get; set; }
 
 

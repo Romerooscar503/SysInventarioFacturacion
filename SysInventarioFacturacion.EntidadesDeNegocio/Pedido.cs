@@ -10,7 +10,13 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
 {
     public class Pedido
     {
-        public int IdPedido { get; set; }
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public int IdPedido { get; set; }
+
+		[Required(ErrorMessage = "Telefono es obligatorio")]
+		[StringLength(9, ErrorMessage = "Escriba su numero de telefono con guion")]
+		public string? Telefono { get; set; }    
 
         [ForeignKey("Usuario")]
         [Required(ErrorMessage = "Usuario es obligatorio")]
@@ -18,5 +24,11 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         public int IdUsuario { get; set; }
 
         public Usuario? Usuario { get; set; }
-    }
+
+        [NotMapped]
+        public ICollection<DetallePedido>? DetallePedido { get; set; }
+
+		[NotMapped]
+		public int Top_Aux { get; set; }
+	}
 }

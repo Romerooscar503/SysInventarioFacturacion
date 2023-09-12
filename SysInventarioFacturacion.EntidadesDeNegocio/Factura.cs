@@ -49,7 +49,9 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         public decimal TotalPagado { get; set; }
 
         public Usuario? Usuario { get; set; }
+       
         public List<DetalleFactura>? DetalleFactura { get; set; }
+      
         [NotMapped]
         public int Top_Aux { get; set; }
 

@@ -10,6 +10,8 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
 {
     public class DetallePedido
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdDetallePedido { get; set; }
 
         [ForeignKey("Producto")]
