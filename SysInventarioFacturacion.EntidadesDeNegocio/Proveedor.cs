@@ -26,6 +26,9 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [Required(ErrorMessage = "El telefono es obligatorio")]
         [StringLength(20, ErrorMessage = "Maximo 20 caracteres")]
         public string? Telefono { get; set;  }
+        [Required(ErrorMessage = "El Correo es obligatorio")]
+        [StringLength(20, ErrorMessage = "Maximo 50 caracteres")]
+        public string? Correo { get; set; }
         [NotMapped]
         public int Top_Aux { get; set; }
         public  ICollection<Producto>? Producto { get; set; }

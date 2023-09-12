@@ -30,6 +30,7 @@ namespace SysInventarioFacturacion.AccesoADatos
                 proveedor.Nombre = pProveedor.Nombre;
                 proveedor.Direccion = pProveedor.Direccion;
                 proveedor.Telefono = pProveedor.Telefono;
+                proveedor.Correo = pProveedor.Correo;
                 bdContexto.Update(proveedor);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -74,6 +75,8 @@ namespace SysInventarioFacturacion.AccesoADatos
                 pQuery = pQuery.Where(s => s.Direccion.Contains(pProveedor.Direccion));
             if (!string.IsNullOrWhiteSpace(pProveedor.Telefono))
                 pQuery = pQuery.Where(s => s.Telefono.Contains(pProveedor.Telefono));
+            if (!string.IsNullOrWhiteSpace(pProveedor.Correo))
+                pQuery = pQuery.Where(s => s.Correo.Contains(pProveedor.Correo));
 
             pQuery = pQuery.OrderByDescending(s => s.IdProveedor).AsQueryable();
             if (pProveedor.Top_Aux > 0)

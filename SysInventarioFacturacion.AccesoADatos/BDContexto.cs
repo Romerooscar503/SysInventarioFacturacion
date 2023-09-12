@@ -13,7 +13,6 @@ namespace SysInventarioFacturacion.AccesoADatos
         public DbSet<Rol> Rol { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
-        public DbSet <CompraProveedor> CompraProveedor { get; set; }
 
         public DbSet <DetalleFactura> DetalleFactura { get; set; }
 		public DbSet<Categoria> Categoria { get; set; }
