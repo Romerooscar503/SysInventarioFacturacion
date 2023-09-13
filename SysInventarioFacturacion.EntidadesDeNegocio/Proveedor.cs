@@ -32,6 +32,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [NotMapped]
         public int Top_Aux { get; set; }
         public  ICollection<Producto>? Producto { get; set; }
-        
+        public ICollection<DetallePedido>? DetallePedido { get; set; }
+
     }
 }

@@ -17,6 +17,7 @@ namespace SysInventarioFacturacion.AccesoADatos
         public DbSet <DetalleFactura> DetalleFactura { get; set; }
 		public DbSet<Categoria> Categoria { get; set; }
 		public DbSet<Pedido> Pedido { get; set; }
+        public DbSet<DetallePedido> DetallePedido { get; set; }
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Proveedor> Proveedor { get; set; }
         public DbSet<Factura> Factura { get; set; }
