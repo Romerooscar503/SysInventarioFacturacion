@@ -46,7 +46,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         {
             var detalleFactura = await detalle_facturaBL.ObtenerPorIdAsync(new DetalleFactura { IdDetalleFactura = IdDetalleFactura });
             detalleFactura.Factura = await FacturaBL.ObtenerPorIdAsync(new Factura { IdFactura = detalleFactura.IdFactura });
-            detalleFactura.Producto = await ProductoBL.ObtenerPorIdAsync(new Producto { IdProducto = detalleFactura.IdProducto });
+            detalleFactura.Producto = await ProductoBL.ObtenerPorIdProductoAsync(new Producto { IdProducto = detalleFactura.IdProducto });
             return View(detalleFactura);
         }
 
@@ -117,7 +117,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         {
             var DetalleFactura = await detalle_facturaBL.ObtenerPorIdAsync(pDetalleFactura);
             DetalleFactura.Factura = await FacturaBL.ObtenerPorIdAsync(new Factura { IdFactura = DetalleFactura.IdFactura });
-            DetalleFactura.Producto = await ProductoBL.ObtenerPorIdAsync(new Producto { IdProducto = DetalleFactura.IdProducto });
+            DetalleFactura.Producto = await ProductoBL.ObtenerPorIdProductoAsync(new Producto { IdProducto = DetalleFactura.IdProducto });
             ViewBag.Error = "";
 
             return View(DetalleFactura);
@@ -142,7 +142,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
                 if (detalleFactura.IdDetalleFactura > 0)
                     detalleFactura.Factura = await FacturaBL.ObtenerPorIdAsync(new Factura { IdFactura = detalleFactura.IdFactura });
                 if (detalleFactura.IdDetalleFactura > 0)
-                    detalleFactura.Producto = await ProductoBL.ObtenerPorIdAsync(new Producto { IdProducto = detalleFactura.IdProducto });
+                    detalleFactura.Producto = await ProductoBL.ObtenerPorIdProductoAsync(new Producto { IdProducto = detalleFactura.IdProducto });
                 return View(detalleFactura);
             }
         }
