@@ -28,8 +28,7 @@ namespace SysInventarioFacturacion.AccesoADatos
                 var Factura = await bdContexto.Factura.FirstOrDefaultAsync(s => s.IdFactura == pFactura.IdFactura);
                 Factura.IdUsuario = pFactura.IdUsuario;
                 Factura.NumeroFactura = pFactura.NumeroFactura;
-                Factura.FechaFacturacion = pFactura.FechaFacturacion;
-                Factura.Cantidad = pFactura.Cantidad;
+                Factura.FechaFacturacion = pFactura.FechaFacturacion;             
                 Factura.Descripcion = pFactura.Descripcion;
                 Factura.Direccion = pFactura.Direccion;
                 Factura.Telefono = pFactura.Telefono;

@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Create";
     List<SysInventarioFacturacion.EntidadesDeNegocio.Factura> facturas = ViewBag.Facturas as List<SysInventarioFacturacion.EntidadesDeNegocio.Factura>;
+
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
 }
 
 <h1>Crear DetalleFactura</h1>
@@ -56,6 +58,22 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="IdProducto" class="control-label"></label>
+                        <select asp-for="IdProducto" class="form-control">
+                            <option selected value="">SELECCIONAR</option>
+                            @foreach (var item in productos)
+                            {
+                                <option value="@item.IdProducto">@item.Nombre</option>
+                            }
+                        </select>
+                        <span asp-validation-for="IdProducto" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
 
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />

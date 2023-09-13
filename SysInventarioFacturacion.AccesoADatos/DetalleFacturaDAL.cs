@@ -27,6 +27,7 @@ namespace SysInventarioFacturacion.AccesoADatos
             {
                 var detalleFactura = await bdContexto.DetalleFactura.FirstOrDefaultAsync(s => s.IdDetalleFactura == pDetalleFactura.IdDetalleFactura);               
                 detalleFactura.IdFactura = pDetalleFactura.IdFactura;
+                detalleFactura.IdProducto = pDetalleFactura.IdProducto;
                 detalleFactura.Codigo = pDetalleFactura.Codigo;
                 detalleFactura.Cantidad = pDetalleFactura.Cantidad;
                 detalleFactura.FormaDePago = pDetalleFactura.FormaDePago;
@@ -72,6 +73,8 @@ namespace SysInventarioFacturacion.AccesoADatos
                 pQuery = pQuery.Where(s => s.IdDetalleFactura == pDetalleFactura.IdDetalleFactura);
             if (pDetalleFactura.IdFactura > 0)
                 pQuery = pQuery.Where(s => s.IdFactura == pDetalleFactura.IdFactura);
+            if (pDetalleFactura.IdProducto > 0)
+                pQuery = pQuery.Where(s => s.IdProducto == pDetalleFactura.IdProducto);
             //if (pDetalleFactura.Codigo > 0)
             //    pQuery = pQuery.Where(s => s.Codigo == pDetalleFactura.Codigo);
             //if (pDetalleFactura.Cantidad > 0)
@@ -103,13 +106,13 @@ namespace SysInventarioFacturacion.AccesoADatos
             return DetalleFacturas;
         }
 
-         public static async Task<List<DetalleFactura>> BuscarIncluirFacturasAsync(DetalleFactura pDetalleFactura)
+         public static async Task<List<DetalleFactura>> BuscarIncluirFacturasYProductoAsync(DetalleFactura pDetalleFactura)
         {
             var DetalleFacturas = new List<DetalleFactura>();
             using (var bdContexto = new BDContexto())
             {
                 var select = bdContexto.DetalleFactura.AsQueryable();
-                select = QuerySelect(select, pDetalleFactura).Include(s => s.Factura).AsQueryable();
+                select = QuerySelect(select, pDetalleFactura).Include(s => s.Factura).Include(s => s.Producto).AsQueryable();
                 DetalleFacturas = await select.ToListAsync();
             }
             return DetalleFacturas;

@@ -34,9 +34,9 @@ namespace SysInventarioFacturacion.LogicaDeNegocio
         {
             return await DetalleFacturaDAL.BuscarAsync(pDetalleFactura);
         }
-        public async Task<List<DetalleFactura>> BuscarIncluirFacturasAsync(DetalleFactura pDetalleFactura)
+        public async Task<List<DetalleFactura>> BuscarIncluirFacturasYProductoAsync(DetalleFactura pDetalleFactura)
         {
-            return await DetalleFacturaDAL.BuscarIncluirFacturasAsync(pDetalleFactura);
+            return await DetalleFacturaDAL.BuscarIncluirFacturasYProductoAsync(pDetalleFactura);
         }
     }
 }

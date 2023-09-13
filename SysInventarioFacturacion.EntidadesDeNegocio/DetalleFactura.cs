@@ -40,13 +40,14 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
 
         [Required(ErrorMessage = "el valor total es obligatorio")]
         public decimal ValorTotal { get; set; }
+        public Factura? Factura { get; set; }
+
+
+        public Producto? Producto { get; set; }
 
         [NotMapped]
         public int Top_Aux { get; set; }
-        public Factura? Factura { get; set; }
-
-        [NotMapped]
-        public Producto? Producto { get; set; }
+       
 
 
 

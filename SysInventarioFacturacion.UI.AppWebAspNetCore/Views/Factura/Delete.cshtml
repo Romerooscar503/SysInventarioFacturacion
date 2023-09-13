@@ -30,12 +30,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FechaFacturacion)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cantidad)
-        </dd>
+       
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Descripcion)
         </dt>
@@ -94,7 +89,7 @@
     </dl>
 
     @* FUNCTION ELIMINAR COMPRAPROVEEDOR*@
-    @using (Html.BeginForm("Delete", "CompraProveedor", new { IdFactura = Model.IdFactura}, FormMethod.Post))
+    @using (Html.BeginForm("Delete", "Factura", new { IdFactura = Model.IdFactura}, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
             <button type="submit" class="btn btn-danger" onclick="return confirm('seguro'?);">Eliminar</button>

@@ -24,21 +24,19 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [Required(ErrorMessage = "Fecha facturacion es obligatorio")]
    
         public DateTime FechaFacturacion { get; set; }
-        [Required(ErrorMessage = "Cantidad es obligatorio")]
 
-        public int Cantidad { get; set; }
         [Required(ErrorMessage = "Descripcion es obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
         [Required(ErrorMessage = "Direccion es obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
-        public string Direccion { get; set; }
+        public string? Direccion { get; set; }
         [Required(ErrorMessage = "Telefono es obligatorio")]
         [StringLength(15, ErrorMessage = "Maximo 15 caracteres")]
-        public string Telefono { get; set; }
+        public string? Telefono { get; set; }
         [Required(ErrorMessage = "Correo es obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
-        public string Correo { get; set; }
+        public string? Correo { get; set; }
         [Required(ErrorMessage = "Total es obligatorio")]
         public decimal Total { get; set; }
         [Required(ErrorMessage = "Descuento es obligatorio")]

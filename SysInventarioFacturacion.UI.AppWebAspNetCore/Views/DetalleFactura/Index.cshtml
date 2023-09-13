@@ -8,6 +8,7 @@
     int[] tops = { 10, 20, 50, 100, 500, 1000, 10000, -1 };
     int topActual = Convert.ToInt32(ViewBag.Top);
     List<SysInventarioFacturacion.EntidadesDeNegocio.Factura> facturas = ViewBag.Facturas as List<SysInventarioFacturacion.EntidadesDeNegocio.Factura>;
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
 }
 <h1>Buscar</h1>
 <div class="row">
@@ -28,6 +29,18 @@
                             @foreach (var item in facturas)
                             {
                                 <option value="@item.IdFactura">@item.NumeroFactura</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Producto</label>
+                        <select name="IdProducto" class="form-control">
+                            <option selected value="0">SELECCIONAR</option>
+                            @foreach (var item in productos)
+                            {
+                                <option value="@item.IdProducto">@item.Nombre</option>
                             }
                         </select>
                     </div>
@@ -89,6 +102,10 @@
                 @Html.DisplayNameFor(model => model.IdFactura)
 
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdProducto)
+
+            </th>
             <th colspan="3">Acciones</th>
         </tr>
      </thead>
@@ -113,6 +130,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Factura.NumeroFactura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto.Nombre)
                 </td>
                 <td class="botonestabla">
                     @Html.ActionLink("Modificar", "Edit", new { IdDetalleFactura = item.IdDetalleFactura }, new { @class = "btn btn-success" })
