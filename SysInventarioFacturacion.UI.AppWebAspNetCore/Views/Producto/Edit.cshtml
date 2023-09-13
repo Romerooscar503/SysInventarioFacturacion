@@ -78,7 +78,7 @@
                         <span asp-validation-for="IdCategoria" class="text-danger"></span>
                     </div>
                 </div>
-                </div>
+            </div>
 
             <div class="row">
                 <div class="col-md-4">
@@ -103,26 +103,28 @@
                 </div>
             </div>
 
-                @*BOTONES*@
+            @*BOTONES*@
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <input type="submit" value="Guardar" class="btn btn-primary" />
-                            <a asp-action="Index" class="btn btn-dark">Cancelar</a>
-                        </div>
-                        <span class="text-danger">@ViewBag.Error</span>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-dark">Cancelar</a>
                     </div>
+                    <span class="text-danger">@ViewBag.Error</span>
                 </div>
+            </div>
         </form>
+    </div>
+</div>
 
-        @section Scripts {
-            @{
-                await Html.RenderPartialAsync("_ValidationScriptsPartial");
-            }
-            <script>
-                $(function () {
-                    $("form input[name]").trigger("blur");
-                });
-            </script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(function () {
+            $("form input[name]").trigger("blur");
+        });
+    </script>
         }

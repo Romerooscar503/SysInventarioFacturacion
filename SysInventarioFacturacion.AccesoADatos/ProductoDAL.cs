@@ -26,9 +26,9 @@ namespace SysInventarioFacturacion.AccesoADatos
 			using (var bdContexto = new BDContexto())
 			{
 				var producto = await bdContexto.Producto.FirstOrDefaultAsync(s => s.IdProducto == pProducto.IdProducto);
-				producto.Codigo = pProducto.Codigo;
                 producto.IdCategoria = pProducto.IdCategoria;
                 producto.IdProveedor = pProducto.IdProveedor;
+                producto.Codigo = pProducto.Codigo;
                 producto.Nombre = pProducto.Nombre;
 				producto.Descripcion = pProducto.Descripcion;
 				producto.Talla = pProducto.Talla;
