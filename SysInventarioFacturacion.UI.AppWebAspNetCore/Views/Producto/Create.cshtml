@@ -2,10 +2,14 @@
 
 @{
     ViewData["Title"] = "Create";
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Categoria> categorias = ViewBag.Categoria as List<SysInventarioFacturacion.EntidadesDeNegocio.Categoria>;
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Proveedor> proveedores = ViewBag.Proveedor as List<SysInventarioFacturacion.EntidadesDeNegocio.Proveedor>;
+
 }
 
 <h1>Crear Producto</h1>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -36,6 +40,11 @@
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Cantidad" class="control-label"></label>
+                <input asp-for="Cantidad" class="form-control" />
+                <span asp-validation-for="Cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Color" class="control-label"></label>
                 <input asp-for="Color" class="form-control" />
                 <span asp-validation-for="Color" class="text-danger"></span>
@@ -45,6 +54,41 @@
                 <input asp-for="PrecioUnitario" class="form-control" />
                 <span asp-validation-for="PrecioUnitario" class="text-danger"></span>
             </div>
+
+            @*            RELACIONES CATEGORIA Y PROVEEDOR
+            *@
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="IdCategoria" class="control-label"></label>
+                        <select asp-for="IdCategoria" class="form-control">
+                            <option selected value="">SELECCIONAR</option>
+                            @foreach (var item in categorias)
+                            {
+                                <option value="@item.IdCategoria">@item.Nombre</option>
+                            }
+                        </select>
+                        <span asp-validation-for="IdCategoria" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="IdProveedor" class="control-label"></label>
+                        <select asp-for="IdProveedor" class="form-control">
+                            <option selected value="">SELECCIONAR</option>
+                            @foreach (var item in proveedores)
+                            {
+                                <option value="@item.IdProveedor">@item.Nombre</option>
+                            }
+                        </select>
+                        <span asp-validation-for="IdProveedor" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-dark">Cancelar</a>
@@ -53,7 +97,8 @@
         </form>
     </div>
 </div>
-@section Scripts {
+@section Scripts
+    {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
