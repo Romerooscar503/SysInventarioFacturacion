@@ -62,9 +62,11 @@
         </dd>
     </dl>
 
-    <form asp-action="Delete">
-        <input type="submit" value="Eliminar" class="btn btn-danger" />
+    @* FUNCTION ELIMINAR DETALLEFACTURA*@
+    @using (Html.BeginForm("Delete", "DetalleFactura", new { IdDetalleFactura = Model.IdDetalleFactura }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger" onclick="return confirm('seguro'?);">Eliminar</button>
         <a asp-action="Index" class="btn btn-dark">Cancelar</a>
-    </form>
-    <span class="text-danger">@ViewBag.Error</span>
+    }
 </div>
