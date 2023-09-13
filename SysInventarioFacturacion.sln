@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysInventarioFacturacion.Lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysInventarioFacturacion.PruebasUnitarias", "SysInventarioFacturacion.PruebasUnitarias\SysInventarioFacturacion.PruebasUnitarias.csproj", "{271D9109-DF23-4E77-BA43-60F1288812DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysInventarioFacturacion.UI.AppWebAspNetCore", "SysInventarioFacturacion.UI.AppWebAspNetCore\SysInventarioFacturacion.UI.AppWebAspNetCore.csproj", "{C545359B-8900-4508-A615-50988A3AFCFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysInventarioFacturacion.UI.AppWebAspNetCore", "SysInventarioFacturacion.UI.AppWebAspNetCore\SysInventarioFacturacion.UI.AppWebAspNetCore.csproj", "{C545359B-8900-4508-A615-50988A3AFCFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysInventarioFacturacion.WebAPI", "SysInventarioFacturacion.WebAPI\SysInventarioFacturacion.WebAPI.csproj", "{8351D0E1-3D98-47FE-9676-7E70FCCC3272}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C545359B-8900-4508-A615-50988A3AFCFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C545359B-8900-4508-A615-50988A3AFCFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C545359B-8900-4508-A615-50988A3AFCFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8351D0E1-3D98-47FE-9676-7E70FCCC3272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8351D0E1-3D98-47FE-9676-7E70FCCC3272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8351D0E1-3D98-47FE-9676-7E70FCCC3272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8351D0E1-3D98-47FE-9676-7E70FCCC3272}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
