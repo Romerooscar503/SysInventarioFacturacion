@@ -35,12 +35,12 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [Display(Name = "Pedido")]
         public int IdPedido { get; set; }
 
-        [ForeignKey("Pedido")]
-        [Required(ErrorMessage = "Pedido es obligatorio")]
-        [Display(Name = "Pedido")]
+        [ForeignKey("Proveedor")]
+        [Required(ErrorMessage = "Proveedor es obligatorio")]
+        [Display(Name = "Proveedor")]
         public int IdProveedor { get; set; }
 
-        public Producto? Proveedor { get; set; }
+        public Proveedor? Proveedor { get; set; }
 
         public Producto? Producto { get; set; }
 

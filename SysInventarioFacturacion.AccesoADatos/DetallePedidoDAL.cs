@@ -106,7 +106,7 @@ namespace SysInventarioFacturacion.AccesoADatos
             return DetallePedido;
         }
 
-        public static async Task<List<DetallePedido>> BuscarIncluirFacturasYProductoAsync(DetallePedido pDetallePedido)
+        public static async Task<List<DetallePedido>> BuscarIncluirPedidoProductoProveedorAsync(DetallePedido pDetallePedido)
         {
             var DetallePedido = new List<DetallePedido>();
             using (var bdContexto = new BDContexto())
