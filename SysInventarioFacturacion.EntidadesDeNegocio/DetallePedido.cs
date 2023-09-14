@@ -24,7 +24,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         [NotMapped]
         public int Top_Aux { get; set; }
 
-            [ForeignKey("Producto")]
+        [ForeignKey("Producto")]
         [Required(ErrorMessage = "Producto es obligatorio")]
         [Display(Name = "Producto")]
         public int IdProducto { get; set; }
