@@ -29,7 +29,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 				pProducto.Top_Aux = 10;
 			else if (pProducto.Top_Aux == -1)
 				pProducto.Top_Aux = 0;
-			var taskBuscar = ProductoBL.BuscarIncluiarCategoriayProveedorAsync(pProducto);
+			var taskBuscar = ProductoBL.BuscarIncluirCategoriayProveedorAsync(pProducto);
 			var taskObtenerTodosCategoria = CategoriaBL.ObtenerTodosAsync();
 			var taskObtenerTodosProveedor = ProveedorBL.ObtenerTodosAsync();
 			var Productos = await taskBuscar;
@@ -43,7 +43,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 		public async Task<IActionResult> Details(int IdProducto)
 		{
 			var producto = await ProductoBL.ObtenerPorIdProductoAsync(new Producto { IdProducto = IdProducto });
-			producto.Categoria = await CategoriaBL.ObtenerPorIdAsync(new Categoria { IdCategoria = producto.IdCategoria });
+			producto.Categoria = await CategoriaBL.ObtenerPorIdCategoriaAsync(new Categoria { IdCategoria = producto.IdCategoria });
 			producto.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = producto.IdProveedor });
 			return View(producto);
 		}
@@ -81,11 +81,11 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 		public async Task<IActionResult> Edit(Producto pProducto)
 		{
 			var taskObtenerPorIdProducto = ProductoBL.ObtenerPorIdProductoAsync(pProducto);
-			var taskObtenerTodosCategoria = CategoriaBL.ObtenerTodosAsync();
-			var taskObtenerTodosProveedor = ProveedorBL.ObtenerTodosAsync();
+			var taskObtenerTodosCategorias = CategoriaBL.ObtenerTodosAsync();
+			var taskObtenerTodosProveedores = ProveedorBL.ObtenerTodosAsync();
 			var producto = await taskObtenerPorIdProducto;
-			ViewBag.Categoria = await taskObtenerTodosCategoria;
-			ViewBag.Proveedor = await taskObtenerTodosProveedor;
+			ViewBag.Categorias = await taskObtenerTodosCategorias;
+			ViewBag.Proveedores = await taskObtenerTodosProveedores;
 			ViewBag.Error = "";
 			return View(producto);
 		}
@@ -103,8 +103,8 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 			catch (Exception ex)
 			{
 				ViewBag.Error = ex.Message;
-				ViewBag.Categoria = await CategoriaBL.ObtenerTodosAsync();
-				ViewBag.Proveedor = await ProveedorBL.ObtenerTodosAsync();
+				ViewBag.Categorias = await CategoriaBL.ObtenerTodosAsync();
+				ViewBag.Proveedores = await ProveedorBL.ObtenerTodosAsync();
 				return View(pProducto);
 			}
 		}
@@ -112,11 +112,11 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 		// GET: ProductoController/Delete/5
 		public async Task<IActionResult> Delete(Producto pProducto)
 		{
-			var producto = await ProductoBL.ObtenerPorIdProductoAsync(pProducto);
-			producto.Categoria = await CategoriaBL.ObtenerPorIdAsync(new Categoria { IdCategoria = producto.IdCategoria });
-			producto.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = producto.IdProveedor });
+			var Producto = await ProductoBL.ObtenerPorIdProductoAsync(pProducto);
+            Producto.Categoria = await CategoriaBL.ObtenerPorIdCategoriaAsync(new Categoria { IdCategoria = Producto.IdCategoria });
+            Producto.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = Producto.IdProveedor });
 			ViewBag.Error = "";
-			return View(producto);
+			return View(Producto);
 		}
 
 		// POST: ProductoController/Delete/5
@@ -132,14 +132,14 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 			catch (Exception ex)
 			{
 				ViewBag.Error = ex.Message;
-				var Producto = await ProductoBL.ObtenerPorIdProductoAsync(pProducto);
-				if (Producto == null)
-					Producto = new Producto();
-				if (Producto.IdProducto > 0)
-					Producto.Categoria = await CategoriaBL.ObtenerPorIdAsync(new Categoria { IdCategoria = Producto.IdCategoria });
-				if (Producto.IdProducto > 0)
-					Producto.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = Producto.IdProveedor });
-				return View(Producto);
+				var producto = await ProductoBL.ObtenerPorIdProductoAsync(pProducto);
+				if (producto == null)
+                    producto = new Producto();
+				if (producto.IdProducto > 0)
+                    producto.Categoria = await CategoriaBL.ObtenerPorIdCategoriaAsync(new Categoria { IdCategoria = producto.IdCategoria });
+				if (producto.IdProducto > 0)
+                    producto.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = producto.IdProveedor });
+				return View(producto);
 			}
 		}
 	}

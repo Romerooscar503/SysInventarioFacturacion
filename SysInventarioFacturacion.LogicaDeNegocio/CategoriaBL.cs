@@ -22,7 +22,7 @@ namespace SysInventarioFacturacion.LogicaDeNegocio
         {
             return await CategoriaDAL.EliminarAsync(pCategoria);
         }
-        public async Task<Categoria> ObtenerPorIdAsync(Categoria pCategoria)
+        public async Task<Categoria> ObtenerPorIdCategoriaAsync(Categoria pCategoria)
         {
             return await CategoriaDAL.ObtenerPorIdCategoriaAsync(pCategoria);
         }

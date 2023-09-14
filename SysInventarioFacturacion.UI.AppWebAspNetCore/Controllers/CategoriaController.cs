@@ -34,7 +34,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: CategoriaController/Details/5
         public async Task<IActionResult> Details(int IdCategoria)
         {
-            var Categoria = await CategoriaBL.ObtenerPorIdAsync(new Categoria { IdCategoria = IdCategoria });
+            var Categoria = await CategoriaBL.ObtenerPorIdCategoriaAsync(new Categoria { IdCategoria = IdCategoria });
             return View(Categoria);
         }
 
@@ -65,7 +65,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: CategoriaController/Edit/5
         public async Task<IActionResult> Edit(Categoria pCategoria)
         {
-            var Categoria = await CategoriaBL.ObtenerPorIdAsync(pCategoria);
+            var Categoria = await CategoriaBL.ObtenerPorIdCategoriaAsync(pCategoria);
             ViewBag.Error = "";
             return View(Categoria);
         }
@@ -90,7 +90,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         // GET: CategoriaController/Delete/5
         public async Task<IActionResult> Delete(Categoria pCategoria)
         {
-            var Categoria = await CategoriaBL.ObtenerPorIdAsync(pCategoria);
+            var Categoria = await CategoriaBL.ObtenerPorIdCategoriaAsync(pCategoria);
             return View(Categoria);
         }
 
