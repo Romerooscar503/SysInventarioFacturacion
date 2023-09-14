@@ -68,9 +68,8 @@ namespace SysInventarioFacturacion.AccesoADatos
 			//Para enteros y decimales
 			if (pPedido.IdPedido > 0)
 				pQuery = pQuery.Where(s => s.IdPedido == pPedido.IdPedido);
-			if (pPedido.IdPedido > 0)
+			if (pPedido.IdUsuario > 0)
 				pQuery = pQuery.Where(s => s.IdUsuario == pPedido.IdUsuario);
-
 			pQuery = pQuery.OrderByDescending(s => s.IdPedido).AsQueryable();
 			if (pPedido.Top_Aux > 0)
 				pQuery = pQuery.Take(pPedido.Top_Aux).AsQueryable();
