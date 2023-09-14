@@ -70,15 +70,25 @@ namespace SysInventarioFacturacion.AccesoADatos
 			}
 			return Productos;
 		}
+
+		//SIRVE PARA BUSCAR POR FILTRO
 		internal static IQueryable<Producto> QuerySelect(IQueryable<Producto> pQuery, Producto pProducto)
 		{
-			if (pProducto.IdProducto > 0)
-				pQuery = pQuery.Where(s => s.IdProducto == pProducto.IdProducto);
-			if (!string.IsNullOrWhiteSpace(pProducto.Nombre))
-				pQuery = pQuery.Where(s => s.Descripcion.Contains(pProducto.Descripcion));
-			if (!string.IsNullOrWhiteSpace(pProducto.Descripcion))
 
-				pQuery = pQuery.OrderByDescending(s => s.IdProducto).AsQueryable();
+            if (pProducto.IdProducto > 0)
+                pQuery = pQuery.Where(s => s.IdProducto == pProducto.IdProducto);
+            if (pProducto.IdProducto > 0)
+                pQuery = pQuery.Where(s => s.IdCategoria == pProducto.IdCategoria);
+            if (pProducto.IdProveedor > 0)
+                pQuery = pQuery.Where(s => s.IdProveedor == pProducto.IdProveedor);
+
+            //if (pProducto.IdProducto > 0)
+            //	pQuery = pQuery.Where(s => s.IdProducto == pProducto.IdProducto);
+            //if (!string.IsNullOrWhiteSpace(pProducto.Nombre))
+            //	pQuery = pQuery.Where(s => s.Descripcion.Contains(pProducto.Descripcion));
+            //if (!string.IsNullOrWhiteSpace(pProducto.Descripcion))
+
+            pQuery = pQuery.OrderByDescending(s => s.IdProducto).AsQueryable();
 			if (pProducto.Top_Aux > 0)
 				pQuery = pQuery.Take(pProducto.Top_Aux).AsQueryable();
 			return pQuery;
