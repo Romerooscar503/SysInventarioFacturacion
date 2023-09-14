@@ -77,6 +77,7 @@ namespace SysInventarioFacturacion.AccesoADatos
 			if (!string.IsNullOrWhiteSpace(pProducto.Nombre))
 				pQuery = pQuery.Where(s => s.Descripcion.Contains(pProducto.Descripcion));
 			if (!string.IsNullOrWhiteSpace(pProducto.Descripcion))
+
 				pQuery = pQuery.OrderByDescending(s => s.IdProducto).AsQueryable();
 			if (pProducto.Top_Aux > 0)
 				pQuery = pQuery.Take(pProducto.Top_Aux).AsQueryable();
@@ -93,16 +94,16 @@ namespace SysInventarioFacturacion.AccesoADatos
 			}
 			return Productos;
 		}
-		public static async Task<List<Producto>> BuscarIncluiarCategoriayProveedorAsync(Producto pProducto)
+		public static async Task<List<Producto>> BuscarIncluirCategoriayProveedorAsync(Producto pProducto)
 		{
-			var productos = new List<Producto>();
+			var Productos = new List<Producto>();
 			using (var bdContexto = new BDContexto())
 			{
 				var select = bdContexto.Producto.AsQueryable();
 				select = QuerySelect(select, pProducto).Include(s => s.Categoria).Include(s => s.Proveedor).AsQueryable();
-				productos = await select.ToListAsync();
+                Productos = await select.ToListAsync();
 			}
-			return productos;
+			return Productos;
 		}
 	}
 }
