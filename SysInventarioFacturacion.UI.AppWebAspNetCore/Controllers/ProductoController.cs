@@ -81,11 +81,11 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 		public async Task<IActionResult> Edit(Producto pProducto)
 		{
 			var taskObtenerPorIdProducto = ProductoBL.ObtenerPorIdProductoAsync(pProducto);
-			var taskObtenerTodosCategorias = CategoriaBL.ObtenerTodosAsync();
-			var taskObtenerTodosProveedores = ProveedorBL.ObtenerTodosAsync();
+			var taskObtenerTodosCategoria = CategoriaBL.ObtenerTodosAsync();
+			var taskObtenerTodosProveedor = ProveedorBL.ObtenerTodosAsync();
 			var producto = await taskObtenerPorIdProducto;
-			ViewBag.Categorias = await taskObtenerTodosCategorias;
-			ViewBag.Proveedores = await taskObtenerTodosProveedores;
+			ViewBag.Categoria = await taskObtenerTodosCategoria;
+			ViewBag.Proveedor = await taskObtenerTodosProveedor;
 			ViewBag.Error = "";
 			return View(producto);
 		}
@@ -103,8 +103,8 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 			catch (Exception ex)
 			{
 				ViewBag.Error = ex.Message;
-				ViewBag.Categorias = await CategoriaBL.ObtenerTodosAsync();
-				ViewBag.Proveedores = await ProveedorBL.ObtenerTodosAsync();
+				ViewBag.Categoria = await CategoriaBL.ObtenerTodosAsync();
+				ViewBag.Proveedor = await ProveedorBL.ObtenerTodosAsync();
 				return View(pProducto);
 			}
 		}
