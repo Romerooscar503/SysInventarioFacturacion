@@ -26,9 +26,9 @@ namespace SysInventarioFacturacion.AccesoADatos
             using (var bdContexto = new BDContexto())
             {
                 var detallePedido = await bdContexto.DetallePedido.FirstOrDefaultAsync(s => s.IdDetallePedido == pDetallePedido.IdDetallePedido);
-                detallePedido.IdPedido = pDetallePedido.IdPedido;
                 detallePedido.IdProducto = pDetallePedido.IdProducto;
                 detallePedido.IdProveedor = pDetallePedido.IdProveedor;
+                detallePedido.IdPedido = pDetallePedido.IdPedido;
                 detallePedido.Cantidad = pDetallePedido.Cantidad;
                 detallePedido.FechaPedido = pDetallePedido.FechaPedido;
                 bdContexto.Update(detallePedido);

@@ -26,9 +26,10 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             var taskObtenerTodosProveedor = ProveedorBL.ObtenerTodosAsync();
             var DetallePedido = await taskBuscar;
             ViewBag.Top = pDetallePedido.Top_Aux;
-            ViewBag.Facturas = await taskObtenerTodosPedido;
+            ViewBag.Pedido = await taskObtenerTodosPedido;
+            ViewBag.Proveedor = await taskObtenerTodosProveedor;
             ViewBag.Producto = await taskObtenerTodosProducto;
-            return View();
+            return View(DetallePedido);
         }
 
         // GET: DetallePedidoController/Details/5
@@ -43,65 +44,106 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         }
 
         // GET: DetallePedidoController/Create
-        public ActionResult Create()
+
+        public async Task<IActionResult> Create()
         {
+            ViewBag.Pedido = await PedidoBL.ObtenerTodosAsync();
+            ViewBag.Producto = await ProductoBL.ObtenerTodosAsync();
+            ViewBag.Proveedor = await ProveedorBL.ObtenerTodosAsync();
+            ViewBag.Error = "";
             return View();
         }
 
         // POST: DetallePedidoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(DetallePedido pDetallePedido)
         {
             try
             {
+                int result = await DetallePedidoBL.CrearAsync(pDetallePedido);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Error = ex.Message;
+                ViewBag.Pedido = await PedidoBL.ObtenerTodosAsync();
+                ViewBag.Producto = await ProductoBL.ObtenerTodosAsync();
+                ViewBag.Proveedor = await ProveedorBL.ObtenerTodosAsync();
+                return View(pDetallePedido);
             }
         }
 
         // GET: DetallePedidoController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(DetallePedido pDetallePedido)
         {
-            return View();
+            var taskObtenerPorId = DetallePedidoBL.ObtenerPorIdAsync(pDetallePedido);
+            var taskObtenerTodosPedido = PedidoBL.ObtenerTodosAsync();
+            var taskObtenerTodosProveedor = ProveedorBL.ObtenerTodosAsync();
+            var taskObtenerTodosProducto = ProductoBL.ObtenerTodosAsync();
+            var DetallePedido = await taskObtenerPorId;
+            ViewBag.Pedido = await taskObtenerTodosPedido;
+            ViewBag.Producto = await taskObtenerTodosProducto;
+            ViewBag.Proveedor = await taskObtenerTodosProveedor;
+            ViewBag.Error = "";
+            return View(DetallePedido);
         }
 
         // POST: DetallePedidoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int IdDetallePedido, DetallePedido pDetallePedido)
         {
             try
             {
+                int result = await DetallePedidoBL.ModificarAsync(pDetallePedido);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Error = ex.Message;
+                ViewBag.Pedido = await PedidoBL.ObtenerTodosAsync();
+                ViewBag.Producto = await ProductoBL.ObtenerTodosAsync();
+                ViewBag.Proveedor = await ProveedorBL.ObtenerTodosAsync();
+                return View(pDetallePedido);
             }
         }
 
         // GET: DetallePedidoController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(DetallePedido pDetallePedido)
         {
-            return View();
+            var DetallePedido = await DetallePedidoBL.ObtenerPorIdAsync(pDetallePedido);
+            DetallePedido.Pedido = await PedidoBL.ObtenerPorIdAsync(new Pedido { IdPedido = DetallePedido.IdPedido });
+            DetallePedido.Producto = await ProductoBL.ObtenerPorIdProductoAsync(new Producto { IdProducto = DetallePedido.IdProducto });
+            DetallePedido.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = DetallePedido.IdProveedor });
+            ViewBag.Error = "";
+
+            return View(DetallePedido);
         }
 
         // POST: DetallePedidoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, DetallePedido pDetallePedido)
         {
             try
             {
+                int result = await DetallePedidoBL.EliminarAsync(pDetallePedido);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Error = ex.Message;
+                var DetallePedido = await DetallePedidoBL.ObtenerPorIdAsync(pDetallePedido);
+                if (DetallePedido == null)
+                    DetallePedido = new DetallePedido();
+                if (DetallePedido.IdDetallePedido > 0)
+                    DetallePedido.Pedido = await PedidoBL.ObtenerPorIdAsync(new Pedido { IdPedido = DetallePedido.IdPedido });
+                if (DetallePedido.IdDetallePedido > 0)
+                    DetallePedido.Producto = await ProductoBL.ObtenerPorIdProductoAsync(new Producto { IdProducto = DetallePedido.IdProducto });
+                if (DetallePedido.IdDetallePedido > 0)
+                    DetallePedido.Proveedor = await ProveedorBL.ObtenerPorIdAsync(new Proveedor { IdProveedor = DetallePedido.IdProveedor });
+                return View(DetallePedido);
             }
         }
     }
