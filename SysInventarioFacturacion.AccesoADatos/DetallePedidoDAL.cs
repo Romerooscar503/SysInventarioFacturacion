@@ -72,9 +72,10 @@ namespace SysInventarioFacturacion.AccesoADatos
             if (pDetallePedido.IdPedido > 0)
                 pQuery = pQuery.Where(s => s.IdPedido == pDetallePedido.IdPedido);
             if (pDetallePedido.IdProducto > 0)
-                pQuery = pQuery.Where(s => s.IdProveedor == pDetallePedido.IdProveedor);
+                pQuery = pQuery.Where(s => s.IdProducto == pDetallePedido.IdProducto);
             if (pDetallePedido.IdProveedor > 0)
                 pQuery = pQuery.Where(s => s.IdProveedor == pDetallePedido.IdProveedor);
+
             //if (pDetalleFactura.Codigo > 0)
             //    pQuery = pQuery.Where(s => s.Codigo == pDetalleFactura.Codigo);
             //if (pDetalleFactura.Cantidad > 0)

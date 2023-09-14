@@ -167,13 +167,13 @@
 
 
                 <td class="botonestabla">
-                    @Html.ActionLink("Modificar", "Edit", new { id = item.IdProducto }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Modificar", "Edit", new { IdProducto = item.IdProducto }, new { @class = "btn btn-success" })
                 </td>
                 <td class="botonestabla">
-                    @Html.ActionLink("Ver", "Details", new { id = item.IdProducto }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Ver", "Details", new { IdProducto = item.IdProducto }, new { @class = "btn btn-info" })
                 </td>
                 <td class="botonestabla">
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdProducto }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Eliminar", "Delete", new { IdProducto = item.IdProducto }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
             numRegistros++;
