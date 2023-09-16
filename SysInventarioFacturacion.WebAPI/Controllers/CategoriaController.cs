@@ -4,8 +4,6 @@ using SysInventarioFacturacion.LogicaDeNegocio;
 using System.Text.Json;
 
 // Agregar la siguiente librerias
-using SysInventarioFacturacion.EntidadesDeNegocio;
-using SysInventarioFacturacion.LogicaDeNegocio;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using SysInventarioFacturacion.AccesoADatos;
