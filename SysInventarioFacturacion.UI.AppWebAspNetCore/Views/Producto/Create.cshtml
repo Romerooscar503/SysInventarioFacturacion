@@ -7,91 +7,143 @@
 
 }
 
-<h1>Crear Producto</h1>
+<h1>Agregar Un Nuevo Producto</h1>
 <hr />
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Codigo" class="control-label"></label>
-                <input asp-for="Codigo" class="form-control" />
-                <span asp-validation-for="Codigo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Talla" class="control-label"></label>
-                <input asp-for="Talla" class="form-control" />
-                <span asp-validation-for="Talla" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Marca" class="control-label"></label>
-                <input asp-for="Marca" class="form-control" />
-                <span asp-validation-for="Marca" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cantidad" class="control-label"></label>
-                <input asp-for="Cantidad" class="form-control" />
-                <span asp-validation-for="Cantidad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Color" class="control-label"></label>
-                <input asp-for="Color" class="form-control" />
-                <span asp-validation-for="Color" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PrecioUnitario" class="control-label"></label>
-                <input asp-for="PrecioUnitario" class="form-control" />
-                <span asp-validation-for="PrecioUnitario" class="text-danger"></span>
-            </div>
 
-            @*            RELACIONES CATEGORIA Y PROVEEDOR
-            *@
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="IdCategoria" class="control-label"></label>
-                        <select asp-for="IdCategoria" class="form-control">
-                            <option selected value="">SELECCIONAR</option>
-                            @foreach (var item in categorias)
-                            {
-                                <option value="@item.IdCategoria">@item.Nombre</option>
-                            }
-                        </select>
-                        <span asp-validation-for="IdCategoria" class="text-danger"></span>
-                    </div>
+            <div>
+                <div class="input-group flex-nowrap mb-3 ">
+                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
+                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
+                        Codigo :
+                    </label>
+                    <input asp-for="Codigo" class="form-control" />
+                    <span asp-validation-for="Codigo" class="text-danger"></span>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="IdProveedor" class="control-label"></label>
-                        <select asp-for="IdProveedor" class="form-control">
-                            <option selected value="">SELECCIONAR</option>
-                            @foreach (var item in proveedores)
-                            {
-                                <option value="@item.IdProveedor">@item.Nombre</option>
-                            }
-                        </select>
-                        <span asp-validation-for="IdProveedor" class="text-danger"></span>
-                    </div>
+            <div>
+                <div class="input-group flex-nowrap mb-3 ">
+                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
+                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
+                        Nombre :
+                    </label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <div class="input-group flex-nowrap mb-3 ">
+                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
+                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
+                        Descripción :
+                    </label>
+                    <input asp-for="Descripcion" class="form-control" />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <div class="input-group flex-nowrap mb-3 ">
+                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
+                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
+                        Talla :
+                    </label>
+                    <input asp-for="Talla" class="form-control" />
+                    <span asp-validation-for="Talla" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <div class="input-group flex-nowrap mb-3 ">
+                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
+                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
+                        Marca :
+                    </label>
+                    <input asp-for="Marca" class="form-control" />
+                    <span asp-validation-for="Marca" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <div class="input-group flex-nowrap mb-3 ">
+                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
+                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
+                        Cantidad :
+                    </label>
+                    <input asp-for="Cantidad" class="form-control" />
+                    <span asp-validation-for="Cantidad" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <div class="input-group flex-nowrap mb-3 ">
+                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
+                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
+                        Color :
+                    </label>
+                    <input asp-for="Color" class="form-control" />
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <div class="input-group flex-nowrap mb-3 ">
+                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
+                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
+                        Precio Unitario :
+                    </label>
+                    <input asp-for="PrecioUnitario" class="form-control" />
+                    <span asp-validation-for="PrecioUnitario" class="text-danger"></span>
+                </div>
+            </div>
+
+            @* RELACIONES BOTONES DESPLEGABLAS*@
+
+            <div>
+                <div class="input-group flex-nowrap mb-3 ">
+                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
+                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
+                        Proveedor :
+                    </label>
+                    @*                    <label asp-for="IdCategoria" class="control-label"></label>
+                    *@                    <select asp-for="IdProveedor" class="form-control">
+                        <option selected value="">SELECCIONAR</option>
+                        @foreach (var item in proveedores)
+                        {
+                            <option value="@item.IdProveedor">@item.Nombre</option>
+                        }
+                    </select>
+                    <span asp-validation-for="IdProveedor" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <div class="input-group flex-nowrap mb-3 ">
+                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
+                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
+                        Categoria :
+                    </label>
+                    @*                    <label asp-for="IdCategoria" class="control-label"></label>
+                    *@                    <select asp-for="IdCategoria" class="form-control">
+                        <option selected value="">SELECCIONAR</option>
+                        @foreach (var item in categorias)
+                        {
+                            <option value="@item.IdCategoria">@item.Nombre</option>
+                        }
+                    </select>
+                    <span asp-validation-for="IdCategoria" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-danger">Cancelar</a>
             </div>
             <span class="text-danger">@ViewBag.Error</span>
         </form>
