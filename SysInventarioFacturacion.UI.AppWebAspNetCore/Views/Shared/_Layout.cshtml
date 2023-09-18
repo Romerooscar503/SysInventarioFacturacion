@@ -1,121 +1,101 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿<html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Inventario y Facturacion</title>
+    <!--    https://fontawesome.com/   -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/Home.css" />
-
-    <link rel="stylesheet" href="~/js/JavaScriptHome.js" />
+    <link rel="stylesheet" href="~/css/Home.css">
+    <link rel="stylesheet" href="~/css/Menu.css">
+    <link rel="stylesheet" href="Menu.JS">
 </head>
+
 <body>
     <header>
-
-        @if (User.Identity.IsAuthenticated)
-        {
-            <div class='link'>
-                <div class="dashboard-nav">
-                    <header>
-                        @{
-                            string? nombre = User.Identity.Name;
-                        }
-                        
-                        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
-                        <a href="#" class="brand-logo">
-                            <i class="fas fa-anchor"></i> <span>IMPERIAL SHOES</span>
-                           
-
-                        </a>
-                    </header>
-                    <div class="logo-container">
-                        <!-- Aquí puedes agregar el código o la imagen del logotipo de tu empresa -->
-                        <!-- Por ejemplo, si es una imagen: -->
-                        <img src="~/IMG/Logo.png" alt="Logo de la empresa" class="logo-container">
-                    </div>
-                    <nav class="dashboard-nav-list">
-
-                        <li class="Nombre">
-                            <a class="dashboard-nav-dropdown-item-nombre">Bienvenido @nombre</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="dashboard-nav-item" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                        </li>
-                        <div class='dashboard-nav-dropdown'>
-                            <a href="#" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                                <i class="fas fa-tachometer-alt"></i>Perfil
-                            </a>
-
-                            <div class='dashboard-nav-dropdown-menu'>
-                                <li class="nav-item">
-                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Usuario" asp-action="Index">Usuario</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Rol" asp-action="Index">Rol</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Usuario" asp-action="CambiarPassword">Cambiar password</a>
-                                </li>
-                            </div>
-                        </div>
-                       <div class='dashboard-nav-dropdown'>
-                            <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                                <i class="fas fa-users"></i> Producto
-                            </a>
-                            <div class='dashboard-nav-dropdown-menu'>
-
-                                <li class="nav-item">
-                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Producto" asp-action="Index">Producto</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="dashboard-nav-item" asp-area="" asp-controller="Categoria" asp-action="Index">Categoria</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Proveedor" asp-action="Index">Proveedor</a>
-                                </li>
-                               
-                            </div>
-                        </div>
-                        <div class='dashboard-nav-dropdown'>
-                            <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                                <i class="fas fa-users"></i> Facturas
-                            </a>
-                            <div class='dashboard-nav-dropdown-menu'>
-                         
-                                <li class="nav-item">
-                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Factura" asp-action="Index">Factura</a>
-                                </li>
-                           
-                                <li class="nav-item">
-                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="DetalleFactura" asp-action="Index">DetalleFactura</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Pedido" asp-action="Index">Pedido</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="DetallePedido" asp-action="Index">DetallePedido</a>
-                                </li>
-                            </div>
-                        </div>
-                        <li class="nav-item">
-                            <a class="dashboard-nav-item" asp-area="" asp-controller="Usuario" asp-action="CerrarSesion">Cerrar sesión</a>
-                        </li>
-                 
-                    </nav>
-
-                    <div class='dashboard-app'>
-                        <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
-                    </div>
-
-                </div>
-
-            </div>
-        }
+        <label class="labelMenu"><i class="fa fa-bars"></i></label>
     </header>
 
-    <div class='dashboard-app'>
+    <div class="menu">
+        <h1><i class="fa fa-address-card"></i></h1>
+        <nav>
+            <ul>
+                <li class="nav-item">
+                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Usuario" asp-action="Index">Usuario</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Rol" asp-action="Index">Rol</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Producto" asp-action="Index">Producto</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="dashboard-nav-item" asp-area="" asp-controller="Categoria" asp-action="Index">Categoria</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Proveedor" asp-action="Index">Proveedor</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li class="nav-item">
+                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Factura" asp-action="Index">Factura</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="DetalleFactura" asp-action="Index">DetalleFactura</a>
+                </li>
+                <li class="nav-item">
+                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Pedido" asp-action="Index">Pedido</a>
+                </li>
+                <li class="nav-item">
+                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="DetallePedido" asp-action="Index">DetallePedido</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Usuario" asp-action="CambiarPassword">Cambiar password</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="dashboard-nav-item" asp-area="" asp-controller="Usuario" asp-action="CerrarSesion">Cerrar sesión</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="opacMenu"></div>
+
+    <!--  Jquery  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready
+            (
+                function () {
+                    $('.labelMenu').click
+                        (
+                            function () {
+                                $('.menu').css('left', 0);
+                                $('.opacMenu').fadeIn();
+                            }
+                        )
+
+                    $('.opacMenu').click
+                        (
+                            function () {
+                                $('.menu').css('left', '-205px');
+                                $('.opacMenu').fadeOut();
+                            }
+                        )
+                }
+            )
+    </script>
+   <div class='dashboard-app'>
         <div class='dashboard-content'>
             <div class='container'>
                 <main role="main" class="pb-3">

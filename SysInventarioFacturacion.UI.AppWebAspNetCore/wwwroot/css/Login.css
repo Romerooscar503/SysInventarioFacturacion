@@ -113,7 +113,21 @@ form {
         background-color: #000000; /* Cambia el color al pasar el mouse sobre el botón */
     }
 
+.btn.regis-button {
+    position: center;
+    background-color: #0f136b;
+    height: 20px;
+    width: 157px;
+    font-size: 15px;
+    color: white;
+    border: none;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 1.3s; /* Agrega una transición suave de color */
+}
 
+.btn.regis-button:hover {
+    background-color: #000000; /* Cambia el color al pasar el mouse sobre el botón */
+}
 
 
 

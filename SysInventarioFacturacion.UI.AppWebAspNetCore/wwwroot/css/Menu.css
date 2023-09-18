@@ -1,0 +1,127 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    /* Google Fonts: https://fonts.google.com/?selection.family=Poppins*/
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    background-color: #069;
+    padding: 15px;
+    box-shadow: 2px 2px 1px #777;
+}
+
+    header .labelMenu {
+        color: #FFF;
+        tansition: all 0.2s;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 100px;
+    }
+
+        header .labelMenu:hover {
+            background-color: #0099ff;
+            cursor: pointer;
+        }
+
+/* NAVGATION: */
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: -205px;
+    bottom: 0;
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 100vh;
+    max-height: 100vh;
+    background-color: #FAFAFA;
+    box-shadow: 0 0 16px rgba(0, 0, 0, .28);
+    transition: all 0.2s;
+    z-index: 50;
+}
+
+    .menu h1 {
+        background-color: #313a45;
+        text-align: center;
+        color: #DDD;
+        padding: 10px;
+    }
+
+    .menu ul a {
+        display: flex;
+        padding: 10px;
+        color: #444;
+        transition: all 0.2s;
+    }
+
+    .menu a:hover {
+        background-color: #DDD;
+    }
+
+    .menu ul:first-child {
+        border-bottom: 1px solid #DDD;
+    }
+    /* A primeira <ul> do menu (primeiro filho (first-child)) */
+
+    .menu ul a li:first-child {
+        margin-right: 10px;
+    }
+
+    /* A primeira <li> de cada <ul> do menu (primeiro filho (first-child)) (Icones) */
+
+    /* Cores Icones */
+
+    .menu ul a .icone2 {
+        color: #ff9933;
+    }
+
+    .menu ul a .icone3 {
+        color: #6666cc;
+    }
+
+    .menu ul a .icone4 {
+        color: #663300;
+    }
+
+    .menu ul:last-child a:hover li:first-child {
+        color: #222;
+    }
+
+/* Na ultima <ul>, quando o mouse passas sobre os links de cada uma, a primeira <li> muda a cor para um cinza mais escuro */
+
+
+/* Opacidade quando o menu é aberto */
+
+.opacMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 40;
+}
+
+
+p {
+    text-align: center;
+    padding: 40px;
+    color: #DDD;
+    font-size: 50px;
+    text-shadow: 1px 1px 1px #222;
+}
+
+    p span {
+        color: #ff3366;
+    }
