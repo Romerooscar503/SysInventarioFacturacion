@@ -181,7 +181,7 @@ h1, .h1 {
     }
 
 .dashboard-nav {
-    background-image: linear-gradient(to bottom right, blue, #ce1717);
+    background-image: linear-gradient(to bottom right, #20214f, #000000);
 }
 
 .dashboard-nav a {
