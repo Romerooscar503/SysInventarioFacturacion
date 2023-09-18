@@ -171,15 +171,17 @@ h1, .h1 {
 }
 
 .dashboard-nav a {
-    color: #515151;
+    color: #0458eb;
 }
 
-.dashboard-nav a:hover {
-    text-decoration: none;
-}
+    .dashboard-nav a:hover {
+        text-decoration: none;
+        background: rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
 
 .dashboard-nav {
-    background-color: #000000;
+    background-image: linear-gradient(to bottom right, blue, #ce1717);
 }
 
 .dashboard-nav a {
@@ -239,6 +241,23 @@ h1, .h1 {
     transition: ease-out 0.5s;
 }
 
+.dashboard-nav-item-nombre {
+    min-height: 56px;
+    padding: 8px 20px 8px 70px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    letter-spacing: 0.02em;
+    transition: ease-out 0.5s;
+    font-weight: bold;
+    font-size: 25px;
+}
+
 .dashboard-nav-item i {
     width: 36px;
     font-size: 19px;
@@ -246,7 +265,8 @@ h1, .h1 {
 }
 
 .dashboard-nav-item:hover {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
 }
 
 .active {
@@ -327,9 +347,10 @@ h1, .h1 {
     transition: ease-out 0.5s;
 }
 
-.dashboard-nav-dropdown-item:hover {
-    background: rgba(255, 255, 255, 0.04);
-}
+    .dashboard-nav-dropdown-item:hover {
+        background: rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
 
 .menu-toggle {
     position: relative;
@@ -385,6 +406,11 @@ h1, .h1 {
     background-color: rgba(236, 238, 239, 0.3);
 }
 
+.imagem {
+    text-align: center;
+    display: inline-block;
+}
+
 @media (min-width: 992px) {
     .dashboard-app {
         margin-left: 238px;
@@ -435,4 +461,21 @@ h1, .h1 {
     .dashboard-compact .dashboard-toolbar {
         left: 0;
     }
+}
+
+.Nombre {
+    color: #fff; /* Color del texto del enlace */
+    text-decoration: none; /* Eliminar subrayado del enlace */
+    font-size: 16px; /* Tamaño de fuente del enlace */
+    font-weight: bold; /* Peso de la fuente del enlace */
+    text-align: center; /* Centrar el texto dentro del enlace */
+    list-style: none;
+}
+
+.logo-container {
+    /* Ajusta el ancho y alto del contenedor según tus necesidades */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align:center
 }
