@@ -31,7 +31,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
         }
 
         // GET api/<ProveedorController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{IdProveedor}")]
         public async Task<Proveedor> Get(int IdProveedor)
         {
             Proveedor proveedor = new Proveedor();
@@ -56,7 +56,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
         }
 
         // PUT api/<RolController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{IdProveedor}")]
         public async Task<ActionResult> Put(int IdProveedor, [FromBody] Proveedor proveedor)
         {
 
@@ -73,7 +73,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
         }
 
         // DELETE api/<ProveedorController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{IdProveedor}")]
         public async Task<ActionResult> Delete(int IdProveedor)
         {
             try
