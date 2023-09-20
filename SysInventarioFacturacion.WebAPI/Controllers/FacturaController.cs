@@ -37,11 +37,11 @@ namespace SeguridadWeb.WebAPI.Controllers
         }
 
         // GET api/<FacturaController>/5
-        [HttpGet("{id}")]
-        public async Task<Factura> Get(int id)
+        [HttpGet("{IdFactura}")]
+        public async Task<Factura> Get(int IdFactura)
         {
             Factura factura = new Factura();
-            factura.IdFactura = id;
+            factura.IdFactura = IdFactura;
             return await facturaBL.ObtenerPorIdAsync(factura);
         }
 
@@ -62,13 +62,13 @@ namespace SeguridadWeb.WebAPI.Controllers
         }
 
         // PUT api/<FacturaController>/5
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] object pFactura)
+        [HttpPut("{IdFactura}")]
+        public async Task<ActionResult> Put(int IdFactura, [FromBody] object pFactura)
         {
             var option = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             string strFactura = JsonSerializer.Serialize(pFactura);
             Factura factura = JsonSerializer.Deserialize<Factura>(strFactura, option);
-            if (factura.IdFactura == id)
+            if (factura.IdFactura == IdFactura)
             {
                 await facturaBL.ModificarAsync(factura);
                 return Ok();
@@ -82,13 +82,13 @@ namespace SeguridadWeb.WebAPI.Controllers
 
 
         // DELETE api/<FacturaController>/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        [HttpDelete("{IdFactura}")]
+        public async Task<ActionResult> Delete(int IdFactura)
         {
             try
             {
                 Factura factura = new Factura();
-                factura.IdFactura = id;
+                factura.IdFactura = IdFactura;
                 await facturaBL.EliminarAsync(factura);
                 return Ok();
             }

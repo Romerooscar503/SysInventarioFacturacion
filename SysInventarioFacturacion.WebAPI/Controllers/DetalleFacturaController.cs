@@ -38,11 +38,11 @@ namespace SeguridadWeb.WebAPI.Controllers
         }
 
         // GET api/<DetalleFacturaController>/5
-        [HttpGet("{id}")]
-        public async Task<DetalleFactura> Get(int id)
+        [HttpGet("{IdDetalleFactura}")]
+        public async Task<DetalleFactura> Get(int IdDetalleFactura)
         {
             DetalleFactura detallefactura = new DetalleFactura();
-            detallefactura.IdDetalleFactura = id;
+            detallefactura.IdDetalleFactura = IdDetalleFactura;
             return await detalle_facturaBL.ObtenerPorIdAsync(detallefactura);
         }
 
@@ -63,13 +63,13 @@ namespace SeguridadWeb.WebAPI.Controllers
         }
 
         // PUT api/<DetalleFacturaController>/5
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] object pDetalleFactura)
+        [HttpPut("{IdDetalleFactura}")]
+        public async Task<ActionResult> Put(int IdDetalleFactura, [FromBody] object pDetalleFactura)
         {
             var option = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             string strDetalleFactura = JsonSerializer.Serialize(pDetalleFactura);
             DetalleFactura detallefactura = JsonSerializer.Deserialize<DetalleFactura>(strDetalleFactura, option);
-            if (detallefactura.IdDetalleFactura == id)
+            if (detallefactura.IdDetalleFactura == IdDetalleFactura)
             {
                 await detalle_facturaBL.ModificarAsync(detallefactura);
                 return Ok();
@@ -82,13 +82,13 @@ namespace SeguridadWeb.WebAPI.Controllers
         }
 
         // DELETE api/<DetalleFacturaController>/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        [HttpDelete("{IdDetalleFactura}")]
+        public async Task<ActionResult> Delete(int IdDetalleFactura)
         {
             try
             {
                 DetalleFactura detallefactura = new DetalleFactura();
-                detallefactura.IdDetalleFactura = id;
+                detallefactura.IdDetalleFactura = IdDetalleFactura;
                 await detalle_facturaBL.EliminarAsync(detallefactura);
                 return Ok();
             }
