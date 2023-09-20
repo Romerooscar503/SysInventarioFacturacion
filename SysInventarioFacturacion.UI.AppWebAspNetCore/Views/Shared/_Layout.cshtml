@@ -17,11 +17,25 @@
     <header>
         <label class="labelMenu"><i class="fa fa-bars"></i></label>
     </header>
+    <header>
+        @{
+            string? nombre = User.Identity.Name;
+        }
 
+        
+    </header>
     <div class="menu">
         <h1><i class="fa fa-address-card"></i></h1>
         <nav>
             <ul>
+                <div class="logo-container">
+                    <!-- Aquí puedes agregar el código o la imagen del logotipo de tu empresa -->
+                    <!-- Por ejemplo, si es una imagen: -->
+                    <img src="~/IMG/Logo.png" alt="Logo de la empresa" class="logo-container">
+                </div>
+                <li class="Nombre">
+                    <a class="dashboard-nav-dropdown-item-nombre">Bienvenido @nombre</a>
+                </li>
                 <li class="nav-item">
                     <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Usuario" asp-action="Index">Usuario</a>
                 </li>
@@ -88,14 +102,14 @@
                     $('.opacMenu').click
                         (
                             function () {
-                                $('.menu').css('left', '-205px');
+                                $('.menu').css('left', '-250px');
                                 $('.opacMenu').fadeOut();
                             }
                         )
                 }
             )
     </script>
-   <div class='dashboard-app'>
+    <div class='dashboard-app'>
         <div class='dashboard-content'>
             <div class='container'>
                 <main role="main" class="pb-3">
