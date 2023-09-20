@@ -27,7 +27,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
         }
 
         // GET api/<CategoriaController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{IdCategoria}")]
         public async Task<Categoria> Get(int IdCategoria)
         {
             Categoria categoria = new Categoria();
@@ -52,7 +52,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
         }
 
         // PUT api/<CategoriaController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{IdCategoria}")]
         public async Task<ActionResult> Put(int IdCategoria, [FromBody] Categoria categoria)
         {
 
@@ -69,7 +69,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
         }
 
         // DELETE api/<CategoriaController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{IdCategoria}")]
         public async Task<ActionResult> Delete(int IdCategoria)
         {
             try

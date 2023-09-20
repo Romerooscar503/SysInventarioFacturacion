@@ -38,7 +38,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
         }
 
         // GET api/<UsuarioController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{IdProducto}")]
         public async Task<Producto> Get(int IdProducto)
         {
             Producto producto = new Producto();
@@ -63,7 +63,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
         }
 
         // PUT api/<UsuarioController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{IdProducto}")]
         public async Task<ActionResult> Put(int IdProducto, [FromBody] object pProducto)
         {
             var option = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
@@ -83,7 +83,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
 
 
         // DELETE api/<UsuarioController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{IdProducto}")]
         public async Task<ActionResult> Delete(int IdProducto)
         {
             try
