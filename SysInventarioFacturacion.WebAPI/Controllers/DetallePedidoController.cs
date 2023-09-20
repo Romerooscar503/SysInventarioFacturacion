@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SysInventarioFacturacion.EntidadesDeNegocio;
 using SysInventarioFacturacion.LogicaDeNegocio;
@@ -9,7 +10,8 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DetallePedidoController : ControllerBase
+	[Authorize] // agregar el siguiente metadato para autorizar JWT la Web API
+	public class DetallePedidoController : ControllerBase
     {
 
         private DetallePedidoBL detallepedidoBL = new DetallePedidoBL();

@@ -14,7 +14,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize] // agregar el siguiente metadato para autorizar JWT la Web API
+    [Authorize] // agregar el siguiente metadato para autorizar JWT la Web API
     public class CategoriaController : ControllerBase
     {
         private CategoriaBL categoriaBL = new CategoriaBL();

@@ -17,7 +17,7 @@ namespace SysInventarioFacturacion.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class PedidoController : ControllerBase
     {
         private PedidoBL pedidoBL = new PedidoBL();

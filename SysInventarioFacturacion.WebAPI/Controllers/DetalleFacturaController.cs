@@ -19,7 +19,7 @@ namespace SeguridadWeb.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize] // agregar el siguiente metadato para autorizar JWT la Web API
+    [Authorize] // agregar el siguiente metadato para autorizar JWT la Web API
     public class DetalleFacturaController : ControllerBase
     {
         private DetalleFacturaBL detalle_facturaBL = new DetalleFacturaBL();
