@@ -1,0 +1,12 @@
+﻿/* Estilo para la imagen de fondo */
+.cover-image {
+    height: 100vh; /* Toma el 100% de la altura de la ventana */
+    background: url('~/IMG/Dunk-low.jpg') center center no-repeat;
+    background-size: cover; /* Ajusta la imagen al tamaño de la ventana */
+}
+
+/* Estilo para el contenido inferior */
+.content {
+    padding: 20px;
+    /* Agrega más estilos según tus necesidades */
+}
