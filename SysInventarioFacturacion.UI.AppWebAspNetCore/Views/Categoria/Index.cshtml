@@ -81,10 +81,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
-               
+
+              
                 <td class="botonestabla">
                     @Html.ActionLink("Modificar", "Edit", new { IdCategoria = item.IdCategoria }, new { @class = "btn btn-success" })
-                </td>
+                    <span class="bi bi-pencil-square"></span>   
+                </td>              
                 <td class="botonestabla">
                     @Html.ActionLink("Ver", "Details", new { IdCategoria = item.IdCategoria }, new { @class = "btn btn-info" })
                 </td>
