@@ -75,20 +75,9 @@ namespace SysInventarioFacturacion.AccesoADatos
                 pQuery = pQuery.Where(s => s.IdProducto == pDetallePedido.IdProducto);
             if (pDetallePedido.IdProveedor > 0)
                 pQuery = pQuery.Where(s => s.IdProveedor == pDetallePedido.IdProveedor);
-
-            //if (pDetalleFactura.Codigo > 0)
-            //    pQuery = pQuery.Where(s => s.Codigo == pDetalleFactura.Codigo);
-            //if (pDetalleFactura.Cantidad > 0)
-            //    pQuery = pQuery.Where(s => s.Cantidad == pDetalleFactura.Cantidad);          
-            //if (!string.IsNullOrWhiteSpace(pDetalleFactura.FormaDePago))
-            //    pQuery = pQuery.Where(s => s.FormaDePago.Contains(pDetalleFactura.FormaDePago));
-
-            //if (!string.IsNullOrWhiteSpace(pDetalleFactura.FechaEmision.ToString()))
-            //    pQuery = pQuery.Where(s => s.FechaEmision.ToString().Contains(pDetalleFactura.FechaEmision.ToString()));
-            //if (pDetalleFactura.ValorTotal > 0)
-            //    pQuery = pQuery.Where(s => s.ValorTotal == pDetalleFactura.ValorTotal);
-
-
+            if (pDetallePedido.Cantidad > 0)
+             pQuery = pQuery.Where(s => s.Cantidad == pDetallePedido.Cantidad);
+          
 
             pQuery = pQuery.OrderByDescending(s => s.IdDetallePedido).AsQueryable();
             if (pDetallePedido.Top_Aux > 0)

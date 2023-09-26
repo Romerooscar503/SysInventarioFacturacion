@@ -12,20 +12,28 @@ a {
 }
 
 header {
-    background-color: #069;
-    padding: 15px;
-    box-shadow: 2px 2px 1px #777;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #102c54;
+    padding: 0px;
+    overflow:auto;
 }
 
+
     header .labelMenu {
-        color: #FFF;
+        padding:30px;
+        color: #FFf;
         tansition: all 0.2s;
         width: 40px;
-        height: 40px;
+        height: 70px;
         display: inline-block;
-        text-align: center;
+        margin-left:auto;
+        margin-right:0;
+        text-align:center;
         line-height: 40px;
-        border-radius: 100px;
+        border-radius: 1000px;
     }
 
         header .labelMenu:hover {

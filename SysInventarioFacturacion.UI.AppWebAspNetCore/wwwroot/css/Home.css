@@ -93,13 +93,7 @@ h1, .h1 {
     padding: 1.25rem;
 }
 
-.card-header {
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 0;
-    background-color: rgba(0, 0, 0, 0.03);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    text-align: center;
-}
+
 
 .dashboard {
     display: -webkit-box;
@@ -123,15 +117,15 @@ h1, .h1 {
     -webkit-flex-grow: 2;
     -ms-flex-positive: 2;
     flex-grow: 2;
-    margin-top: 84px;
+    margin-top: 0px;
 }
 
 .dashboard-content {
-    -webkit-box-flex: 2;
-    -webkit-flex-grow: 2;
-    -ms-flex-positive: 2;
-    flex-grow: 2;
-    padding: 25px;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    padding: 0px;
 }
 
 .dashboard-nav {
@@ -413,7 +407,7 @@ h1, .h1 {
 
 @media (min-width: 992px) {
     .dashboard-app {
-        margin-left: 238px;
+        margin-left: 10px;
     }
 
     .dashboard-compact .dashboard-app {
@@ -422,9 +416,9 @@ h1, .h1 {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     .dashboard-content {
-        padding: 15px 0px;
+        padding: 0px 0px;
     }
 }
 
