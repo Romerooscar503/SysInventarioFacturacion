@@ -18,7 +18,9 @@ header {
     width: 100%;
     background-color: #102c54;
     padding: 0px;
-    overflow:auto;
+    overflow: auto;
+    align-items: center;
+    align-content:flex-start;
 }
 
 
@@ -172,3 +174,10 @@ p {
 }
 
 
+/*la tipografia de la letra*/
+.croissant-title {
+    font-family: "Curlz MT", sans-serif;
+    text-align:center;
+    color:white;
+    /* Otros estilos de fuente, como tamaño, color, etc. */
+}
