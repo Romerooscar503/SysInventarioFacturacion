@@ -1,12 +1,88 @@
 ﻿/* Estilo para la imagen de fondo */
-.cover-image {
-    height: 100vh; /* Toma el 100% de la altura de la ventana */
-    background: url('~/IMG/Dunk-low.jpg') center center no-repeat;
-    background-size: cover; /* Ajusta la imagen al tamaño de la ventana */
+/* Variables */
+:root {
+    --carousel-width: 350px; /* Ancho de cada carrusel */
+    --carousel-height: 350px;
+    --control-size: 10px;
+    --carousel-gap: 10px; /* Espacio entre carruseles */
 }
 
-/* Estilo para el contenido inferior */
-.content {
-    padding: 20px;
-    /* Agrega más estilos según tus necesidades */
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales del cuerpo */
+
+/* Estilos de cada carrusel */
+.carousel-container {
+    height:350px;
+    width:350px;
+    display: inline-block;
+    margin: 10px;
+    float: left; /* Alinea los carruseles uno al lado del otro */
+}
+
+.carousel {
+    width: 350px;
+    height: 350px;
+    border-radius: 3px;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+    .carousel:hover .controls {
+        opacity: 1;
+    }
+
+/* Estilos de los controles */
+.controls {
+    opacity: 0;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    justify-content: space-between;
+    width: 10px;
+    z-index: 99999;
+    transition: all ease 0.5s;
+}
+
+/* Estilos de los botones de control */
+.control {
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    opacity: 0.5;
+    transition: ease 0.3s;
+    cursor: pointer;
+}
+
+    .control:hover {
+        opacity: 1;
+    }
+
+/* Estilos de los slides */
+.slides {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    height: 350px;
+    width: 350px; /* Ancho de los slides ajustado */
+    transition: 1s ease-in-out all;
+}
+
+.slide {
+    height: 350px;
+    width: 350px;
 }
