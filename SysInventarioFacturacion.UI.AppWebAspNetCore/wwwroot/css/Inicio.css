@@ -34,6 +34,12 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
+    .carousel:hover {
+        transform: translateY(-5px); /* Eleva el carrusel 5px hacia arriba */
+        box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2); /* Agrega una sombra */
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Agrega una transición suave */
+    }
+
     .carousel:hover .controls {
         opacity: 1;
     }
@@ -86,3 +92,7 @@
     height: 350px;
     width: 350px;
 }
+
+/*Textos*/
+
+
