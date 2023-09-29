@@ -15,6 +15,7 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
+                pDetallePedido.FechaPedido = DateTime.Now;
                 bdContexto.Add(pDetallePedido);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -30,7 +31,6 @@ namespace SysInventarioFacturacion.AccesoADatos
                 detallePedido.IdProveedor = pDetallePedido.IdProveedor;
                 detallePedido.IdPedido = pDetallePedido.IdPedido;
                 detallePedido.Cantidad = pDetallePedido.Cantidad;
-                detallePedido.FechaPedido = pDetallePedido.FechaPedido;
                 bdContexto.Update(detallePedido);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -77,7 +77,12 @@ namespace SysInventarioFacturacion.AccesoADatos
                 pQuery = pQuery.Where(s => s.IdProveedor == pDetallePedido.IdProveedor);
             if (pDetallePedido.Cantidad > 0)
              pQuery = pQuery.Where(s => s.Cantidad == pDetallePedido.Cantidad);
-          
+            if (pDetallePedido.FechaPedido.Year > 1000)
+            {
+                DateTime fechaInicial = new DateTime(pDetallePedido.FechaPedido.Year, pDetallePedido.FechaPedido.Month, pDetallePedido.FechaPedido.Day, 0, 0, 0);
+                DateTime fechaFinal = fechaInicial.AddDays(1).AddMilliseconds(-1);
+                pQuery = pQuery.Where(s => s.FechaPedido >= fechaInicial && s.FechaPedido <= fechaFinal);
+            }
 
             pQuery = pQuery.OrderByDescending(s => s.IdDetallePedido).AsQueryable();
             if (pDetallePedido.Top_Aux > 0)
