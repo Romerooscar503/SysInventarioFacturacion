@@ -21,6 +21,7 @@ header {
     overflow: auto;
     align-items: center;
     align-content:flex-start;
+    z-index:2;
 }
 
 

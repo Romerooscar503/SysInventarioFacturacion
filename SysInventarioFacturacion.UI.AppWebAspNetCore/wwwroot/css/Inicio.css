@@ -32,6 +32,7 @@
     overflow: hidden;
     text-align: left;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
     .carousel:hover {
@@ -93,6 +94,76 @@
     width: 350px;
 }
 
-/*Textos*/
+/*Tarjetas*/
+
+#sneaker {
+    height: 70px;
+    margin-right: 10px;
+}
+
+.wish {
+    background-color: organge;
+    height: 50px;
+    color: white;
+    display: flex;
+    justify-content: cover;
+}
+
+    .wish:hover {
+        color: #2F3E46;
+        cursor: pointer;
+    }
 
 
+.sneaker-card {
+    height: 400px;
+    width: 350px;
+    color: white;
+    margin: 10px;
+    background-color: #003049;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    box-shadow: -4px 8px 8px 8px rgba(0, 0, 0, 0.1);
+    float: left;
+}
+
+.sneaker-profile-pic {
+    height: 150px;
+    width: 182px;
+    border-radius: 75px;
+    object-fit: cover;
+}
+
+.wish {
+    background-color: lightgrey;
+    height: 100px;
+    color: red;
+    display: flex;
+    justify-content: center;
+}
+
+.wish-btn:hover {
+    background-color: #d62828;
+    color: white;
+    box-shadow: 0 0 15px #DA2928;
+}
+
+
+footer {
+    background-color: #003049;
+    height: 80px;
+    padding-left: 20px;
+    padding-right: 40px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    color: #EEEEEE;
+}
+
+.h2{
+    text-align:center;
+
+}
