@@ -35,4 +35,12 @@ document.querySelectorAll(".carousel").forEach((carousel) => {
     });
 });
 
+/*Modo Oscuro*/
+const darkModeToggle = document.getElementById("dark-mode-toggle");
+const body = document.body;
+
+darkModeToggle.addEventListener("click", () => {
+    // Alterna la clase dark-mode en el cuerpo
+    body.classList.toggle("dark-mode");
+});
 
