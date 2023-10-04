@@ -65,10 +65,27 @@
         </dd>
     </dl>
 
-    <form asp-action="Delete">
+    @* FUNCTION ELIMINAR USUARIO*@
+
+@*    <form asp-action="Delete">
         <input type="submit" value="Eliminar" class="btn btn-danger" />
         
         <a asp-action="Index" class="btn btn-dark">Cancelar</a>
     </form>
     <span class="text-danger">@ViewBag.Error</span>
+</div>*@
+
+    @using (Html.BeginForm("Delete", "Usuario", new { id = Model.Id }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <button type="submit" class="btn btn-danger" style="margin-left: 10px;">
+            <i class="fas fa-trash"></i> Eliminar
+        </button>
+
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='@Url.Action("Index")'" style="margin-left: 10px;">
+            <i class="fas fa-times"></i> Cancelar
+        </button>
+    }
+
 </div>

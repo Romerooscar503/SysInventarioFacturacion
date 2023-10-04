@@ -18,9 +18,19 @@
         </dd>
     </dl>
 
-    <form asp-action="Delete">
-        <input type="submit" value="Eliminar" class="btn btn-danger" />
-        <a asp-action="Index" class="btn btn-dark">Cancelar</a>
-    </form>
-    <span class="text-danger">@ViewBag.Error</span>
+    @* FUNCTION ELIMINAR PRODUCTO*@
+    @using (Html.BeginForm("Delete", "Rol", new { id = Model.Id }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar?');" style="margin-left: 10px;">
+            <i class="fas fa-trash"></i> Eliminar
+        </button>
+
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='@Url.Action("Index")'" style="margin-left: 10px;">
+            <i class="fas fa-times"></i> Cancelar
+        </button>
+        <span class="text-danger">@ViewBag.Error</span>
+    }
+
 </div>

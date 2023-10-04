@@ -4,22 +4,33 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Crear Rol</h1>
+<h1>Agregar Un Nuevo Rol</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+
+            @*BOTONES GUARDAR Y CANCELAR*@
+
+            <div class="form-group" style="margin-top: 10px;">
+                <button type="submit" class="btn btn-success" style="margin-right: 10px;">
+                    <i class="fas fa-save"></i> Guardar
+                </button>
+
+                <button type="button" class="btn btn-danger" onclick="window.location.href='@Url.Action("Index")'" style="margin-left: 10px;">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
             </div>
+
             <span class="text-danger">@ViewBag.Error</span>
+
         </form>
     </div>
 </div>
