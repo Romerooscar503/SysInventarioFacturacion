@@ -22,6 +22,24 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         DetalleFacturaBL detalle_facturaBL = new DetalleFacturaBL();
         FacturaBL FacturaBL = new FacturaBL();
         ProductoBL ProductoBL = new ProductoBL();
+
+        public async Task<IActionResult> Venta(DetalleFactura pDetalleFactura = null)
+        {
+            if (pDetalleFactura == null)
+                pDetalleFactura = new DetalleFactura();
+            if (pDetalleFactura.Top_Aux == 0)
+                pDetalleFactura.Top_Aux = 10;
+            else if (pDetalleFactura.Top_Aux == -1)
+                pDetalleFactura.Top_Aux = 0;
+            var taskBuscar = detalle_facturaBL.BuscarIncluirFacturasYProductoAsync(pDetalleFactura);
+            var taskObtenerTodosFacturas = FacturaBL.ObtenerTodosAsync();
+            var taskObtenerTodosProducto = ProductoBL.ObtenerTodosAsync();
+            var DetalleFacturas = await taskBuscar;
+            ViewBag.Top = pDetalleFactura.Top_Aux;
+            ViewBag.Facturas = await taskObtenerTodosFacturas;
+            ViewBag.Producto = await taskObtenerTodosProducto;
+            return View(DetalleFacturas);
+        }
         // GET: RolController
         public async Task<IActionResult> Index(DetalleFactura pDetalleFactura = null)
         {
@@ -51,16 +69,42 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         }
 
         // GET: DetalleFacturaController/Create
-       
-        public async Task<IActionResult> Create()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DetalleVenta(DetalleFactura pDetalleFactura)
+        {
+            try
+            {
+                int result = await detalle_facturaBL.CrearAsync(pDetalleFactura);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                ViewBag.Facturas = await FacturaBL.ObtenerTodosAsync();
+                ViewBag.Producto = await ProductoBL.ObtenerTodosAsync();
+                return View(pDetalleFactura);
+            }
+        }
+        // GET: DetalleFacturaController/Create
+
+        public async Task<IActionResult> DetalleVenta()
         {
             ViewBag.Facturas = await FacturaBL.ObtenerTodosAsync();
-            ViewBag.Producto = await ProductoBL.ObtenerTodosAsync();  
+            ViewBag.Producto = await ProductoBL.ObtenerTodosAsync();
             ViewBag.Error = "";
             return View();
         }
 
-        // POST: DeatlleFacturaController/Create
+        public async Task<IActionResult> Create()
+        {
+            ViewBag.Facturas = await FacturaBL.ObtenerTodosAsync();
+            ViewBag.Producto = await ProductoBL.ObtenerTodosAsync();
+            ViewBag.Error = "";
+            return View();
+        }
+// POST: DeatlleFacturaController/Create
        
         [HttpPost]
         [ValidateAntiForgeryToken]

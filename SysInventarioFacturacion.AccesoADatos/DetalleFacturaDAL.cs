@@ -15,6 +15,7 @@ namespace SysInventarioFacturacion.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
+                pDetalleFactura.FechaEmision = DateTime.Now;
                 bdContexto.Add(pDetalleFactura);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -30,8 +31,7 @@ namespace SysInventarioFacturacion.AccesoADatos
                 detalleFactura.IdProducto = pDetalleFactura.IdProducto;
                 detalleFactura.Codigo = pDetalleFactura.Codigo;
                 detalleFactura.Cantidad = pDetalleFactura.Cantidad;
-                detalleFactura.FormaDePago = pDetalleFactura.FormaDePago;
-                detalleFactura.FechaEmision = pDetalleFactura.FechaEmision;
+                detalleFactura.FormaDePago = pDetalleFactura.FormaDePago;             
                 detalleFactura.ValorTotal = pDetalleFactura.ValorTotal;
                 bdContexto.Update(detalleFactura);
                 result = await bdContexto.SaveChangesAsync();
@@ -82,6 +82,12 @@ namespace SysInventarioFacturacion.AccesoADatos
             //if (!string.IsNullOrWhiteSpace(pDetalleFactura.FormaDePago))
             //    pQuery = pQuery.Where(s => s.FormaDePago.Contains(pDetalleFactura.FormaDePago));
 
+            if (pDetalleFactura.FechaEmision.Year > 1000)
+            {
+                DateTime fechaInicial = new DateTime(pDetalleFactura.FechaEmision.Year, pDetalleFactura.FechaEmision.Month, pDetalleFactura.FechaEmision.Day, 0, 0, 0);
+                DateTime fechaFinal = fechaInicial.AddDays(1).AddMilliseconds(-1);
+                pQuery = pQuery.Where(s => s.FechaEmision >= fechaInicial && s.FechaEmision <= fechaFinal);
+            }
             //if (!string.IsNullOrWhiteSpace(pDetalleFactura.FechaEmision.ToString()))
             //    pQuery = pQuery.Where(s => s.FechaEmision.ToString().Contains(pDetalleFactura.FechaEmision.ToString()));
             //if (pDetalleFactura.ValorTotal > 0)

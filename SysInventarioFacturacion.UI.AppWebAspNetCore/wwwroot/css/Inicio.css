@@ -167,3 +167,57 @@ footer {
     text-align:center;
 
 }
+
+/*Modo Oscuro*/
+
+.dark-mode {
+    background-color: #121212;
+    color: #fff;
+    /* Otros estilos de modo oscuro */
+}
+
+/*Estilo del switch*/
+/* Estilo base para el interruptor (puedes personalizarlo según tus necesidades) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+    /* Estilo del interruptor */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+/* Estilo del control deslizante del interruptor */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* Color del fondo cuando está apagado */
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+    /* Estilo del control deslizante redondo (el botón del interruptor) */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+/* Estilo del control deslizante cuando está encendido */
+input:checked + .slider {
+    background-color: #2196F3; /* Color del fondo cuando está encendido */
+}
+
+    /* Estilo del botón del interruptor cuando está encendido */
+    input:checked + .slider:before {
+        transform: translateX(26px); /* Posición del botón cuando está encendido */
+    }
+
