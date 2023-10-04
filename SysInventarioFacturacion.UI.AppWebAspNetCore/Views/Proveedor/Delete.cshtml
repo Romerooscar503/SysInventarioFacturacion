@@ -51,7 +51,7 @@
         </dd>
     </dl>
 
-    @* FUNCTION ELIMINAR CATEGORIA*@
+   @* @* FUNCTION ELIMINAR CATEGORIA*@
     @using (Html.BeginForm("Delete", "Proveedor", new { IdProveedor = Model.IdProveedor }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
@@ -59,7 +59,7 @@
         <a asp-action="Index" class="btn btn-secundary">Volver ala lista</a>
     }
 
-    @*<form asp-action="Delete">
+  @*  <form asp-action="Delete">
         <input type="submit" value="Eliminar" class="btn btn-danger" />
         <a asp-action="Index" class="btn btn-dark">Cancelar</a>
     </form>
