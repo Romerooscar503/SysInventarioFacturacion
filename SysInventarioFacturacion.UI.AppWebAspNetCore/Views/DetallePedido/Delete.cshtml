@@ -4,11 +4,11 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1>Eliminar</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Esta seguro que desea eliminar?</h3>
 <div>
-    <h4>DetallePedido</h4>
+    <h4>Detalle Pedido</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -50,10 +50,18 @@
         </dd>
     </dl>
 
+    @* FUNCTION ELIMINAR DETALLE PEDIDO*@
     @using (Html.BeginForm("Delete", "DetallePedido", new { IdDetallePedido = Model.IdDetallePedido }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        <button type="submit" class="btn btn-danger" onclick="return confirm('seguro'?);">Eliminar</button>
-        <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+
+        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea eliminar?');" style="margin-left: 10px;">
+            <i class="fas fa-trash"></i> Eliminar
+        </button>
+
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='@Url.Action("Index")'" style="margin-left: 10px;">
+            <i class="fas fa-times"></i> Cancelar
+        </button>
     }
+
 </div>
