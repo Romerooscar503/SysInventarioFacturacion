@@ -9,11 +9,11 @@
     int[] tops = { 10, 20, 50, 100, 500, 1000, 10000, -1 };
     int topActual = Convert.ToInt32(ViewBag.Top);
     List<SysInventarioFacturacion.EntidadesDeNegocio.Factura> facturas = ViewBag.Facturas as List<SysInventarioFacturacion.EntidadesDeNegocio.Factura>;
-    //List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
-    List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = new List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>();
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
+    //List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = new List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>();
 }
 
-<h1>Buscar producto</h1>
+<h1>Creacion de ventas</h1>
 
 
 <div class="row">
@@ -47,22 +47,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="card bg-info text-white border-info">
                         <div class="card-body p-2">
-
                             <div class="row">
                                 <div class="col-sm-10">
-                                    <h6 class="card-title mb-1">Datos Empleado</h6>
+                                    <h6 class="card-title mb-1">CREANDO FACTURA</h6>
                                 </div>
-                                <div class="col-sm-2">
-                                    <div class="float-right">
-                                        <a class="btn btn-light btn-sm" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -88,6 +79,25 @@
                                         <div class="form-group">
                                             <label class="control-label">Codigo</label>
                                             <input type="text" class="form-control" name="campo" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Top</label>
+                                            <select name="top_aux" class="form-control">
+                                                @foreach (var item in tops)
+                                                {
+                                                    string strItem = item != -1 ? item.ToString() : "Todos";
+                                                    if (item != topActual)
+                                                    {
+                                                        <option value="@item">@strItem</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option selected value="@item">@strItem</option>
+                                                    }
+                                                }
+                                            </select>
                                         </div>
                                     </div>
 
@@ -199,126 +209,132 @@
                                 }
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
-
-
         </div>
-        
-       
+
+    </div>
+
+</div>
 
 
-        <hr />
+<hr />
+<div class="row">
+    <div class="col-sm-12"><h6 class="text-info">Compra</h6></div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm-12">
+        <div class="table-responsive-sm">
+            <table id="tbVenta" class="table table-striped table-bordered nowrap table-sm" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Cantidad</th>
+                        <th>Producto</th>
+                        <th>Descripcion</th>
+                        <th>Precio Unidad</th>
+                        <th>Importe Total</th>
+                        <th colspan="1">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr data-page="@numPage">
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cantidad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FormaDePago)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Producto.PrecioUnitario)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ValorTotal)
+                            </td>
+
+                            @*BOTONES CRUD EDITAR - LEER - ELIMINAR DETALLE FACTURA*@
+
+
+                            <td class="botonestabla">
+                                <button type="button" class="btn btn-danger" onclick="window.location.href='@Url.Action("Delete", new { IdDetalleFactura = item.IdDetalleFactura })'">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+
+                        </tr>
+
+                        numRegistros++;
+                        if (numRegistros == numRegistrosPorPage)
+                        {
+                            numPage++;
+                            numRegistros = 0;
+                        }
+                    }
+                    @{
+                        if (numRegistros == 0)
+                        {
+                            numPage--;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-sm-6">
         <div class="row">
-            <div class="col-sm-12"><h6 class="text-info">Compra</h6></div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-sm-12">
-                <div class="table-responsive-sm">
-                    <table id="tbVenta" class="table table-striped table-bordered nowrap table-sm" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Cantidad</th>
-                                <th>Producto</th>
-                                <th>Descripcion</th>
-                                <th>Precio Unidad</th>
-                                <th>Importe Total</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-
-        <hr />
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Sub Total S/.</label>
-                            </div>
-                            <input id="txtsubtotal" readonly type="text" class="form-control" value="0">
-                        </div>
+            <div class="col-sm-4">
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Sub Total S/.</label>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text bg-info text-white" for="inputGroupSelect01">IGV S/.</label>
-                            </div>
-                            <input id="txtigv" readonly type="text" class="form-control" value="0">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Total S/.</label>
-                            </div>
-                            <input id="txttotal" readonly type="text" class="form-control" value="0">
-                        </div>
-                    </div>
+                    <input id="txtsubtotal" readonly type="text" class="form-control" value="0">
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Monto Pago S/.</label>
-                            </div>
-                            <input id="txtmontopago" type="text" class="form-control" autocomplete="off">
-                        </div>
+            <div class="col-sm-4">
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">IGV S/.</label>
                     </div>
-                    <div class="col-sm-4">
-                        <button id="btncalcular" type="button" class="btn btn-sm btn-success btn-block"><i class="fas fa-dollar-sign"></i>  Calcular</button>
+                    <input id="txtigv" readonly type="text" class="form-control" value="0">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Total S/.</label>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Cambio S/.</label>
-                            </div>
-                            <input id="txtcambio" readonly type="text" class="form-control">
-                        </div>
-                    </div>
+                    <input id="txttotal" readonly type="text" class="form-control" value="0">
                 </div>
             </div>
         </div>
     </div>
-
-
-    <!-- MODAL PRODUCTOS -->
-    <div class="modal fade" id="modalProducto" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-info text-white">
-                    <h5 class="modal-title">Productos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table id="tbProducto" class="table table-striped table-bordered nowrap compact" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Codigo</th>
-                                    <th>Nombre</th>
-                                    <th>Descripcion</th>
-                                    <th>Stock</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Monto Pago S/.</label>
                     </div>
-
+                    <input id="txtmontopago" type="text" class="form-control" autocomplete="off">
                 </div>
+            </div>
+            <div class="col-sm-4">
+                <button id="btncalcular" type="button" class="btn btn-sm btn-success btn-block"><i class="fas fa-dollar-sign"></i>  Calcular</button>
             </div>
         </div>
     </div>
+</div>
+    
+
+
