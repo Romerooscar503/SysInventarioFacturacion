@@ -27,7 +27,7 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
 
 
 		[Required(ErrorMessage = "el codigo es obligatorio")]
-        public int Codigo { get; set; }
+        public int? Codigo { get; set; }
 
 		[Required(ErrorMessage = "El nombre es obligatorio")]
 		[StringLength(30, ErrorMessage = "Maximo 30 caracteres")]

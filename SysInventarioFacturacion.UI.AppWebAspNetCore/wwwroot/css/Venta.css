@@ -1,0 +1,37 @@
+﻿/* Estilo específico para la tabla con el ID "miTablaEspecial" */
+.miTablaEspecial {
+    max-height: 200px;
+    height: 100px;
+    width: 35%; /* Ancho de la tabla al 100% del contenedor */
+    border-collapse: collapse; /* Colapsar los bordes de las celdas */
+    background-color: #f2f2f2; /* Color de fondo de la tabla */
+    overflow-y: auto;
+}
+
+    /* Estilo para las celdas de encabezado */
+    .miTablaEspecial th {
+        background-color: #333; /* Color de fondo del encabezado */
+        color: white; /* Color de texto del encabezado */
+        height: 40px; /* Alto de las celdas de encabezado */
+        text-align: center; /* Alineación del texto en el encabezado */
+    }
+
+    /* Estilo para las celdas de datos */
+   .miTablaEspecial td {
+        background-color: white; /* Color de fondo de las celdas de datos */
+        color: #333; /* Color de texto de las celdas de datos */
+        height: 30px; /* Alto de las celdas de datos */
+        text-align: left; /* Alineación del texto en las celdas de datos */
+        padding: 3px; /* Espaciado interno de las celdas de datos */
+        border: 1px solid #ccc; /* Borde de 1 píxel con color gris claro */
+    }
+
+    /* Estilo para las filas impares */
+    .miTablaEspecial tr:nth-child(odd) {
+        background-color: #f9f9f9; /* Color de fondo para filas impares */
+    }
+
+    /* Estilo para filas cuando se pasa el ratón por encima */
+    .miTablaEspecial tr:hover {
+        background-color: #ddd; /* Color de fondo al pasar el ratón por encima */
+    }

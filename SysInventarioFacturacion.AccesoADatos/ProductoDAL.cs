@@ -81,10 +81,12 @@ namespace SysInventarioFacturacion.AccesoADatos
                 pQuery = pQuery.Where(s => s.IdCategoria == pProducto.IdCategoria);
             if (pProducto.IdProveedor > 0)
                 pQuery = pQuery.Where(s => s.IdProveedor == pProducto.IdProveedor);
+            if (pProducto.Codigo > 0)
+                pQuery = pQuery.Where(s => s.Codigo == pProducto.Codigo);
 
-			//if (pProducto.IdProducto > 0)
-			//	pQuery = pQuery.Where(s => s.IdProducto == pProducto.IdProducto);
-			if (!string.IsNullOrWhiteSpace(pProducto.Nombre))
+            //if (pProducto.IdProducto > 0)
+            //	pQuery = pQuery.Where(s => s.IdProducto == pProducto.IdProducto);
+            if (!string.IsNullOrWhiteSpace(pProducto.Nombre))
 				pQuery = pQuery.Where(s => s.Nombre.Contains(pProducto.Nombre));
 			//if (!string.IsNullOrWhiteSpace(pProducto.Nombre))
 
