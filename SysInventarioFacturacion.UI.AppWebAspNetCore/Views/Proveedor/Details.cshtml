@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Ver Proveedor</h1>
+<h1>Detalles Del Proveedor</h1>
 <hr />
 <div>
     <dl class="row">
@@ -49,11 +49,17 @@
     </dl>
    
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="form-group">
-            @Html.ActionLink("Ir a modificar", "Edit", new { IdProveedor = Model.IdProveedor }, new { @class = "btn btn-info" })
-            <a asp-action="Index" class="btn btn-dark">Cancelar</a>
-        </div>
-    </div>
-</div>
+
+@*BOTONES EDITADOS CON ICONOS*@
+
+<td class="botonestabla">
+    <button type="button" class="btn btn-success" style="background-color: #264DA0; color: white; margin-right: 10px;" onclick="window.location.href='@Url.Action("Edit", new { IdProveedor = Model.IdProveedor })'">
+        <i class="fas fa-pencil-alt"></i> Ir a Modificar
+    </button>
+</td>
+
+<td class="botonestabla">
+    <button type="button" class="btn btn-danger" onclick="window.location.href='@Url.Action("Index")'" style="margin-left: 10px;">
+        <i class="fas fa-times"></i> Cancelar
+    </button>
+</td>

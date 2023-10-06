@@ -89,6 +89,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Usuario.Nombre)
                 </td>
+
                <td class="botonestabla">
                     <button type="button" class="btn btn-success" onclick="window.location.href='@Url.Action("Edit", new { IdPedido = item.IdPedido })'">
                         <i class="fas fa-pencil-alt"></i> Modificar
