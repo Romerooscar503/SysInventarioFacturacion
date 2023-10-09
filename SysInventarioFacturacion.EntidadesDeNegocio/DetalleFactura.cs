@@ -30,9 +30,9 @@ namespace SysInventarioFacturacion.EntidadesDeNegocio
         public int Cantidad { get;  set; }
         
         [Required(ErrorMessage = "la forma de pago es obligatorio")]
-        [StringLength(50)]
+       
         
-        public string? FormaDePago { get; set; }
+        public byte FormaDePago { get; set; }
 
         [Required(ErrorMessage = "la fecha de emision obligatorio")]
        
