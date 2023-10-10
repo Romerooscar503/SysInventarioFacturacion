@@ -127,9 +127,18 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Cantidad)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FormaDePago)
-                </td>
+                @if (item.FormaDePago == 1)
+                {
+                    <td>EFECTIVO</td>
+                }
+                else if (item.FormaDePago == 2)
+                {
+                    <td>TARJETA</td>
+                }
+                else
+                {
+                    <td></td>
+                }
                 <td>
                     @Html.DisplayFor(modelItem => item.FechaEmision)
                 </td>
