@@ -69,18 +69,19 @@
                             <h6 class="card-title mb-1 text-info">Detalle Producto</h6>
                             @*<form>*@
                                 <div class="row align-items-end">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="control-label">Codigo</label>
-                                            <input type="text" class="form-control" name="campo" />
-                                        </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Código</label>
+                                        <input type="text" id="txtCodigo" class="form-control" name="codigo" />
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class "form-group">
-                                            <label class="control-label">Nombre</label>
-                                            <input type="text" class="form-control" name="nombre" />
-                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Nombre</label>
+                                        <input type="text" id="txtNombre" class="form-control" name="nombre" />
                                     </div>
+                                </div>
+
 
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -467,5 +468,35 @@
                 alert(`Cambio: S/. ${cambio.toFixed(2)}`);
             }
         });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const txtCodigo = document.getElementById("txtCodigo");
+        const txtNombre = document.getElementById("txtNombre");
+        const tablaBusqueda = document.querySelector("#tablaBusqueda tbody");
+
+        txtCodigo.addEventListener("input", filterProductos);
+        txtNombre.addEventListener("input", filterProductos);
+
+        function filterProductos() {
+            const codigo = txtCodigo.value.trim().toLowerCase();
+            const nombre = txtNombre.value.trim().toLowerCase();
+
+            const rows = tablaBusqueda.querySelectorAll("tr");
+            rows.forEach((row) => {
+                const codigoCell = row.querySelector("td:nth-child(1)");
+                const nombreCell = row.querySelector("td:nth-child(2)");
+                if (codigoCell && nombreCell) {
+                    const codigoText = codigoCell.textContent.toLowerCase();
+                    const nombreText = nombreCell.textContent.toLowerCase();
+
+                    if (codigoText.includes(codigo) && nombreText.includes(nombre)) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                }
+            });
+        }
     });
 </script>
