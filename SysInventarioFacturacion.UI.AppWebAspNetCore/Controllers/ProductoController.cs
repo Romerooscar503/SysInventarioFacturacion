@@ -142,5 +142,56 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 				return View(producto);
 			}
 		}
-	}
+
+        public async Task<IActionResult> Inventario(Producto? pProducto = null)
+        {
+            if (pProducto == null)
+                pProducto = new Producto();
+            if (pProducto.Top_Aux == 0)
+                pProducto.Top_Aux = 10;
+            else if (pProducto.Top_Aux == -1)
+                pProducto.Top_Aux = 0;
+            var taskBuscar = ProductoBL.BuscarIncluirCategoriayProveedorAsync(pProducto);
+            var taskObtenerTodosCategoria = CategoriaBL.ObtenerTodosAsync();
+            var taskObtenerTodosProveedor = ProveedorBL.ObtenerTodosAsync();
+            var Productos = await taskBuscar;
+            ViewBag.Categoria = await taskObtenerTodosCategoria;
+            ViewBag.Proveedor = await taskObtenerTodosProveedor;
+            ViewBag.Top = pProducto.Top_Aux;
+            return View(Productos);
+        }
+
+
+        // POST: ProductoController/Edit/5
+        public async Task<IActionResult> EditExistencia(Producto pProducto)
+        {
+            var taskObtenerPorIdProducto = ProductoBL.ObtenerPorIdProductoAsync(pProducto);
+            var taskObtenerTodosCategoria = CategoriaBL.ObtenerTodosAsync();
+            var taskObtenerTodosProveedor = ProveedorBL.ObtenerTodosAsync();
+            var producto = await taskObtenerPorIdProducto;
+            ViewBag.Categoria = await taskObtenerTodosCategoria;
+            ViewBag.Proveedor = await taskObtenerTodosProveedor;
+            ViewBag.Error = "";
+            return View(producto);
+        }
+
+        // POST: ProductoController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditExistencia(int IdProducto, Producto pProducto)
+        {
+            try
+            {
+                int result = await ProductoBL.ModificarExistenciasAsync(pProducto);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                ViewBag.Categoria = await CategoriaBL.ObtenerTodosAsync();
+                ViewBag.Proveedor = await ProveedorBL.ObtenerTodosAsync();
+                return View(pProducto);
+            }
+        }
+    }
 }
