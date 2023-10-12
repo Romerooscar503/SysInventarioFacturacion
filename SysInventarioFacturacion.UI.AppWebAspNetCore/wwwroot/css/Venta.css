@@ -79,10 +79,11 @@
 }
 
 .TextLitlle {
-    text-align:center;
+    text-align: center;
+    align-content: center;
     color: white;
     height: 50px;
-    width: 95%;
+    width: 100%;
     background-color: #102c54;
     font-weight: bold; /* Aplicar negrita */
     font-size: 20px; /* Aumentar el tamaño de la fuente (cambia el valor según tus preferencias) */
@@ -124,8 +125,6 @@
     overflow: auto; /* Habilita la barra de desplazamiento */
 }
 
-.FormContent{
-    height:150px;
-    align-content:end;
-    align-items:end;
+.FormContent {
+    height: 95px;
 }
