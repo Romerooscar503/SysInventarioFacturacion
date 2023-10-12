@@ -172,3 +172,11 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    // Manejar el clic en el botón de "Eliminar"
+    $('#tablaDetalleFactura').on('click', '.eliminar-producto', function () {
+        var row = $(this).closest('tr');
+        row.remove(); // Remover la fila visualmente
+    });
+});
+
