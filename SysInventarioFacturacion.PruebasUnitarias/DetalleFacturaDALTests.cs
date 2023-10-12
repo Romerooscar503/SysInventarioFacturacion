@@ -22,7 +22,7 @@ namespace SysInventarioFacturacion.AccesoADatos.Tests
             detalleFactura.IdProducto = detallefacturaInicial.IdProducto;
             detalleFactura.Codigo = 234;
             detalleFactura.Cantidad = 59;
-            detalleFactura.FormaDePago = "efectivo";
+            detalleFactura.FormaDePago = 1;
             detalleFactura.ValorTotal = 56;
             int result = await DetalleFacturaDAL.CrearAsync(detalleFactura);
             Assert.AreNotEqual(0, result);
@@ -38,7 +38,7 @@ namespace SysInventarioFacturacion.AccesoADatos.Tests
             detalleFactura.IdProducto = detallefacturaInicial.IdProducto;
             detalleFactura.Codigo = 4;
             detalleFactura.Cantidad = 5;
-            detalleFactura.FormaDePago = "JuanUser01";
+            detalleFactura.FormaDePago = 2;
             detalleFactura.ValorTotal = 36;
             int result = await DetalleFacturaDAL.ModificarAsync(detalleFactura);
             Assert.AreNotEqual(0, result);
@@ -69,7 +69,7 @@ namespace SysInventarioFacturacion.AccesoADatos.Tests
             detalleFactura.IdProducto = detallefacturaInicial.IdProducto;
             detalleFactura.Codigo = 4;
             detalleFactura.Cantidad = 5;
-            detalleFactura.FormaDePago = "use";
+            detalleFactura.FormaDePago = 2;
             detalleFactura.ValorTotal = 56;
             detalleFactura.Top_Aux = 10;
             var resultDetalleFacturas = await DetalleFacturaDAL.BuscarAsync(detalleFactura);
@@ -84,7 +84,7 @@ namespace SysInventarioFacturacion.AccesoADatos.Tests
             detalleFactura.IdProducto = detallefacturaInicial.IdProducto;
             detalleFactura.Codigo = 4;
             detalleFactura.Cantidad = 5;
-            detalleFactura.FormaDePago = "use";
+            detalleFactura.FormaDePago = 2;
             detalleFactura.ValorTotal = 56;
             detalleFactura.Top_Aux = 10;
             var resultDetalleFacturas = await DetalleFacturaDAL.BuscarIncluirFacturasYProductoAsync(detalleFactura);
