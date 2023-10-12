@@ -17,6 +17,7 @@ using SysInventarioFacturacion.LogicaDeNegocio;
 namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 {
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "SuperAdmin")]
     public class UsuarioController : Controller
     {
         UsuarioBL usuarioBL = new UsuarioBL();

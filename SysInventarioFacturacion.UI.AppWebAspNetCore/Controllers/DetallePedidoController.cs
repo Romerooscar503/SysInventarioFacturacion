@@ -1,12 +1,18 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SysInventarioFacturacion.EntidadesDeNegocio;
 using SysInventarioFacturacion.LogicaDeNegocio;
 
 namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "SuperAdmin")]
+
     public class DetallePedidoController : Controller
     {
+
         DetallePedidoBL DetallePedidoBL = new DetallePedidoBL();
         ProductoBL ProductoBL = new ProductoBL();
         ProveedorBL ProveedorBL = new ProveedorBL();

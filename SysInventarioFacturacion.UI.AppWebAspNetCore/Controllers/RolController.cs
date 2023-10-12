@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 {
-   //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+   [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class RolController : Controller
     {
         RolBL rolBL = new RolBL();

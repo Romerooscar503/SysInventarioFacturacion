@@ -16,7 +16,8 @@ using SysInventarioFacturacion.AccesoADatos;
 
 namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 {
-    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Cajero,SuperAdmin,Admin")]
     public class DetalleFacturaController : Controller
     {
         DetalleFacturaBL detalle_facturaBL = new DetalleFacturaBL();

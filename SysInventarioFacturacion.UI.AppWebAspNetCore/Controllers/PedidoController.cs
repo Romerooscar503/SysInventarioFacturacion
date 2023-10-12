@@ -14,8 +14,9 @@ using SysInventarioFacturacion.AccesoADatos;
 
 namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 {
-	//[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-	public class PedidoController : Controller
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "SuperAdmin")]
+    public class PedidoController : Controller
 	{
 		PedidoBL PedidoBL = new PedidoBL();
 		UsuarioBL UsuarioBL = new UsuarioBL();
