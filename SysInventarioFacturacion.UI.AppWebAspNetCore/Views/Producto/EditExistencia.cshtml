@@ -1,0 +1,77 @@
+﻿@model SysInventarioFacturacion.EntidadesDeNegocio.Producto
+
+@{
+    ViewData["Title"] = "EditExistencia";
+}
+
+<h1>EditExistencia</h1>
+
+<h4>Producto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+        <label class="form-control">
+            @Html.DisplayFor(model => model.Codigo)
+        </label>
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <label class="form-control">
+            @Html.DisplayFor(model => model.Nombre)
+        </label>
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <label class="form-control">
+                @Html.DisplayFor(model => model.Descripcion)
+        </label>
+
+        <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Talla)
+        </dt>
+        <label class="form-control">
+                @Html.DisplayFor(model => model.Talla)
+        </label>
+
+        <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <label class="form-control">
+                @Html.DisplayFor(model => model.Marca)
+        </label>
+        <form asp-action="EditExistencia">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdProducto" class="form-control" />
+            <div class="form-group">
+                <label asp-for="Cantidad" class="control-label"></label>
+                <input asp-for="Cantidad" class="form-control" />
+                <span asp-validation-for="Cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top: 10px;">
+                <button type="submit" class="btn btn-success" style="margin-right: 10px;">
+                    <i class="fas fa-save"></i> Guardar
+                </button>
+
+                <button type="button" class="btn btn-danger" onclick="window.location.href='@Url.Action("Inventario")'" style="margin-left: 10px;">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
