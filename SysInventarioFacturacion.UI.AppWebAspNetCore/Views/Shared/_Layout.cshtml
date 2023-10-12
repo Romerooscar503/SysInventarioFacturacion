@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/Home.css">
     <link rel="stylesheet" href="~/css/Menu.css">
-    <link rel="stylesheet" href="Menu.JS">
     <link rel="stylesheet" href="~/css/Inicio.css">
     <link rel="stylesheet" href="~/css/Venta.css">
     
@@ -96,69 +95,6 @@
     <div class="opacMenu"></div>
 
     <!--  Jquery  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-
-        $(document).ready
-            (
-                function () {
-                    $('.labelMenu').click
-                        (
-                            function () {
-                                $('.menu').css('left', 0);
-                                $('.opacMenu').fadeIn();
-                            }
-                        )
-
-                    $('.opacMenu').click
-                        (
-                            function () {
-                                $('.menu').css('left', '-250px');
-                                $('.opacMenu').fadeOut();
-                            }
-                        )
-                }
-            )
-
-        
-        $(document).ready(function () {
-            // Maneja el evento de entrada de texto
-            $("#inputProducto").keyup(function () {
-                var textoBusqueda = $(this).val().toLowerCase();
-
-                // Filtra los productos que coinciden con el texto de búsqueda
-                var productosFiltrados = productos.filter(function (producto) {
-
-                    return producto.toLowerCase().includes(textoBusqueda);
-                });
-
-                // Actualiza la lista desplegable con los resultados de la búsqueda
-                var selectProducto = $("#selectProducto");
-                selectProducto.empty();
-                console.log("filtrando...");
-                // Agrega las opciones de productos encontrados
-                productosFiltrados.forEach(function (producto) {
-                    selectProducto.append(new Option(producto, producto));
-                });
-
-                // Muestra u oculta la lista desplegable según si hay resultados
-                if (productosFiltrados.length > 0) {
-                    selectProducto.show();
-                } else {
-                    selectProducto.hide();
-                }
-                console.log(productosFiltrados);
-            });
-
-            // Maneja el evento de selección en la lista desplegable
-            $("#selectProducto").change(function () {
-                var seleccionado = $(this).val();
-                // Puedes hacer algo con el producto seleccionado, como asignarlo a un campo oculto o procesarlo de alguna manera.
-                console.log("Producto seleccionado:", seleccionado);
-            });
-        });
-
-    </script>
     <div class='dashboard-content'>
         <div class='dashboard-app'>
             <div class='container'>
@@ -173,7 +109,8 @@
        
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/Inicio.js"></script>
-   
+    <script src="~/js/Venta.js"></script>
+    <script src="~/js/Menu.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/JavaScriptHome.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

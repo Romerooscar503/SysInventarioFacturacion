@@ -16,4 +16,24 @@ window.addEventListener('scroll', function () {
     }
 });
 
+$(document).ready
+    (
+        function () {
+            $('.labelMenu').click
+                (
+                    function () {
+                        $('.menu').css('left', 0);
+                        $('.opacMenu').fadeIn();
+                    }
+                )
+
+            $('.opacMenu').click
+                (
+                    function () {
+                        $('.menu').css('left', '-250px');
+                        $('.opacMenu').fadeOut();
+                    }
+                )
+        }
+    )
 

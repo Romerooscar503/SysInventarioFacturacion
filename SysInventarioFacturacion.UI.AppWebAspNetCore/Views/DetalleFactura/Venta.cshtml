@@ -10,7 +10,7 @@
     List<SysInventarioFacturacion.EntidadesDeNegocio.Factura> facturas = ViewBag.Facturas as List<SysInventarioFacturacion.EntidadesDeNegocio.Factura>;
     List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
     List<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura> detalleFacturas = new List<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura>();
-    
+
 }
 
 
@@ -19,25 +19,13 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card border-info">
-            <div class="card-header p-2 bg-info text-white">
-                Detalle Venta
-                <button id="btnTerminarGuardarVenta" class="btn btn-warning btn-sm float-right">
+            <div class="BarraSuperior">
+                <button id="btnTerminarGuardarVenta" class="BtnImprimir">
                     <i class="fa fa-print" aria-hidden="true"></i> Imprimir y Terminar Venta
                 </button>
             </div>
             <div class="card-body p-2 card-venta">
                 <div class="row">
-                    <div class="col-sm-3">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Tipo Documento</label>
-                            </div>
-                            <select class="custom-select" id="cboventatipodocumento">
-                                <option value="Boleta">Boleta</option>
-                                <option value="Factura">Factura</option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="col-sm-3">
                         <div class="input-group input-group-sm mb-2">
                             <div class="input-group-prepend">
@@ -48,7 +36,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="card bg-info text-white border-info">
+                    <div class="BarraInferio">
                         <div class="card-body p-2">
                             <div class="row">
                                 <div class="col-sm-10">
@@ -64,11 +52,10 @@
         <div class="row mt-2">
             <div class="col-sm-6">
                 <div class="card border-info">
-                    <div class="card-body p-2">
+                    <div class="FormContent">
                         <div class="row align-items-end">
-                            <h6 class="card-title mb-1 text-info">Detalle Producto</h6>
-                            @*<form>*@
-                                <div class="row align-items-end">
+                            <h6 class="TextLitlle">Busca tus productos</h6>
+                            <div class="row align-items-end">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Código</label>
@@ -81,54 +68,17 @@
                                         <input type="text" id="txtNombre" class="form-control" name="nombre" />
                                     </div>
                                 </div>
-
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="control-label">Cantidad</label>
-                                            <input type="text" class="form-control" name="cantidad" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="control-label">FormaDePago</label>
-                                            <select name="FormaDePago" class="form-control">
-                                                <option value="">SELECCIONAR</option>
-                                                <option selected value="1">EFECTIVO</option>
-                                                <option value="2">TARJETA</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label class="control-label">Top</label>
-                                            <select name="top_aux" class="form-control">
-                                                @foreach (var item in tops)
-                                                {
-                                                    string strItem = item != -1 ? item.ToString() : "Todos";
-                                                    if (item != topActual)
-                                                    {
-                                                        <option value="@item">@strItem</option>
-                                                    }
-                                                    else
-                                                    {
-                                                        <option selected value="@item">@strItem</option>
-                                                    }
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-0">
-                                        <div class="form-group mb-0">
-                                            <button type="submit" class="btn btn-primary" style="background-color: #0074D9; color: white;">
-                                                <i class="fas fa-search"></i> Buscar
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            @*</form>*@
-
+                                 <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">FormaDePago</label>
+                            <select name="FormaDePago" class="form-control">
+                                <option value="">SELECCIONAR</option>
+                                <option selected value="1">EFECTIVO</option>
+                                <option value="2">TARJETA</option>
+                            </select>
+                        </div>
+                    </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,11 +86,11 @@
             <!-- Tabla donde aparecen los productos... -->
             <div class="col-sm-6">
                 <div class="card border-info">
-                    <div class="card-body p-2">
-                        <table id="tablaBusqueda" class="miTablaEspecial">
+                    <div class="table-container">
+                        <table id="tablaBusqueda" class="tablaBusqueda" style="height:20px">
                             <thead>
                                 <tr>
-                                    <th>Codigo</th>
+                                    <th>Cod</th>
 
                                     <th>
                                         Nombre
@@ -153,14 +103,6 @@
                                     <th>
                                         Talla
                                     </th>
-
-                                    <th>
-                                        Marca
-                                    </th>
-                                    <th>
-                                        Cantidad
-                                    </th>
-
                                     <th>
                                         Precio Unitario
                                     </th>
@@ -197,12 +139,6 @@
 
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Talla)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Marca)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Cantidad)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.PrecioUnitario)
@@ -242,16 +178,11 @@
 
 </div>
 
-<hr />
-<div class="row">
-    <div class="col-sm-12">
-        <h6 class="text-info">Compra</h6>
-    </div>
-</div>
+<hr class="Separation" />
 <div class="row mt-3">
     <div class="col-sm-12">
         <div class="table-responsive-sm">
-            <table id="tablaDetalleFactura" class="table table-striped table-bordered nowrap table-sm" style="width:100%">
+            <table id="tablaDetalleFactura" class="tablaDetalles" style="width:100%">
                 <thead>
                     <tr>
                         <th>Cantidad</th>
@@ -364,139 +295,4 @@
     </div>
 </div>
 
-<!-- El código JavaScript debe ir aquí al final de la vista -->
-<script>
-    // JavaScript para la interacción del carrito de compras
-    document.addEventListener("DOMContentLoaded", function () {
-        const agregarProductoButtons = document.querySelectorAll(".agregar-producto");
-        const eliminarProductoButtons = document.querySelectorAll(".eliminar-producto");
-        const txtsubtotal = document.getElementById("txtsubtotal");
-        const txtigv = document.getElementById("txtigv");
-        const txttotal = document.getElementById("txttotal");
-        const txtmontopago = document.getElementById("txtmontopago");
-        const btncalcular = document.getElementById("btncalcular");
 
-        const detalleFacturas = [];
-
-        agregarProductoButtons.forEach(function (button) {
-            button.addEventListener("click", function () {
-                const codigo = button.getAttribute("data-codigo");
-                const nombre = button.getAttribute("data-nombre");
-                const descripcion = button.getAttribute("data-descripcion");
-                const precio = parseFloat(button.getAttribute("data-precio"));
-
-                const cantidad = prompt(`Ingrese la cantidad para "${nombre}"`);
-                if (cantidad !== null && !isNaN(cantidad) && cantidad > 0) {
-                    const importeTotal = parseFloat(cantidad) * precio;
-                    detalleFacturas.push({
-                        codigo: codigo,
-                        nombre: nombre, 
-                        descripcion: descripcion,
-                        cantidad: parseFloat(cantidad),
-                        precio: precio,
-                        importeTotal: importeTotal,
-                    });
-
-                    updateDetalleFacturaTable();
-                    calculateTotal();
-                }
-            });
-        });
-
-        eliminarProductoButtons.forEach(function (button) {
-            button.addEventListener("click", function () {
-                const id = parseInt(button.getAttribute("data-id"));
-                const index = detalleFacturas.findIndex((detalle) => detalle.id === id);
-                if (index !== -1) {
-                    detalleFacturas.splice(index, 1);
-                    updateDetalleFacturaTable();
-                    calculateTotal();
-                }
-            });
-        });
-
-        function updateDetalleFacturaTable() {
-            const tbody = document.querySelector("#tablaDetalleFactura tbody");
-            while (tbody.firstChild) {
-                tbody.removeChild(tbody.firstChild);
-            }
-
-            detalleFacturas.forEach(function (detalle) {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                        <td>${detalle.cantidad}</td>
-                        <td>${detalle.nombre}</td>
-                        <td>${detalle.descripcion}</td>
-                        <td>${detalle.precio}</td>
-                        <td>${detalle.importeTotal}</td>
-                        <td>
-                            <button class="eliminar-producto btn btn-danger" data-id="${detalle.id}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    `;
-                tbody.appendChild(row);
-            });
-        }
-
-        function calculateTotal() {
-            let subtotal = 0;
-            detalleFacturas.forEach(function (detalle) {
-                subtotal += detalle.importeTotal;
-            });
-
-            const igv = subtotal * 0.18; // IGV del 18%
-            const total = subtotal + igv;
-
-            txtsubtotal.value = subtotal.toFixed(2);
-            txtigv.value = igv.toFixed(2);
-            txttotal.value = total.toFixed(2);
-        }
-
-        btncalcular.addEventListener("click", function () {
-            const montoPago = parseFloat(txtmontopago.value);
-            if (isNaN(montoPago) || montoPago < 0) {
-                alert("Ingrese un monto de pago válido.");
-                return;
-            }
-
-            const total = parseFloat(txttotal.value);
-            if (montoPago < total) {
-                alert("El monto de pago debe ser igual o mayor que el total.");
-            } else {
-                const cambio = montoPago - total;
-                alert(`Cambio: S/. ${cambio.toFixed(2)}`);
-            }
-        });
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const txtCodigo = document.getElementById("txtCodigo");
-        const txtNombre = document.getElementById("txtNombre");
-        const tablaBusqueda = document.querySelector("#tablaBusqueda tbody");
-
-        txtCodigo.addEventListener("input", filterProductos);
-        txtNombre.addEventListener("input", filterProductos);
-
-        function filterProductos() {
-            const codigo = txtCodigo.value.trim().toLowerCase();
-            const nombre = txtNombre.value.trim().toLowerCase();
-
-            const rows = tablaBusqueda.querySelectorAll("tr");
-            rows.forEach((row) => {
-                const codigoCell = row.querySelector("td:nth-child(1)");
-                const nombreCell = row.querySelector("td:nth-child(2)");
-                if (codigoCell && nombreCell) {
-                    const codigoText = codigoCell.textContent.toLowerCase();
-                    const nombreText = nombreCell.textContent.toLowerCase();
-
-                    if (codigoText.includes(codigo) && nombreText.includes(nombre)) {
-                        row.style.display = "";
-                    } else {
-                        row.style.display = "none";
-                    }
-                }
-            });
-        }
-    });
-</script>
