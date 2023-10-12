@@ -38,7 +38,9 @@
                     <!-- Por ejemplo, si es una imagen: -->
                     <img src="~/IMG/Logo.png" alt="Logo de la empresa" class="logo-container">
                 </div>
-                <button type="button" class="toggle" id="dark-mode-toggle">Modo Oscuro</button>
+                <div class="switch">
+                    <div class="slider"></div>
+                </div>
 
 
                 <li class="Nombre">
@@ -86,6 +88,9 @@
 
                     <li class="nav-item">
                         <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Usuario" asp-action="CambiarPassword">Cambiar password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="dashboard-nav-item" asp-area="" asp-controller="Usuario" asp-action="CerrarSesion">Cerrar sesión</a>
                     </li>
 
 

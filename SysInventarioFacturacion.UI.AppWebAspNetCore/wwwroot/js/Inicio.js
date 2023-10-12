@@ -36,11 +36,26 @@ document.querySelectorAll(".carousel").forEach((carousel) => {
 });
 
 /*Modo Oscuro*/
-const darkModeToggle = document.getElementById("dark-mode-toggle");
+const switchContainer = document.querySelector(".switch");
+const slider = document.querySelector(".slider");
 const body = document.body;
+let isOn = false;
 
-darkModeToggle.addEventListener("click", () => {
-    // Alterna la clase dark-mode en el cuerpo
-    body.classList.toggle("dark-mode");
+switchContainer.addEventListener("click", () => {
+    isOn = !isOn;
+    if (isOn) {
+        slider.style.transition = "left 0.3s ease-in-out"; // Agrega transición
+        slider.style.left = "60px"; // Desplaza hacia la derecha
+        switchContainer.style.transition = "background 0.3s ease-in-out"; // Transición para el fondo
+        switchContainer.style.background = "#007BFF";
+        body.classList.add("dark-mode"); // Activa el modo oscuro
+    } else {
+        slider.style.transition = "left 0.3s ease-in-out"; // Agrega transición
+        slider.style.left = "0"; // Desplaza hacia la izquierda
+        switchContainer.style.transition = "background 0.3s ease-in-out"; // Transición para el fondo
+        switchContainer.style.background = "#ccc";
+        body.classList.remove("dark-mode"); // Desactiva el modo oscuro
+    }
 });
+
 
