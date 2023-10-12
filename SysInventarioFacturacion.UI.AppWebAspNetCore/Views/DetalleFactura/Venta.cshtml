@@ -40,7 +40,7 @@
                         <div class="card-body p-2">
                             <div class="row">
                                 <div class="col-sm-10">
-                                    <h6 class="card-title mb-1">CREANDO FACTURA</h6>
+                                    <h6 style="color: white;" "class=" card-title mb-1">CREANDO FACTURA</h6>
                                 </div>
                             </div>
                         </div>
@@ -68,17 +68,8 @@
                                         <input type="text" id="txtNombre" class="form-control" name="nombre" />
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label">FormaDePago</label>
-                                        <select name="FormaDePago" class="form-control">
-                                            <option value="">SELECCIONAR</option>
-                                            <option selected value="1">EFECTIVO</option>
-                                            <option value="2">TARJETA</option>
-                                        </select>
-                                    </div>
-                                </div>
-                              
+
+
                             </div>
                         </div>
                     </div>
@@ -114,59 +105,59 @@
                             <tbody>
                                 @foreach (var item in productos)
                                 {
-                                    <tr data-page="@numPage">
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Codigo)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Nombre)
-                                        </td>
+                                <tr data-page="@numPage">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nombre)
+                                    </td>
 
-                                        <td>
-                                            <div class="descripcion">
-                                                @if (!string.IsNullOrEmpty(item.Descripcion) && item.Descripcion.Length > 50)
-                                                {
-                                                    <span class="short-description">@Html.DisplayFor(modelItem => item.Descripcion.Substring(0, 50))</span>
-                                                    <span class="full-description" style="display: none;">@Html.DisplayFor(modelItem => item.Descripcion)</span>
-                                                    <button class="show-more-button">Ver Más</button>
-                                                }
-                                                else
-                                                {
-                                                    <span class="short-description">@Html.DisplayFor(modelItem => item.Descripcion)</span>
-                                                }
-                                            </div>
-                                        </td>
+                                    <td>
+                                        <div class="descripcion">
+                                            @if (!string.IsNullOrEmpty(item.Descripcion) && item.Descripcion.Length > 50)
+                                            {
+                                            <span class="short-description">@Html.DisplayFor(modelItem => item.Descripcion.Substring(0, 50))</span>
+                                            <span class="full-description" style="display: none;">@Html.DisplayFor(modelItem => item.Descripcion)</span>
+                                            <button class="show-more-button">Ver Más</button>
+                                            }
+                                            else
+                                            {
+                                            <span class="short-description">@Html.DisplayFor(modelItem => item.Descripcion)</span>
+                                            }
+                                        </div>
+                                    </td>
 
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Talla)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.PrecioUnitario)
-                                        </td>
-                                        <td class="botonestabla">
-                                            <button class="agregar-producto btn btn-sm btn-success btn-block"
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Talla)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecioUnitario)
+                                    </td>
+                                    <td class="botonestabla">
+                                        <button class="agregar-producto btn btn-sm btn-success btn-block"
                                                 data-codigo="@item.Codigo"
                                                 data-nombre="@item.Nombre"
                                                 data-descripcion="@item.Descripcion"
                                                 data-precio="@item.PrecioUnitario">
-                                                <i class="fa fa-plus" aria-hidden="true"></i> Agregar
-                                            </button>
-                                        </td>
+                                            <i class="fa fa-plus" aria-hidden="true"></i> Agregar
+                                        </button>
+                                    </td>
 
-                                    </tr>
-                                    numRegistros++;
-                                    if (numRegistros == numRegistrosPorPage)
-                                    {
-                                        numPage++;
-                                        numRegistros = 0;
-                                    }
+                                </tr>
+                                numRegistros++;
+                                if (numRegistros == numRegistrosPorPage)
+                                {
+                                numPage++;
+                                numRegistros = 0;
+                                }
                                 }
                                 @{
-                                    if (numRegistros == 0)
-                                    {
-                                        numPage--;
-                                    }
+                                if (numRegistros == 0)
+                                {
+                                numPage--;
+                                }
                                 }
                             </tbody>
                         </table>
@@ -197,49 +188,40 @@
                 <tbody>
                     @foreach (var item in detalleFacturas)
                     {
-                        <tr data-page="@numPage">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Cantidad)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Producto.Nombre)
-                            </td>
-                            @if (item.FormaDePago == 1)
-                            {
-                                <td>EFECTIVO</td>
-                            }
-                            else if (item.FormaDePago == 2)
-                            {
-                                <td>TARJETA</td>
-                            }
-                            else
-                            {
-                                <td></td>
-                            }
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Producto.PrecioUnitario)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ValorTotal)
-                            </td>
-                            <td class="botonestabla">
-                                <button class="eliminar-producto btn btn-danger" data-id="@item.IdDetalleFactura">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        numRegistros++;
-                        if (numRegistros == numRegistrosPorPage)
-                        {
-                            numPage++;
-                            numRegistros = 0;
-                        }
+                    <tr data-page="@numPage">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cantidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Producto.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Producto.PrecioUnitario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ValorTotal)
+                        </td>
+                        <td class="botonestabla">
+                            <button class="eliminar-producto btn btn-danger" data-id="@item.IdDetalleFactura">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    numRegistros++;
+                    if (numRegistros == numRegistrosPorPage)
+                    {
+                    numPage++;
+                    numRegistros = 0;
+                    }
                     }
                     @{
-                        if (numRegistros == 0)
-                        {
-                            numPage--;
-                        }
+                    if (numRegistros == 0)
+                    {
+                    numPage--;
+                    }
                     }
                 </tbody>
             </table>
@@ -282,6 +264,22 @@
             <div class="col-sm-4">
                 <div class="input-group input-group-sm mb-2">
                     <div class="input-group-prepend">
+                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Forma de Pago</label>
+                        <select name="FormaDePago" class="form-control">
+                            <option selected value="1">EFECTIVO</option>
+                            <option value="2">TARJETA</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
                         <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Monto Pago S/.</label>
                     </div>
                     <input id="txtmontopago" type="text" class="form-control" autocomplete="off">
@@ -295,5 +293,4 @@
         </div>
     </div>
 </div>
-
 
