@@ -46,30 +46,71 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
+    // Modificar la función updateDetalleFacturaTable para agregar un botón de eliminar
     function updateDetalleFacturaTable() {
         const tbody = document.querySelector("#tablaDetalleFactura tbody");
         while (tbody.firstChild) {
             tbody.removeChild(tbody.firstChild);
         }
 
-        detalleFacturas.forEach(function (detalle) {
+        detalleFacturas.forEach(function (detalle, index) {
             const row = document.createElement("tr");
             row.innerHTML = `
-                        <td>${detalle.cantidad}</td>
-                        <td>${detalle.nombre}</td>
-                        <td>${detalle.descripcion}</td>
-                        <td>${detalle.precio}</td>
-                        <td>${detalle.importeTotal}</td>
-                        <td>
-                            <button class="eliminar-producto btn btn-danger" data-id="${detalle.id}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    `;
+                    <td>${detalle.cantidad}</td>
+                    <td>${detalle.nombre}</td>
+                    <td>${detalle.descripcion}</td>
+                    <td>${detalle.precio}</td>
+                    <td>${detalle.importeTotal}</td>
+                    <td>
+                        <button class="eliminar-producto btn btn-danger" data-index="${index}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
             tbody.appendChild(row);
         });
+
+        // Agrega un event listener para los botones de eliminar
+        const eliminarProductoButtons = document.querySelectorAll(".eliminar-producto");
+        eliminarProductoButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const index = button.getAttribute("data-index");
+                removeProduct(index);
+            });
+        });
     }
+
+    // Función para eliminar un producto
+    function removeProduct(index) {
+        if (index >= 0 && index < detalleFacturas.length) {
+            detalleFacturas.splice(index, 1);
+            updateDetalleFacturaTable();
+            calculateTotal();
+        }
+    }
+    //function updateDetalleFacturaTable() {
+    //    const tbody = document.querySelector("#tablaDetalleFactura tbody");
+    //    while (tbody.firstChild) {
+    //        tbody.removeChild(tbody.firstChild);
+    //    }
+
+    //    detalleFacturas.forEach(function (detalle) {
+    //        const row = document.createElement("tr");
+    //        row.innerHTML = `
+    //                    <td>${detalle.cantidad}</td>
+    //                    <td>${detalle.nombre}</td>
+    //                    <td>${detalle.descripcion}</td>
+    //                    <td>${detalle.precio}</td>
+    //                    <td>${detalle.importeTotal}</td>
+    //                    <td>
+    //                        <button class="eliminar-producto btn btn-danger" data-id="${detalle.id}">
+    //                            <i class="fas fa-trash"></i>
+    //                        </button>
+    //                    </td>
+    //                `;
+    //        tbody.appendChild(row);
+    //    });
+    //}
 
     function calculateTotal() {
         let subtotal = 0;
@@ -101,6 +142,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const txtCodigo = document.getElementById("txtCodigo");
@@ -171,4 +215,39 @@ $(document).ready(function () {
         console.log("Producto seleccionado:", seleccionado);
     });
 });
+
+
+
+//$(document).ready(function () {
+//    $('#tablaDetalleFactura').on('click', '.eliminar-producto', function () {
+//        var row = $(this).closest('tr');
+//        var idDetalleFactura = row.data('id');
+
+//        // Eliminar el producto visualmente
+//        row.remove();
+
+//        // Eliminar el producto de la estructura de datos (detalleFacturas)
+//        detalleFacturas = detalleFacturas.filter(function (producto) {
+//            return producto.IdDetalleFactura !== dDetalleFactura;
+//        });
+//    });
+
+//    // Evita que los productos eliminados vuelvan a aparecer
+//    function actualizarTablaDetalleFactura() {
+//        $('#tablaDetalleFactura tbody').empty();
+//        detalleFacturas.forEach(function (producto) {
+//            var newRow = $("<tr>");
+//            newRow.append("<td>" + producto.Cantidad + "</td>");
+//            newRow.append("<td>" + producto.Producto.Nombre + "</td>");
+//            newRow.append("<td>" + producto.Producto.Descripcion + "</td>");
+//            newRow.append("<td>" + producto.Producto.PrecioUnitario + "</td>");
+//            newRow.append("<td>" + producto.ValorTotal + "</td>");
+//            newRow.append("<td class='botonestabla'><button class='eliminar-producto btn btn-danger' data-id='" + producto.IdDetalleFactura + "'><i class='fas fa-trash'></i></button></td>");
+//            $('#tablaDetalleFactura tbody').append(newRow);
+//        });
+//    }
+
+//    // Llama a esta función cuando necesites actualizar la tabla de detalles
+//    actualizarTablaDetalleFactura();
+//});
 
