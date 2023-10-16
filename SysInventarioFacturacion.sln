@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysInventarioFacturacion.Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysInventarioFacturacion.UI.AppWebAspNetCore", "SysInventarioFacturacion.UI.AppWebAspNetCore\SysInventarioFacturacion.UI.AppWebAspNetCore.csproj", "{C545359B-8900-4508-A615-50988A3AFCFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysInventarioFacturacion.WebAPI", "SysInventarioFacturacion.WebAPI\SysInventarioFacturacion.WebAPI.csproj", "{8351D0E1-3D98-47FE-9676-7E70FCCC3272}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysInventarioFacturacion.WebAPI", "SysInventarioFacturacion.WebAPI\SysInventarioFacturacion.WebAPI.csproj", "{8351D0E1-3D98-47FE-9676-7E70FCCC3272}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

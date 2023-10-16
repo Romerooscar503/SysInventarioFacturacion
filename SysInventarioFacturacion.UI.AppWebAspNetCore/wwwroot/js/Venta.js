@@ -1,4 +1,104 @@
-﻿//Funcion de agregar al carrito y calcular
+﻿//$(document).ready(function () {
+//    $('#btnTerminarGuardarVenta').click(function () {
+//        // Obtener datos necesarios para el ticket
+//        var factura = {
+//            NumeroFactura: '12345',
+//            Direccion: 'Dirección de prueba',
+//            Telefono: '123456789',
+//            Correo: 'correo@ejemplo.com',
+//            NombreUsuario: 'Usuario de Prueba',
+//            Productos: [
+//                { NombreProducto: 'Producto 1', Cantidad: 2, Descripcion: 'Descripción del Producto 1', PrecioUnitario: 10, Subtotal: 20 },
+//                { NombreProducto: 'Producto 2', Cantidad: 1, Descripcion: 'Descripción del Producto 2', PrecioUnitario: 15, Subtotal: 15 }
+//            ],
+//            MontoPago: 35,
+//            Total: 35
+//        };
+
+//        // Crear contenido del ticket
+//        var contenidoTicket = `<div class="text-center">`;
+//        contenidoTicket += `<h3>Imperial Shoes</h3>`;
+//        contenidoTicket += `<p>Número de Factura: ${factura.NumeroFactura}</p>`;
+//        contenidoTicket += `<p>Dirección: ${factura.Direccion}</p>`;
+//        contenidoTicket += `<p>Teléfono: ${factura.Telefono}</p>`;
+//        contenidoTicket += `<p>Correo: ${factura.Correo}</p>`;
+//        contenidoTicket += `<p>Vendido por: ${factura.NombreUsuario}</p>`;
+//        contenidoTicket += `</div><hr />`;
+//        contenidoTicket += `<h4>Detalle de la Venta</h4>`;
+//        contenidoTicket += `<table class="table">`;
+//        contenidoTicket += `<thead><tr><th>Producto</th><th>Cantidad</th><th>Descripción</th><th>Precio Unitario</th><th>Subtotal</th></tr></thead>`;
+//        contenidoTicket += `<tbody>`;
+//        factura.Productos.forEach(function (producto) {
+//            contenidoTicket += `<tr><td>${producto.NombreProducto}</td><td>${producto.Cantidad}</td><td>${producto.Descripcion}</td><td>${producto.PrecioUnitario}</td><td>${producto.Subtotal}</td></tr>`;
+//        });
+//        contenidoTicket += `</tbody></table><hr />`;
+//        contenidoTicket += `<p><strong>Monto Pago:</strong> ${factura.MontoPago}</p>`;
+//        contenidoTicket += `<p><strong>Total:</strong> ${factura.Total}</p>`;
+
+//        // Mostrar contenido en el modal
+//        $('#ticketContent').html(contenidoTicket);
+
+//        // Mostrar el modal
+//        $('#ticketModal').modal('show');
+//    });
+//});
+
+$(document).ready(function () {
+    $('#btnTerminarGuardarVenta').click(function () {
+        // Obtener datos necesarios para el ticket (reemplázalos con tus datos reales)
+        var factura = {
+            NumeroFactura: '12345',
+            Direccion: 'Barrio el Angel',
+            Telefono: '123456789',
+            Correo: 'or5576342@gmail.com',
+            NombreUsuario: 'Cajero',
+            Productos: [
+                { NombreProducto: 'Producto 1', Cantidad: 2, Descripcion: 'Descripción del Producto 1', PrecioUnitario: 10, Subtotal: 20 },
+                { NombreProducto: 'Producto 2', Cantidad: 1, Descripcion: 'Descripción del Producto 2', PrecioUnitario: 15, Subtotal: 15 }
+            ],
+            MontoPago: 35,
+            Total: 35
+        };
+
+        // Crear contenido del ticket
+        var contenidoTicket = `<div class="text-center">`;
+        contenidoTicket += `<h3>Imperial Shoes</h3>`;
+        contenidoTicket += `<p>Número de Factura: ${factura.NumeroFactura}</p>`;
+        contenidoTicket += `<p>Dirección: ${factura.Direccion}</p>`;
+        contenidoTicket += `<p>Teléfono: ${factura.Telefono}</p>`;
+        contenidoTicket += `<p>Correo: ${factura.Correo}</p>`;
+        contenidoTicket += `<p>Vendido por: ${factura.NombreUsuario}</p>`;
+        contenidoTicket += `</div><hr />`;
+        contenidoTicket += `<h4>Detalle de la Venta</h4>`;
+        contenidoTicket += `<table class="table">`;
+        contenidoTicket += `<thead><tr><th>Producto</th><th>Cantidad</th><th>Descripción</th><th>Precio Unitario</th><th>Subtotal</th></tr></thead>`;
+        contenidoTicket += `<tbody>`;
+        factura.Productos.forEach(function (producto) {
+            contenidoTicket += `<tr><td>${producto.NombreProducto}</td><td>${producto.Cantidad}</td><td>${producto.Descripcion}</td><td>${producto.PrecioUnitario}</td><td>${producto.Subtotal}</td></tr>`;
+        });
+        contenidoTicket += `</tbody></table><hr />`;
+        contenidoTicket += `<p><strong>Monto Pago:</strong> ${factura.MontoPago}</p>`;
+        contenidoTicket += `<p><strong>Total:</strong> ${factura.Total}</p>`;
+
+        // Mostrar contenido en el modal
+        $('#ticketContent').html(contenidoTicket);
+
+        // Mostrar el modal
+        $('#ticketModal').modal('show');
+    });
+
+    // Manejar el clic del botón de impresión dentro del modal
+    $('#ticketModal').on('shown.bs.modal', function () {
+        $('#btnImprimirTicket').click(function () {
+            // Imprimir el contenido del modal
+            window.print();
+        });
+    });
+});
+
+
+
+//Funcion de agregar al carrito y calcular
 document.addEventListener("DOMContentLoaded", function () {
     const agregarProductoButtons = document.querySelectorAll(".agregar-producto");
     const eliminarProductoButtons = document.querySelectorAll(".eliminar-producto");
