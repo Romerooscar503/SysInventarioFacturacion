@@ -20,7 +20,21 @@ namespace SysInventarioFacturacion.AccesoADatos
 			}
 			return result;
 		}
-		public static async Task<int> ModificarAsync(Producto pProducto)
+        public static async Task<int> ModificarExistenciasAsync(Producto pProducto)
+        {
+            int result = 0;
+            using (var bdContexto = new BDContexto())
+            {
+                var producto = await bdContexto.Producto.FirstOrDefaultAsync(s => s.IdProducto == pProducto.IdProducto);
+               
+                producto.Cantidad = pProducto.Cantidad;
+              
+                bdContexto.Update(producto);
+                result = await bdContexto.SaveChangesAsync();
+            }
+            return result;
+        }
+        public static async Task<int> ModificarAsync(Producto pProducto)
 		{
 			int result = 0;
 			using (var bdContexto = new BDContexto())
@@ -119,18 +133,7 @@ namespace SysInventarioFacturacion.AccesoADatos
 		}
 
 
-        public static async Task<int> ModificarExistenciasAsync(Producto pProducto)
-        {
-            int result = 0;
-            using (var bdContexto = new BDContexto())
-            {
-                var producto = await bdContexto.Producto.FirstOrDefaultAsync(s => s.IdProducto == pProducto.IdProducto);
-                producto.Cantidad = pProducto.Cantidad;
-                bdContexto.Update(producto);
-                result = await bdContexto.SaveChangesAsync();
-            }
-            return result;
-        }
+       
     }
 }
 

@@ -19,154 +19,179 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card border-info">
-            <div class="BarraSuperior">
-                <button id="btnTerminarGuardarVenta" class="BtnImprimir">
-                    <i class="fa fa-print" aria-hidden="true"></i> Imprimir y Terminar Venta
-                </button>
-            </div>
+            <form asp-controller="DetalleFactura" asp-action="ProcesarFactura" method="post">
+                <div class="BarraSuperior">
+                    <button id="btnTerminarGuardarVenta" type="submit" class="BtnImprimir">
+                        <i class="fa fa-print" aria-hidden="true"></i> Imprimir y Terminar Venta
+                    </button>
+                </div>
+
+            </form>
+
             <div class="card-body p-2 card-venta">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Fecha de Venta</label>
+                    <div class="row align-items-star">
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Nombre</label>
+                                <input type="text" id="Descripcion" class="form-control" name="Descripcion" placeholder="Ingrese su nombre" />
                             </div>
-                            <input id="txtfechaventa" readonly type="text" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Telefono</label>
+                                <input type="text" id="Telefono" class="form-control" name="Telefono" placeholder="Ingrese su telefono" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Direccion</label>
+                                <input type="text" id="Direccion" class="form-control" name="Direccion" placeholder="Ingrese su direccion" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Correo</label>
+                                <input type="text" id="Correo" class="form-control" name="Correo" placeholder="Ingrese su correo" />
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                <div class="col-sm-12">
-                    <div class="BarraInferio">
-                        <div class="card-body p-2">
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <h6 style="color: white;" "class=" card-title mb-1">CREANDO FACTURA</h6>
-                                </div>
+                <br />
+           
+            <div class="col-sm-12">
+                <div class="BarraInferio">
+                    <div class="card-body p-2">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h6 style="color: white;" "class=" card-title mb-1">CREANDO FACTURA</h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Cuadro de búsqueda de productos... -->
-        <div class="row mt-2">
-            <div class="col-sm-6">
-                <div class="card border-info">
-                    <h6 class="TextLitlle">Busca tus productos</h6>
-                    <div class="FormContent">
-                        <div class="row align-items-star">
-                            <div class="row align-items-star">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label">Código</label>
-                                        <input type="text" id="txtCodigo" class="form-control" name="codigo" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label">Nombre</label>
-                                        <input type="text" id="txtNombre" class="form-control" name="nombre" />
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Tabla donde aparecen los productos... -->
-            <div class="col-sm-6">
-                <div class="card border-info">
-                    <div class="table-container">
-                        <table id="tablaBusqueda" class="tablaBusqueda" style="height:20px">
-                            <thead>
-                                <tr>
-                                    <th>Cod</th>
-
-                                    <th>
-                                        Nombre
-                                    </th>
-
-                                    <th>
-                                        Descripcion
-                                    </th>
-
-                                    <th>
-                                        Talla
-                                    </th>
-                                    <th>
-                                        Precio Unitario
-                                    </th>
-                                    <th colspan="1">Acciones</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in productos)
-                                {
-                                <tr data-page="@numPage">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Codigo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Nombre)
-                                    </td>
-
-                                    <td>
-                                        <div class="descripcion">
-                                            @if (!string.IsNullOrEmpty(item.Descripcion) && item.Descripcion.Length > 50)
-                                            {
-                                            <span class="short-description">@Html.DisplayFor(modelItem => item.Descripcion.Substring(0, 50))</span>
-                                            <span class="full-description" style="display: none;">@Html.DisplayFor(modelItem => item.Descripcion)</span>
-                                            <button class="show-more-button">Ver Más</button>
-                                            }
-                                            else
-                                            {
-                                            <span class="short-description">@Html.DisplayFor(modelItem => item.Descripcion)</span>
-                                            }
-                                        </div>
-                                    </td>
-
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Talla)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PrecioUnitario)
-                                    </td>
-                                    <td class="botonestabla">
-                                        <button class="agregar-producto btn btn-sm btn-success btn-block"
-                                                data-codigo="@item.Codigo"
-                                                data-nombre="@item.Nombre"
-                                                data-descripcion="@item.Descripcion"
-                                                data-precio="@item.PrecioUnitario">
-                                            <i class="fa fa-plus" aria-hidden="true"></i> Agregar
-                                        </button>
-                                    </td>
-
-                                </tr>
-                                numRegistros++;
-                                if (numRegistros == numRegistrosPorPage)
-                                {
-                                numPage++;
-                                numRegistros = 0;
-                                }
-                                }
-                                @{
-                                if (numRegistros == 0)
-                                {
-                                numPage--;
-                                }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+    <!-- Cuadro de búsqueda de productos... -->
+    <div class="row mt-2">
+        <div class="col-sm-6">
+            <div class="card border-info">
+                <h6 class="TextLitlle">Busca tus productos</h6>
+                <div class="FormContent">
+                    <div class="row align-items-star">
+                        <div class="row align-items-star">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Código</label>
+                                    <input type="text" id="txtCodigo" class="form-control" name="codigo" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Nombre</label>
+                                    <input type="text" id="txtNombre" class="form-control" name="nombre" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tabla donde aparecen los productos... -->
+        <div class="col-sm-6">
+            <div class="card border-info">
+                <div class="table-container">
+                    <table id="tablaBusqueda" class="tablaBusqueda" style="height:20px">
+                        <thead>
+                            <tr>
+                                <th>Cod</th>
+
+                                <th>
+                                    Nombre
+                                </th>
+
+                                <th>
+                                    Descripcion
+                                </th>
+
+                                <th>
+                                    Talla
+                                </th>
+                                <th>
+                                    Precio Unitario
+                                </th>
+                                <th colspan="1">Acciones</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in productos)
+                            {
+                            <tr data-page="@numPage">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Codigo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+
+                                <td>
+                                    <div class="descripcion">
+                                        @if (!string.IsNullOrEmpty(item.Descripcion) && item.Descripcion.Length > 50)
+                                        {
+                                        <span class="short-description">@Html.DisplayFor(modelItem => item.Descripcion.Substring(0, 50))</span>
+                                        <span class="full-description" style="display: none;">@Html.DisplayFor(modelItem => item.Descripcion)</span>
+                                        <button class="show-more-button">Ver Más</button>
+                                        }
+                                        else
+                                        {
+                                        <span class="short-description">@Html.DisplayFor(modelItem => item.Descripcion)</span>
+                                        }
+                                    </div>
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Talla)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PrecioUnitario)
+                                </td>
+                                <td class="botonestabla">
+                                    <button class="agregar-producto btn btn-sm btn-success btn-block"
+                                            data-codigo="@item.Codigo"
+                                            data-nombre="@item.Nombre"
+                                            data-descripcion="@item.Descripcion"
+                                            data-precio="@item.PrecioUnitario">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> Agregar
+                                    </button>
+                                </td>
+
+                            </tr>
+                            numRegistros++;
+                            if (numRegistros == numRegistrosPorPage)
+                            {
+                            numPage++;
+                            numRegistros = 0;
+                            }
+                            }
+                            @{
+                            if (numRegistros == 0)
+                            {
+                            numPage--;
+                            }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </div>
 
@@ -244,7 +269,7 @@
             <div class="col-sm-4">
                 <div class="input-group input-group-sm mb-2">
                     <div class="input-group-prepend">
-                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">IGV S/.</label>
+                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">IVA.</label>
                     </div>
                     <input id="txtigv" readonly type="text" class="form-control" value="0">
                 </div>
@@ -252,7 +277,7 @@
             <div class="col-sm-4">
                 <div class="input-group input-group-sm mb-2">
                     <div class="input-group-prepend">
-                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Total S/.</label>
+                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Total.</label>
                     </div>
                     <input id="txttotal" readonly type="text" class="form-control" value="0">
                 </div>
@@ -280,7 +305,7 @@
             <div class="col-sm-4">
                 <div class="input-group input-group-sm mb-2">
                     <div class="input-group-prepend">
-                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Monto Pago S/.</label>
+                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Pago Con:</label>
                     </div>
                     <input id="txtmontopago" type="text" class="form-control" autocomplete="off">
                 </div>
@@ -301,8 +326,8 @@
 <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="ticketModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <img src="~/IMG/Logo.png" alt="Logo" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
+            <img src="~/IMG/Logo.png" alt="Logo" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
+            <div class="modal-header">               
                 <h5 class="modal-title" id="ticketModalLabel">Ticket de Venta</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -318,21 +343,8 @@
         </div>
     </div>
 </div>
-@*<div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="ticketModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ticketModalLabel">Ticket de Venta</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" id="ticketContent">
-                <!-- Contenido del ticket se llenará dinámicamente aquí -->
-            </div>
-        </div>
-    </div>
-</div>*@
+  
+
 
 
 

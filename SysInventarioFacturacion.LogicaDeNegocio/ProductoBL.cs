@@ -18,6 +18,7 @@ namespace SysInventarioFacturacion.LogicaDeNegocio
 		{
 			return await ProductoDAL.ModificarAsync(pProducto);
 		}
+
         public async Task<int> ModificarExistenciasAsync(Producto pProducto)
         {
             return await ProductoDAL.ModificarExistenciasAsync(pProducto);

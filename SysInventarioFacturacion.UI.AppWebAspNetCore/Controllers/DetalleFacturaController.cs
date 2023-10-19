@@ -210,6 +210,47 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             return View();
         }
 
+        [HttpPost("ProcesarFactura")]
+        public async Task<IActionResult> ProcesarFactura([Bind("NumeroFactura, Descripcion, Direccion, Telefono, Correo, total, descuento, impuesto, totalpagado, FechaFacturacion") ] int NumeroFactura, string Descripcion, string Direccion, string Correo, string Telefono, decimal total, decimal descuento, decimal impuesto, decimal totalpagado )
+        {
+            Factura objFactura = new Factura();
+            objFactura.NumeroFactura = NumeroFactura;
+            objFactura.Descripcion = Descripcion;
+            objFactura.Direccion = Direccion;
+            objFactura.Correo = Correo;
+            objFactura.Total = total;
+            objFactura.Descuento = descuento;
+            objFactura.Impuesto = impuesto;
+            objFactura.TotalPagado = totalpagado;
+
+            objFactura.Telefono = Telefono;
+
+
+
+            objFactura.FechaFacturacion = DateTime.Now;
+
+            if (Direccion == null)
+            {
+                objFactura.Direccion = "N/A";
+            }
+            if (Correo == null)
+            {
+                objFactura.Correo = "N/A";
+            }
+            if (Descripcion == null)
+            {
+                objFactura.Descripcion = "N/A";
+            }
+            if (descuento == null)
+            {
+                objFactura.Descuento = 0;
+            }
+
+            FacturaBL.CrearAsync(objFactura);
+
+            return View(objFactura);
+        }
     }
+
 
 }
