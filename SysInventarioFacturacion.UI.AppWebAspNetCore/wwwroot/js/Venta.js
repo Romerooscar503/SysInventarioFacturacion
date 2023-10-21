@@ -1,57 +1,55 @@
-﻿
+﻿//$(document).ready(function () {
+//    $('#btnTerminarGuardarVenta').click(function () {
+//        // Obtener datos necesarios para el ticket (reemplázalos con tus datos reales)
+//        var factura = {
+//            NumeroFactura: '12345',
+//            Direccion: 'Barrio el Angel',
+//            Telefono: '123456789',
+//            Correo: 'or5576342@gmail.com',
+//            NombreUsuario: 'Cajero',
+//            Productos: [
+//                { NombreProducto: 'Producto 1', Cantidad: 2, Descripcion: 'Descripción del Producto 1', PrecioUnitario: 10, Subtotal: 20 },
+//                { NombreProducto: 'Producto 2', Cantidad: 1, Descripcion: 'Descripción del Producto 2', PrecioUnitario: 15, Subtotal: 15 }
+//            ],
+//            MontoPago: 35,
+//            Total: 35
+//        };
 
-$(document).ready(function () {
-    $('#btnTerminarGuardarVenta').click(function () {
-        // Obtener datos necesarios para el ticket (reemplázalos con tus datos reales)
-        var factura = {
-            NumeroFactura: '12345',
-            Direccion: 'Barrio el Angel',
-            Telefono: '123456789',
-            Correo: 'or5576342@gmail.com',
-            NombreUsuario: 'Cajero',
-            Productos: [
-                { NombreProducto: 'Producto 1', Cantidad: 2, Descripcion: 'Descripción del Producto 1', PrecioUnitario: 10, Subtotal: 20 },
-                { NombreProducto: 'Producto 2', Cantidad: 1, Descripcion: 'Descripción del Producto 2', PrecioUnitario: 15, Subtotal: 15 }
-            ],
-            MontoPago: 35,
-            Total: 35
-        };
+//        // Crear contenido del ticket
+//        var contenidoTicket = `<div class="text-center">`;
+//        contenidoTicket += `<h3>Imperial Shoes</h3>`;
+//        contenidoTicket += `<p>Número de Factura: ${factura.NumeroFactura}</p>`;
+//        contenidoTicket += `<p>Dirección: ${factura.Direccion}</p>`;
+//        contenidoTicket += `<p>Teléfono: ${factura.Telefono}</p>`;
+//        contenidoTicket += `<p>Correo: ${factura.Correo}</p>`;
+//        contenidoTicket += `<p>Vendido por: ${factura.NombreUsuario}</p>`;
+//        contenidoTicket += `</div><hr />`;
+//        contenidoTicket += `<h4>Detalle de la Venta</h4>`;
+//        contenidoTicket += `<table class="table">`;
+//        contenidoTicket += `<thead><tr><th>Producto</th><th>Cantidad</th><th>Descripción</th><th>Precio Unitario</th><th>Subtotal</th></tr></thead>`;
+//        contenidoTicket += `<tbody>`;
+//        factura.Productos.forEach(function (producto) {
+//            contenidoTicket += `<tr><td>${producto.NombreProducto}</td><td>${producto.Cantidad}</td><td>${producto.Descripcion}</td><td>${producto.PrecioUnitario}</td><td>${producto.Subtotal}</td></tr>`;
+//        });
+//        contenidoTicket += `</tbody></table><hr />`;
+//        contenidoTicket += `<p><strong>Monto Pago:</strong> ${factura.MontoPago}</p>`;
+//        contenidoTicket += `<p><strong>Total:</strong> ${factura.Total}</p>`;
 
-        // Crear contenido del ticket
-        var contenidoTicket = `<div class="text-center">`;
-        contenidoTicket += `<h3>Imperial Shoes</h3>`;
-        contenidoTicket += `<p>Número de Factura: ${factura.NumeroFactura}</p>`;
-        contenidoTicket += `<p>Dirección: ${factura.Direccion}</p>`;
-        contenidoTicket += `<p>Teléfono: ${factura.Telefono}</p>`;
-        contenidoTicket += `<p>Correo: ${factura.Correo}</p>`;
-        contenidoTicket += `<p>Vendido por: ${factura.NombreUsuario}</p>`;
-        contenidoTicket += `</div><hr />`;
-        contenidoTicket += `<h4>Detalle de la Venta</h4>`;
-        contenidoTicket += `<table class="table">`;
-        contenidoTicket += `<thead><tr><th>Producto</th><th>Cantidad</th><th>Descripción</th><th>Precio Unitario</th><th>Subtotal</th></tr></thead>`;
-        contenidoTicket += `<tbody>`;
-        factura.Productos.forEach(function (producto) {
-            contenidoTicket += `<tr><td>${producto.NombreProducto}</td><td>${producto.Cantidad}</td><td>${producto.Descripcion}</td><td>${producto.PrecioUnitario}</td><td>${producto.Subtotal}</td></tr>`;
-        });
-        contenidoTicket += `</tbody></table><hr />`;
-        contenidoTicket += `<p><strong>Monto Pago:</strong> ${factura.MontoPago}</p>`;
-        contenidoTicket += `<p><strong>Total:</strong> ${factura.Total}</p>`;
+//        // Mostrar contenido en el modal
+//        $('#ticketContent').html(contenidoTicket);
 
-        // Mostrar contenido en el modal
-        $('#ticketContent').html(contenidoTicket);
+//        // Mostrar el modal
+//        $('#ticketModal').modal('show');
+//    });
 
-        // Mostrar el modal
-        $('#ticketModal').modal('show');
-    });
-
-    // Manejar el clic del botón de impresión dentro del modal
-    $('#ticketModal').on('shown.bs.modal', function () {
-        $('#btnImprimirTicket').click(function () {
-            // Imprimir el contenido del modal
-            window.print();
-        });
-    });
-});
+//    // Manejar el clic del botón de impresión dentro del modal
+//    $('#ticketModal').on('shown.bs.modal', function () {
+//        $('#btnImprimirTicket').click(function () {
+//            // Imprimir el contenido del modal
+//            window.print();
+//        });
+//    });
+//});
 
 
 
@@ -274,37 +272,26 @@ $(document).ready(function () {
 });
 
 
+    var exampleModal = document.getElementById('exampleModal');
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+          
+            var button = event.relatedTarget;
 
-//$(document).ready(function () {
-//    $('#tablaDetalleFactura').on('click', '.eliminar-producto', function () {
-//        var row = $(this).closest('tr');
-//        var idDetalleFactura = row.data('id');
+    var recipient = button.getAttribute('data-bs-whatever');
 
-//        // Eliminar el producto visualmente
-//        row.remove();
 
-//        // Eliminar el producto de la estructura de datos (detalleFacturas)
-//        detalleFacturas = detalleFacturas.filter(function (producto) {
-//            return producto.IdDetalleFactura !== dDetalleFactura;
-//        });
-//    });
+    $.get('/DetalleFactura/ProcesarFactura', function (data) {
 
-//    // Evita que los productos eliminados vuelvan a aparecer
-//    function actualizarTablaDetalleFactura() {
-//        $('#tablaDetalleFactura tbody').empty();
-//        detalleFacturas.forEach(function (producto) {
-//            var newRow = $("<tr>");
-//            newRow.append("<td>" + producto.Cantidad + "</td>");
-//            newRow.append("<td>" + producto.Producto.Nombre + "</td>");
-//            newRow.append("<td>" + producto.Producto.Descripcion + "</td>");
-//            newRow.append("<td>" + producto.Producto.PrecioUnitario + "</td>");
-//            newRow.append("<td>" + producto.ValorTotal + "</td>");
-//            newRow.append("<td class='botonestabla'><button class='eliminar-producto btn btn-danger' data-id='" + producto.IdDetalleFactura + "'><i class='fas fa-trash'></i></button></td>");
-//            $('#tablaDetalleFactura tbody').append(newRow);
-//        });
-//    }
+        console.log(data);
+    var modalTitle = exampleModal.querySelector('.modal-title');
+    modalTitle.textContent = 'New message to ' + recipient;
 
-//    // Llama a esta función cuando necesites actualizar la tabla de detalles
-//    actualizarTablaDetalleFactura();
-//});
 
+    var modalBody = exampleModal.querySelector('.modal-body');
+    modalBody.innerHTML = data;
+            });
+        });
+
+
+
+    

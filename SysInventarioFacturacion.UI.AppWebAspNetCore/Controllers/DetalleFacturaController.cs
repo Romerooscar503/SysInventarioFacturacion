@@ -24,7 +24,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         FacturaBL FacturaBL = new FacturaBL();
         ProductoBL ProductoBL = new ProductoBL();
 
-       
+
         // GET: RolController
         public async Task<IActionResult> Index(DetalleFactura pDetalleFactura = null)
         {
@@ -53,7 +53,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             return View(detalleFactura);
         }
 
-      
+
 
         // GET: DetalleFacturaController/Create
 
@@ -65,8 +65,8 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             ViewBag.Error = "";
             return View();
         }
-// POST: DeatlleFacturaController/Create
-       
+        // POST: DeatlleFacturaController/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DetalleFactura pDetalleFactura)
@@ -166,8 +166,8 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             DetalleFacturas = await taskBuscar;
             ViewBag.Top = pDetalleFactura.Top_Aux;
             ViewBag.Facturas = await taskObtenerTodosFacturas;
-          
-            if (campo>0)
+
+            if (campo > 0)
             {
                 Producto producto = new Producto();
                 producto.Codigo = campo;
@@ -181,9 +181,9 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             return View(DetalleFacturas);
         }
 
-        
 
-            [HttpPost]
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DetalleVenta(DetalleFactura pDetalleFactura)
         {
@@ -211,7 +211,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         }
 
         [HttpPost("ProcesarFactura")]
-        public async Task<IActionResult> ProcesarFactura([Bind("NumeroFactura, Descripcion, Direccion, Telefono, Correo, total, descuento, impuesto, totalpagado, FechaFacturacion") ] int NumeroFactura, string Descripcion, string Direccion, string Correo, string Telefono, decimal total, decimal descuento, decimal impuesto, decimal totalpagado )
+        public async Task<IActionResult> ProcesarFactura([Bind("NumeroFactura, Descripcion, Direccion, Telefono, Correo, total, descuento, impuesto, totalpagado, FechaFacturacion")] int NumeroFactura, string Descripcion, string Direccion, string Correo, string Telefono, decimal total, decimal descuento, decimal impuesto, decimal totalpagado)
         {
             Factura objFactura = new Factura();
             objFactura.NumeroFactura = NumeroFactura;
@@ -243,7 +243,11 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             }
             if (descuento == null)
             {
-                objFactura.Descuento = 0;
+                objFactura.Descuento = 111;
+            }
+            if (NumeroFactura == null)
+            {
+                objFactura.NumeroFactura = 777;
             }
 
             FacturaBL.CrearAsync(objFactura);
