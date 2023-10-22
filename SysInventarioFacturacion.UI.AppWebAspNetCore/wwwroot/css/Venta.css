@@ -92,7 +92,7 @@
 .tablaDetalles {
     max-height: 20px;
     height: 10px;
-    width: 100%; /* Ancho de la tabla al 100% del contenedor */
+    width: 107%; /* Ancho de la tabla al 100% del contenedor */
     border-collapse: collapse; /* Colapsar los bordes de las celdas */
     background-color: #f2f2f2; /* Color de fondo de la tabla */
     overflow-y: auto;
@@ -127,4 +127,47 @@
 
 .FormContent {
     height: 95px;
+    align-content:center;
+
+}
+
+.DataCustomer {
+    height: 40px;
+    width: 120px;
+    background: #102c54;
+    color: white;
+    padding: 10px;
+    align-content: center;
+    border-radius: 5px;
+}
+
+.DataCustomer-Result {
+    height: 40px;
+    width: 100px;
+    color: black;
+    background-color: gainsboro;
+}
+
+.ContentFormCustomer{
+    width: 98%;
+    height: 200px;
+}
+
+.DataCustomerFormaP {
+    height: 40px;
+    width: 180px;
+    background: #102c54;
+    color: white;
+    padding: 10px;
+    align-content: center;
+    border-radius: 5px;
+}
+
+.btnCalcular {
+    height: 40px;
+    width: 120px;
+    background-color: forestgreen;
+    color: white;
+    border-color: transparent;
+    border-radius: 5px;
 }

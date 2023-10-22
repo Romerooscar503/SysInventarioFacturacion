@@ -23,24 +23,25 @@
         <div class="col-sm-6">
             <div class="card border-info">
                 <h6 class="TextLitlle">Busca tus productos</h6>
+                <div class="card-body p-2 card-venta">
                 <div class="FormContent">
                     <div class="row align-items-star">
-                        <div class="row align-items-star">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label">Código</label>
-                                    <input type="text" id="txtCodigo" class="form-control" name="codigo" />
-                                </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Código</label>
+                                <input type="text" id="txtCodigo" class="form-control" name="codigo" />
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label">Nombre</label>
-                                    <input type="text" id="txtNombre" class="form-control" name="nombre" />
-                                </div>
-                            </div>
-
-
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Nombre</label>
+                                <input type="text" id="txtNombre" class="form-control" name="nombre" />
+                            </div>
+                        </div>
+
+
+                    </div>
+
                     </div>
                 </div>
             </div>
@@ -138,13 +139,14 @@
 
 </div>
 
-</div>
+
 
 <hr class="Separation" />
+
 <div class="row mt-3">
-    <div class="col-sm-12">
+    <div class="col-sm-11">
         <div class="table-responsive-sm">
-            <table id="tablaDetalleFactura" class="tablaDetalles" style="width:100%">
+            <table id="tablaDetalleFactura" class="tablaDetalles">
                 <thead>
                     <tr>
                         <th>Cantidad</th>
@@ -198,9 +200,11 @@
         </div>
     </div>
 </div>
+
 <br />
-<div class="col-sm-12">
+<div class="ContentFormCustomer">
     <div class="card border-info">
+
         <form asp-controller="DetalleFactura" asp-action="ProcesarFactura" method="post">
             <div class="BarraSuperior">
                 <button id="btnTerminarGuardarVenta" type="submit" class="BtnImprimir" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@@getbootstrap">
@@ -208,9 +212,6 @@
                 </button>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@@getbootstrap">Open modal for @@getbootstrap</button>
             </div>
-
-
-
             <div class="card-body p-2 card-venta">
                 <div class="row align-items-star">
 
@@ -239,53 +240,55 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="input-group input-group-sm mb-2">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Sub Total S/.</label>
+                <br />
+                <div class="row align-items-star">
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="form-group">
+                                <label class="DataCustomer" for="inputGroupSelect01">Sub Total S/.</label>
+                            </div>
+                            <input id="txtsubtotal" name="total" readonly type="text" class="form-control" value="0">
                         </div>
-                        <input id="txtsubtotal" name="total" readonly type="text" class="form-control" value="0">
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="input-group input-group-sm mb-2">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">IVA.</label>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <label class="DataCustomer" for="inputGroupSelect01">IVA.</label>
+                            </div>
+                            <input id="txtigv" name="impuesto" readonly type="text" class="form-control" value="0">
                         </div>
-                        <input id="txtigv" name="impuesto" readonly type="text" class="form-control" value="0">
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="input-group input-group-sm mb-2">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Total.</label>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <label class="DataCustomer" for="inputGroupSelect01">Total.</label>
+                            </div>
+                            <input id="txttotal" name="totalpagado" readonly type="text" class="form-control" value="0">
                         </div>
-                        <input id="txttotal" name="totalpagado" readonly type="text" class="form-control" value="0">
                     </div>
-                </div>
-                <div class="input-group input-group-sm mb-2">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Forma de Pago</label>
-                        <select name="FormaDePago" class="form-control">
-                            <option selected value="1">EFECTIVO</option>
-                            <option value="2">TARJETA</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="input-group input-group-sm mb-2">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Pago Con:</label>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <label class="DataCustomer" for="inputGroupSelect01">Pago Con:</label>
+                            </div>
+                            <input id="txtmontopago" type="text" class="form-control" autocomplete="off">
                         </div>
-                        <input id="txtmontopago" type="text" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-sm mb-2">
+                            <label class="DataCustomerFormaP" for="inputGroupSelect01">F. Pago</label>
+                            <select name="FormaDePago" class="form-control">
+                                <option selected value="1">EFECTIVO</option>
+                                <option value="2">TARJETA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <button id="btncalcular" type="button" class="btnCalcular">
+                            <i class="fas fa-dollar-sign"></i> Calcular
+                        </button>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <button id="btncalcular" type="button" class="btn btn-sm btn-success btn-block">
-                        <i class="fas fa-dollar-sign"></i> Calcular
-                    </button>
-                </div>
-
             </div>
             <br />
 
