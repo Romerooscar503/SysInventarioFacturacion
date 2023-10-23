@@ -78,8 +78,8 @@ namespace SysInventarioFacturacion.AccesoADatos
                 pQuery = pQuery.Where(s => s.IdFactura == pFactura.IdFactura);
             //if (pFactura.IdUsuario > 0)
             //    pQuery = pQuery.Where(s => s.IdUsuario == pFactura.IdUsuario);
-            //if (pFactura.NumeroFactura > 0)
-            //    pQuery = pQuery.Where(s => s.NumeroFactura == pFactura.NumeroFactura);
+            if (pFactura.NumeroFactura > 0)
+                pQuery = pQuery.Where(s => s.NumeroFactura == pFactura.NumeroFactura);
             //Para fecha
             if (pFactura.FechaFacturacion.Year > 1000)
             {

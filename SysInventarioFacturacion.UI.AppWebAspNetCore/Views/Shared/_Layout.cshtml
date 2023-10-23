@@ -26,6 +26,8 @@
     <header>
         @{
             string? nombre = User.Identity.Name;
+            int? Idu = global.idu;
+
         }
 
 
@@ -45,7 +47,8 @@
 
 
                 <li class="Nombre">
-                    <a class="dashboard-nav-dropdown-item-nombre">Bienvenido @nombre</a>
+                    <a class="dashboard-nav-dropdown-item-nombre">Bienvenido @nombre </a>
+                  
                 </li>
 
                 @if (User.IsInRole("SuperAdmin"))

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using SysInventarioFacturacion.EntidadesDeNegocio;
 using SysInventarioFacturacion.LogicaDeNegocio;
+using SysInventarioFacturacion.UI.AppWebAspNetCore.Models;
 
 namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 {
@@ -22,6 +23,9 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
     {
         UsuarioBL usuarioBL = new UsuarioBL();
         RolBL rolBL = new RolBL();
+
+        public static int idUserV = 0;
+
         // GET: UsuarioController
         public async Task<IActionResult> Index(Usuario pUsuario = null)
         {
@@ -157,9 +161,10 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
                 if (usuario != null && usuario.Id > 0 && pUsuario.Login == usuario.Login)
                 {
                     usuario.Rol = await rolBL.ObtenerPorIdAsync(new Rol { Id = usuario.IdRol });
-                    var claims = new[] { new Claim(ClaimTypes.Name, usuario.Login), new Claim(ClaimTypes.Role, usuario.Rol.Nombre) };
+                    var claims = new[] { new Claim(ClaimTypes.Name, usuario.Login), new Claim(ClaimTypes.Role, usuario.Rol.Nombre), new Claim(ClaimTypes.UserData, usuario.Login) };
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+                    global.idu = usuario.Id;
                 }
                 else
                     throw new Exception("Credenciales incorrectas");

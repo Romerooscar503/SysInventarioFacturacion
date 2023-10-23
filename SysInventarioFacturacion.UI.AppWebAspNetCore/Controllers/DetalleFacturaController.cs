@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using SysInventarioFacturacion.AccesoADatos;
+using SysInventarioFacturacion.UI.AppWebAspNetCore.Models;
 
 
 namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
@@ -209,12 +210,17 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             ViewBag.Error = "";
             return View();
         }
+         
 
         [HttpPost("ProcesarFactura")]
-        public async Task<IActionResult> ProcesarFactura([Bind("NumeroFactura, Descripcion, Direccion, Telefono, Correo, total, descuento, impuesto, totalpagado, FechaFacturacion")] int NumeroFactura, string Descripcion, string Direccion, string Correo, string Telefono, decimal total, decimal descuento, decimal impuesto, decimal totalpagado)
+        public JsonResult ProcesarFactura([Bind("IdUsuario,NumeroFactura, Descripcion, Direccion, Telefono, Correo, total, descuento, impuesto, totalpagado, FechaFacturacion")]  int IdUsuario, int NumeroFactura, string Descripcion, string Direccion, string Correo, string Telefono, decimal total, decimal descuento, decimal impuesto, decimal totalpagado)
         {
+            Random random = new Random();
+           
+
             Factura objFactura = new Factura();
-            objFactura.NumeroFactura = NumeroFactura;
+            objFactura.IdUsuario = global.idu;
+            objFactura.NumeroFactura = random.Next(100000, 999999);
             objFactura.Descripcion = Descripcion;
             objFactura.Direccion = Direccion;
             objFactura.Correo = Correo;
@@ -249,10 +255,12 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             {
                 objFactura.NumeroFactura = 777;
             }
+            
+           FacturaBL.CrearAsync(objFactura);
 
-            FacturaBL.CrearAsync(objFactura);
+         
 
-            return View(objFactura);
+            return Json(objFactura);
         }
     }
 
