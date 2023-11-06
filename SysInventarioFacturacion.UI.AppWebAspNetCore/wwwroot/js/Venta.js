@@ -173,8 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
             subtotal += detalle.importeTotal;
         });
 
-        const igv = subtotal * 0.18; // IGV del 18%
-        const total = subtotal + igv;
+        const igv = subtotal * 0.13; // IGV del 13%
+        const total = subtotal - igv;
 
         txtsubtotal.value = subtotal.toFixed(2);
         txtigv.value = igv.toFixed(2);
@@ -188,11 +188,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const total = parseFloat(txttotal.value);
-        if (montoPago < total) {
+        const subtotal = parseFloat(txtsubtotal.value);
+        if (montoPago < subtotal) {
             alert("El monto de pago debe ser igual o mayor que el total.");
         } else {
-            const cambio = montoPago - total;
+            const cambio = montoPago - subtotal;
             alert(`Cambio: S/. ${cambio.toFixed(2)}`);
         }
     });
@@ -294,4 +294,34 @@ $(document).ready(function () {
 
 
 
-    
+
+$(document).ready(function () {
+    var detalleFacturas = []; // Arreglo para almacenar los detalles de la factura
+
+    // ... Tu código existente para manejar la tabla y los detalles aquí ...
+
+    // Al hacer clic en el botón "Terminar Venta", actualiza el campo oculto con los detalles
+    $("#btnTerminarVenta").on("click", function (event) {
+        event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+        // Recopila y almacena los detalles en el arreglo
+        detalleFacturas = []; // Limpia el arreglo
+        $("#tablaDetalleFactura tbody tr").each(function () {
+            var detalle = {
+                Cantidad: $(this).find("td:eq(0)").text(),
+                Producto: $(this).find("td:eq(1)").text(),
+                Descripcion: $(this).find("td:eq(2)").text(),
+                PrecioUnitario: $(this).find("td:eq(3)").text(),
+                ValorTotal: $(this).find("td:eq(4)").text()
+            };
+            detalleFacturas.push(detalle);
+        });
+
+        // Actualiza el valor del campo oculto con los detalles en formato JSON
+        $("#detalleFacturas").val(JSON.stringify(detalleFacturas));
+
+        // Envía el formulario
+        $("form").submit();
+    });
+});
+

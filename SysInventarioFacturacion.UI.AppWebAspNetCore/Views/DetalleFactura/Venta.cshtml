@@ -10,6 +10,7 @@
     List<SysInventarioFacturacion.EntidadesDeNegocio.Factura> facturas = ViewBag.Facturas as List<SysInventarioFacturacion.EntidadesDeNegocio.Factura>;
     List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
     List<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura> detalleFacturas = new List<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura>();
+    ViewBag.Detalles = detalleFacturas;
 
 }
 
@@ -142,10 +143,11 @@
 
 
 <hr class="Separation" />
-
+<form asp-controller="DetalleFactura" asp-action="ProcesarFactura" method="post">
 <div class="row mt-3">
     <div class="col-sm-11">
         <div class="table-responsive-sm">
+
             <table id="tablaDetalleFactura" class="tablaDetalles">
                 <thead>
                     <tr>
@@ -158,9 +160,12 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach (var item in detalleFacturas)
+                     
                     {
                         <tr data-page="@numPage">
+                             
                             <td>
                                 @Html.DisplayFor(modelItem => item.Cantidad)
                             </td>
@@ -176,11 +181,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.ValorTotal)
                             </td>
+                               
                             <td class="botonestabla">
                                 <button class="eliminar-producto btn btn-danger" data-id="@item.IdDetalleFactura">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </td>
+                                <input type="hidden" id="detalleFacturas" name="detalleFacturas" />
                         </tr>
                         numRegistros++;
                         if (numRegistros == numRegistrosPorPage)
@@ -205,7 +212,7 @@
 <div class="ContentFormCustomer">
     <div class="card border-info">
 
-        <form asp-controller="DetalleFactura" asp-action="ProcesarFactura" method="post">
+       
             <div class="BarraSuperior">
                 <button id="btnTerminarGuardarVenta" type="submit" class="BtnImprimir" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@@getbootstrap">
                     <i class="fa fa-print" aria-hidden="true"></i> Imprimir y Terminar Venta
@@ -242,14 +249,16 @@
                 </div>
                 <br />
                 <div class="row align-items-star">
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="form-group">
-                                <label class="DataCustomer" for="inputGroupSelect01">Sub Total S/.</label>
-                            </div>
-                            <input id="txtsubtotal" name="total" readonly type="text" class="form-control" value="0">
+                <div class="col-sm-4">
+                    <div class="input-group input-group-sm mb-2">
+                        <div class="input-group-prepend">
+                            <label class="DataCustomer" for="inputGroupSelect01">Monto Base</label>
                         </div>
+                        <input id="txttotal" name="total" readonly type="text" class="form-control" value="0">
                     </div>
+                </div>
+               
+                   
                     <div class="col-sm-4">
                         <div class="input-group input-group-sm mb-2">
                             <div class="input-group-prepend">
@@ -258,15 +267,15 @@
                             <input id="txtigv" name="impuesto" readonly type="text" class="form-control" value="0">
                         </div>
                     </div>
-                   
                     <div class="col-sm-4">
                         <div class="input-group input-group-sm mb-2">
-                            <div class="input-group-prepend">
-                                <label class="DataCustomer" for="inputGroupSelect01">Total.</label>
+                            <div class="form-group">
+                                <label class="DataCustomer" for="inputGroupSelect01">Total</label>
                             </div>
-                            <input id="txttotal" name="totalpagado" readonly type="text" class="form-control" value="0">
+                            <input id="txtsubtotal" name="totalpagado" readonly type="text" class="form-control" value="0">
                         </div>
                     </div>
+                   
                     <div class="col-sm-4">
                         <div class="input-group input-group-sm mb-2">
                             <div class="input-group-prepend">
@@ -303,10 +312,10 @@
                     </div>
                 </div>
             </div>
-        </form>
+       
     </div>
 </div>
-
+</form>
 
 
 

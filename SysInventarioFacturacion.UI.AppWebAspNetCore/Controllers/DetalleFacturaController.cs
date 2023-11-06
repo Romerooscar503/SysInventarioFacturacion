@@ -210,58 +210,112 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             ViewBag.Error = "";
             return View();
         }
-         
 
+
+
+        //[HttpPost("ProcesarFactura")]
+        //public JsonResult ProcesarFactura([Bind("NumeroFactura, Descripcion, Direccion, Telefono, Correo, total, descuento, impuesto, totalpagado, FechaFacturacion, detalleFacturas")] int NumeroFactura, string Descripcion, string Direccion, string Correo, string Telefono, decimal total, decimal descuento, decimal impuesto, decimal totalpagado, List<DetalleFactura> detalleFacturas)
+        //{
+        //    Random random = new Random();
+
+
+        //    Factura objFactura = new Factura();
+        //    objFactura.IdUsuario = global.idu;
+        //    objFactura.NumeroFactura = random.Next(100000, 999999);
+        //    objFactura.Descripcion = Descripcion;
+        //    objFactura.Direccion = Direccion;
+        //    objFactura.Correo = Correo;
+        //    objFactura.Total = total;
+        //    objFactura.Descuento = descuento;
+        //    objFactura.Impuesto = impuesto;
+        //    objFactura.TotalPagado = totalpagado;
+
+        //    objFactura.Telefono = Telefono;
+
+
+
+        //    objFactura.FechaFacturacion = DateTime.Now;
+
+        //    if (Direccion == null)
+        //    {
+        //        objFactura.Direccion = "N/A";
+        //    }
+
+        //    if (Telefono == null)
+        //    {
+        //        objFactura.Telefono = "N/A";
+        //    }
+        //    if (Correo == null)
+        //    {
+        //        objFactura.Correo = "N/A";
+        //    }
+        //    if (Descripcion == null)
+        //    {
+        //        objFactura.Descripcion = "N/A";
+        //    }
+        //    if (descuento == null)
+        //    {
+        //        objFactura.Descuento = 111;
+        //    }
+        //    if (NumeroFactura == null)
+        //    {
+        //        objFactura.NumeroFactura = 777;
+        //    }
+
+        //    FacturaBL.CrearAsync(objFactura);
+
+        //    foreach (var detalle in detalleFacturas)
+        //    {
+        //        // Asignar el ID de la factura a los detalles de factura
+        //        detalle.IdFactura = objFactura.IdFactura;
+
+        //        // Llamar al método que crea el detalle de factura en la base de datos
+        //        detalle_facturaBL.CrearAsync(detalle);
+        //    }
+
+
+        //    return Json(objFactura);
+        //}
         [HttpPost("ProcesarFactura")]
-        public JsonResult ProcesarFactura([Bind("IdUsuario,NumeroFactura, Descripcion, Direccion, Telefono, Correo, total, descuento, impuesto, totalpagado, FechaFacturacion")]  int IdUsuario, int NumeroFactura, string Descripcion, string Direccion, string Correo, string Telefono, decimal total, decimal descuento, decimal impuesto, decimal totalpagado)
+        public async Task<JsonResult> ProcesarFactura(string Descripcion, string Direccion, string Correo, string Telefono, decimal total, decimal descuento, decimal impuesto, decimal totalpagado, int cantidad, int codigo, byte FormadaDePago, DateTime FechaEmision, decimal ValorTotal, List<DetalleFactura> detalleFacturas)
         {
             Random random = new Random();
-           
 
             Factura objFactura = new Factura();
             objFactura.IdUsuario = global.idu;
             objFactura.NumeroFactura = random.Next(100000, 999999);
-            objFactura.Descripcion = Descripcion;
-            objFactura.Direccion = Direccion;
-            objFactura.Correo = Correo;
+            objFactura.Descripcion = Descripcion ?? "N/A";
+            objFactura.Direccion = Direccion ?? "N/A";
+            objFactura.Correo = Correo ?? "N/A";
             objFactura.Total = total;
             objFactura.Descuento = descuento;
             objFactura.Impuesto = impuesto;
             objFactura.TotalPagado = totalpagado;
-
-            objFactura.Telefono = Telefono;
-
-
-
+            objFactura.Telefono = Telefono ?? "N/A";
             objFactura.FechaFacturacion = DateTime.Now;
 
-            if (Direccion == null)
-            {
-                objFactura.Direccion = "N/A";
-            }
-            if (Correo == null)
-            {
-                objFactura.Correo = "N/A";
-            }
-            if (Descripcion == null)
-            {
-                objFactura.Descripcion = "N/A";
-            }
-            if (descuento == null)
-            {
-                objFactura.Descuento = 111;
-            }
-            if (NumeroFactura == null)
-            {
-                objFactura.NumeroFactura = 777;
-            }
-            
-           FacturaBL.CrearAsync(objFactura);
+            FacturaBL.CrearAsync(objFactura);
 
-         
+            //List<DetalleFactura> detallesDesdeViewBag = ViewBag.Detalles;
+            //List<DetalleFactura> detalleFactura = new List<DetalleFactura>();
+            //detalleFactura = ViewBag.Detalles;
+            foreach (var detalle in detalleFacturas)
+            {
+                detalle.IdFactura = objFactura.IdFactura;
+                await detalle_facturaBL.CrearAsync(detalle);
+            }
 
-            return Json(objFactura);
+            var venta = new Venta
+            {
+                ObjFactura = objFactura,
+                DetalleFacturas = detalleFacturas
+            };
+
+            return Json(venta);
         }
+
+
+
     }
 
 

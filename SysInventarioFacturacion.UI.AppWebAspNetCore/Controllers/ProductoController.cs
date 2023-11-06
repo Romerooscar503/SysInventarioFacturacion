@@ -10,6 +10,8 @@ using SysInventarioFacturacion.EntidadesDeNegocio;
 using SysInventarioFacturacion.LogicaDeNegocio;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+using SysInventarioFacturacion.AccesoADatos;
 
 namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 {
@@ -194,5 +196,11 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
                 return View(pProducto);
             }
         }
+       
+        
+         
+        
+
+
     }
 }

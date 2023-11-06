@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<SysInventarioFacturacion.EntidadesDeNegocio.Rol>
 
+
 @{
     ViewData["Title"] = "Index";
     int numPage = 1;
@@ -89,7 +90,7 @@ e
                     </button>
                 </td>
 
-
+                            
                 <td class="botonestabla">
                     <button type="button" class="btn btn-info" onclick="window.location.href='@Url.Action("Details", new { id = item.Id })'">
                         <i class="fas fa-eye"></i> Detalles
@@ -132,3 +133,5 @@ e
         </div>
     </div>
 }
+
+
