@@ -10,94 +10,72 @@
 <h1>Agregar Un Nuevo Producto</h1>
 <hr />
 
-<div class="row">
-    <div class="col-md-8">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div>
-                <div class="input-group flex-nowrap mb-3 ">
-                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
-                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
-                        Codigo :
-                    </label>
-                    <input asp-for="Codigo" class="form-control" />
-                    <span asp-validation-for="Codigo" class="text-danger"></span>
-                </div>
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group ">
+                <label asp-for="Codigo" class="control-label"></label>
+                <input asp-for="Codigo" class="form-control" />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
             </div>
+        </div>
 
-            <div>
-                <div class="input-group flex-nowrap mb-3 ">
-                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
-                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
-                        Nombre :
-                    </label>
-                    <input asp-for="Nombre" class="form-control" />
-                    <span asp-validation-for="Nombre" class="text-danger"></span>
-                </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
+        </div>
 
-            <div>
-                <div class="input-group flex-nowrap mb-3 ">
-                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
-                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
-                        Descripción :
-                    </label>
-                    <input asp-for="Descripcion" class="form-control" />
-                    <span asp-validation-for="Descripcion" class="text-danger"></span>
-                </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
+        </div>
 
-            <div>
-                <div class="input-group flex-nowrap mb-3 ">
-                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
-                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
-                        Talla :
-                    </label>
-                    <input asp-for="Talla" class="form-control" />
-                    <span asp-validation-for="Talla" class="text-danger"></span>
-                </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Talla" class="control-label"></label>
+                <input asp-for="Talla" class="form-control" />
+                <span asp-validation-for="Talla" class="text-danger"></span>
             </div>
+        </div>
 
-            <div>
-                <div class="input-group flex-nowrap mb-3 ">
-                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
-                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
-                        Marca :
-                    </label>
-                    <input asp-for="Marca" class="form-control" />
-                    <span asp-validation-for="Marca" class="text-danger"></span>
-                </div>
+        <div class="col-md-4">
+            <div class="form-group ">
+                <label asp-for="Marca" class="control-label"></label>
+                <input asp-for="Marca" class="form-control" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
+        </div>
 
-            <div>
-                <div class="input-group flex-nowrap mb-3 ">
-                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
-                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
-                        Cantidad :
-                    </label>
-                    <input asp-for="Cantidad" class="form-control" />
-                    <span asp-validation-for="Cantidad" class="text-danger"></span>
-                </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Cantidad" class="control-label"></label>
+                <input asp-for="Cantidad" class="form-control" />
+                <span asp-validation-for="Cantidad" class="text-danger"></span>
             </div>
-
-            <div>
-                <div class="input-group flex-nowrap mb-3 ">
-                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
-                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
-                        Color :
-                    </label>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group ">
+                    <label asp-for="Color" class="control-label"></label>
                     <input asp-for="Color" class="form-control" />
                     <span asp-validation-for="Color" class="text-danger"></span>
                 </div>
             </div>
 
-            <div>
-                <div class="input-group flex-nowrap mb-3 ">
-                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
-                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
-                        Precio Unitario :
-                    </label>
+
+
+            <div class="col-md-4">
+                <div class="form-group ">
+                    <label asp-for="PrecioUnitario" class="control-label"></label>
                     <input asp-for="PrecioUnitario" class="form-control" />
                     <span asp-validation-for="PrecioUnitario" class="text-danger"></span>
                 </div>
@@ -105,14 +83,11 @@
 
             @* RELACIONES BOTONES DESPLEGABLAS*@
 
-            <div>
-                <div class="input-group flex-nowrap mb-3 ">
-                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
-                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
-                        Proveedor :
-                    </label>
-                    @*                    <label asp-for="IdCategoria" class="control-label"></label>
-                    *@                    <select asp-for="IdProveedor" class="form-control">
+            <div class="col-md-4">
+                <div class="form-group ">
+                    <label asp-for="Proveedor" class="control-label"></label>
+
+                    <select asp-for="IdProveedor" class="form-control">
                         <option selected value="">SELECCIONAR</option>
                         @foreach (var item in proveedores)
                         {
@@ -123,14 +98,11 @@
                 </div>
             </div>
 
-            <div>
-                <div class="input-group flex-nowrap mb-3 ">
-                    <label for="addon-wrapping" class="col-sm-2 col-form-label font-weight-bold">
-                        <i class="bi bi-person-fill"></i> <!-- Esta línea agrega el icono de persona -->
-                        Categoria :
-                    </label>
-                    @*                    <label asp-for="IdCategoria" class="control-label"></label>
-                    *@                    <select asp-for="IdCategoria" class="form-control">
+            <div class="col-md-4">
+                <div class="form-group ">
+                    <label asp-for="Categoria" class="control-label"></label>
+
+                    <select asp-for="IdCategoria" class="form-control">
                         <option selected value="">SELECCIONAR</option>
                         @foreach (var item in categorias)
                         {
@@ -140,25 +112,26 @@
                     <span asp-validation-for="IdCategoria" class="text-danger"></span>
                 </div>
             </div>
+        </div>
 
-            @*BOTONES EDITADOS CON ICONOS*@
+        @*BOTONES EDITADOS CON ICONOS*@
 
-            <div class="form-group" style="margin-top: 10px;">
-                <button type="submit" class="btn btn-success" style="margin-right: 10px;">
-                    <i class="fas fa-save"></i> Guardar
-                </button>
+        <div class="form-group" style="margin-top: 10px;">
+            <button type="submit" class="btn btn-success" style="margin-right: 10px;">
+                <i class="fas fa-save"></i> Guardar
+            </button>
 
-                <button type="button" class="btn btn-danger" onclick="window.location.href='@Url.Action("Index")'" style="margin-left: 10px;">
-                    <i class="fas fa-times"></i> Cancelar
-                </button>
-            </div>
+            <button type="button" class="btn btn-danger" onclick="window.location.href='@Url.Action("Index")'" style="margin-left: 10px;">
+                <i class="fas fa-times"></i> Cancelar
+            </button>
+        </div>
 
-            <span class="text-danger">@ViewBag.Error</span>
+        <span class="text-danger">@ViewBag.Error</span>
 
-
-        </form>
     </div>
-</div>
+
+</form>
+
 @section Scripts
     {
     @{

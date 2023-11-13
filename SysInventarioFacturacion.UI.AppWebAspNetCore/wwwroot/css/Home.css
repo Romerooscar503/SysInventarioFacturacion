@@ -477,3 +477,9 @@ h1, .h1 {
 .menu-hidden {
     display: none;
 }
+
+.FormularioCrear {
+    height: 140%;
+    width: 100%;
+    border: 2px solid #f00;
+}

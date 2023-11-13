@@ -281,7 +281,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         {
             Random random = new Random();
 
-            Factura objFactura = new Factura();
+            Factura objFactura = new();
             objFactura.IdUsuario = global.idu;
             objFactura.NumeroFactura = random.Next(100000, 999999);
             objFactura.Descripcion = Descripcion ?? "N/A";
@@ -299,6 +299,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             //List<DetalleFactura> detallesDesdeViewBag = ViewBag.Detalles;
             //List<DetalleFactura> detalleFactura = new List<DetalleFactura>();
             //detalleFactura = ViewBag.Detalles;
+
             foreach (var detalle in detalleFacturas)
             {
                 detalle.IdFactura = objFactura.IdFactura;
