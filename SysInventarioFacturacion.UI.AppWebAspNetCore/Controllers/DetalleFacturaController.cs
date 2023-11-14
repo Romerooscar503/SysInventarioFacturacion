@@ -294,14 +294,19 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             objFactura.Telefono = Telefono ?? "N/A";
             objFactura.FechaFacturacion = DateTime.Now;
 
-            FacturaBL.CrearAsync(objFactura);
+            //FacturaBL.CrearAsync(objFactura);
+            await FacturaBL.CrearAsync(objFactura);
 
-            //List<DetalleFactura> detallesDesdeViewBag = ViewBag.Detalles;
-            //List<DetalleFactura> detalleFactura = new List<DetalleFactura>();
-            //detalleFactura = ViewBag.Detalles;
+
+            DetalleFactura DetalleFacturas = new();
+            DetalleFacturas.Codigo = random.Next(100000, 999999);
+            DetalleFacturas.FechaEmision = DateTime.Now;
+            DetalleFacturas.FormaDePago = 1;
 
             foreach (var detalle in detalleFacturas)
             {
+                
+
                 detalle.IdFactura = objFactura.IdFactura;
                 await detalle_facturaBL.CrearAsync(detalle);
             }
