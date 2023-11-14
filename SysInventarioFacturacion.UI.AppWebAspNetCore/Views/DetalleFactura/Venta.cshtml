@@ -51,10 +51,10 @@
         <div class="col-sm-6">
             <div class="card border-info">
                 <div class="table-container">
-                    <table id="tablaBusqueda" class="tablaBusqueda" style="height:20px">
+                    <table id="tablaBusqueda" class="tablaBusqueda">
                         <thead>
                             <tr>
-                                 <th>ID</th>
+                                 <th></th>
 
                                 <th>Cod</th>
 
@@ -80,8 +80,8 @@
                             @foreach (var item in productos)
                             {
                                 <tr data-page="@numPage">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IdProducto)
+                                    <td class="PrimeraColumnaBusqueda">
+                                        @Html.DisplayFor(modelItem => item.IdProducto) 
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Codigo)
@@ -157,13 +157,13 @@
             <table id="tablaDetalleFactura" class="tablaDetalles">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th></th>
                         <th>Cantidad</th>
                         <th>Producto</th>
                         <th>Descripcion</th>
                         <th>Precio Unidad</th>
                         <th>Importe Total</th>
-                        <th colspan="1">Eliminar</th>
+                        <th colspan="1">Borrar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -172,7 +172,7 @@
                      
                     {
                         <tr data-page="@numPage">
-                                <td>
+                                <td class="PrimeraColumnaBusqueda">
                                     @Html.DisplayFor(modelItem => item.IdProducto)
                                 </td>
                             <td>
@@ -417,12 +417,12 @@
                 indeceFila++;
                 const row = document.createElement("tr");
                 row.innerHTML = `
-                     <td><input name='detalleFacturas[${indeceFila}].IdProducto' value='${detalle.productoid}'  readonly="readonly" /></td>
-                                    <td><input name='detalleFacturas[${indeceFila}].Cantidad' value='${detalle.cantidad}'  readonly="readonly" /></td>
-                                     <td><input name='detalleFacturas[${indeceFila}].Nombre' value='${detalle.nombre}'  readonly="readonly" /></td>
-                                         <td><input name='detalleFacturas[${indeceFila}].Descripcion' value='${detalle.descripcion}'  readonly="readonly" /></td>
-                                                  <td><input name='detalleFacturas[${indeceFila}].Precio' value='${detalle.precio}'  readonly="readonly" /></td>
-                                                          <td><input name='detalleFacturas[${indeceFila}].ValorTotal' value='${detalle.importeTotal}'  readonly="readonly" /></td>
+                     <td><input name='detalleFacturas[${indeceFila}].IdProducto' value='${detalle.productoid}'  readonly="readonly" class="PrimeraColumna"/></td>
+                         <td><input name='detalleFacturas[${indeceFila}].Cantidad' value='${detalle.cantidad}'  readonly="readonly" class="SiguientesColumnas" /></td>
+                         <td><input name='detalleFacturas[${indeceFila}].Nombre' value='${detalle.nombre}'  readonly="readonly" class="SiguientesColumnas"/></td>
+                         <td><input name='detalleFacturas[${indeceFila}].Descripcion' value='${detalle.descripcion}'  readonly="readonly" class="SiguientesColumnas" /></td>
+                     <td><input name='detalleFacturas[${indeceFila}].Precio' value='${detalle.precio}'  readonly="readonly" class="SiguientesColumnas"/></td>
+                         <td><input name='detalleFacturas[${indeceFila}].ValorTotal' value='${detalle.importeTotal}'  readonly="readonly" class="SiguientesColumnas" /></td>
 
 
                         <td>
