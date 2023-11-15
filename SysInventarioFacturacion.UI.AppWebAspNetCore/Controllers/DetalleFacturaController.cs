@@ -324,10 +324,11 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 
         public async Task<IActionResult> ObtenerFactura()
         {
-
+           
             DetalleFactura objdetalle = new DetalleFactura();
             objdetalle.IdFactura = idFac;
             List<DetalleFactura> ListaDetalle = await detalle_facturaBL.BuscarIncluirFacturasYProductoAsync(objdetalle);
+            ViewBag.Facturas = ListaDetalle.FirstOrDefault().Factura;
             return View(ListaDetalle);
         }
 

@@ -2,12 +2,13 @@
 
 @{
     ViewData["Title"] = "Index";
-    List<SysInventarioFacturacion.EntidadesDeNegocio.Factura> facturas = ViewBag.Facturas as List<SysInventarioFacturacion.EntidadesDeNegocio.Factura>;
+    SysInventarioFacturacion.EntidadesDeNegocio.Factura factura = ViewBag.Facturas as SysInventarioFacturacion.EntidadesDeNegocio.Factura;
     List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
 }
 
 <p>
-    Hola :)
+    @factura.FechaFacturacion
+
 </p>
 <table class="table">
     <thead>
