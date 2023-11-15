@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura>
+
+@{
+    ViewData["Title"] = "Index";
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Factura> facturas = ViewBag.Facturas as List<SysInventarioFacturacion.EntidadesDeNegocio.Factura>;
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
+}
+
+<p>
+    Hola :)
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            
+            
+            <th>
+                Producto
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.Nombre)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto.Descripcion)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorTotal)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

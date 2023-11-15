@@ -24,7 +24,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         DetalleFacturaBL detalle_facturaBL = new DetalleFacturaBL();
         FacturaBL FacturaBL = new FacturaBL();
         ProductoBL ProductoBL = new ProductoBL();
-
+        public static int idFac;
 
         // GET: RolController
         public async Task<IActionResult> Index(DetalleFactura pDetalleFactura = null)
@@ -277,7 +277,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         //    return Json(objFactura);
         //}
         [HttpPost("ProcesarFactura")]
-        public async Task<JsonResult> ProcesarFactura(string Descripcion, string Direccion, string Correo, string Telefono, decimal total, decimal descuento, decimal impuesto, decimal totalpagado, int cantidad, int codigo, byte FormadaDePago, DateTime FechaEmision, decimal ValorTotal, List<DetalleFactura> detalleFacturas)
+        public async Task<IActionResult> ProcesarFactura(string Descripcion, string Direccion, string Correo, string Telefono, decimal total, decimal descuento, decimal impuesto, decimal totalpagado, int cantidad, int codigo, byte FormadaDePago, DateTime FechaEmision, decimal ValorTotal, List<DetalleFactura> detalleFacturas)
         {
             Random random = new Random();
 
@@ -302,11 +302,11 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             DetalleFacturas.Codigo = random.Next(100000, 999999);
             DetalleFacturas.FechaEmision = DateTime.Now;
             DetalleFacturas.FormaDePago = 1;
-
+            
             foreach (var detalle in detalleFacturas)
             {
                 
-
+                idFac = objFactura.IdFactura;
                 detalle.IdFactura = objFactura.IdFactura;
                 await detalle_facturaBL.CrearAsync(detalle);
             }
@@ -317,10 +317,19 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
                 DetalleFacturas = detalleFacturas
             };
 
-            return Json(venta);
+            return RedirectToAction("ObtenerFactura");
         }
 
+        [HttpGet("ObtenerFactura")]
 
+        public async Task<IActionResult> ObtenerFactura()
+        {
+
+            DetalleFactura objdetalle = new DetalleFactura();
+            objdetalle.IdFactura = idFac;
+            List<DetalleFactura> ListaDetalle = await detalle_facturaBL.BuscarIncluirFacturasYProductoAsync(objdetalle);
+            return View(ListaDetalle);
+        }
 
     }
 
