@@ -228,5 +228,9 @@
 
 .DatosFacturaDetalle {
     float: right;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    text-shadow: none;
+    font-size: 120%;
+    margin-left: 160px;
 }

@@ -5,7 +5,7 @@
     SysInventarioFacturacion.EntidadesDeNegocio.Factura factura = ViewBag.Facturas as SysInventarioFacturacion.EntidadesDeNegocio.Factura;
     List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
 }
-<div >
+<div id="contenidoImprimir">
     <p class="ticket-header">Imperial Shoes</p>
     <img src="~/IMG/Logo.png"  class="ImagenTicket"/>
     <p class="ticket-info">
@@ -76,3 +76,11 @@
     </p>
 
 </div>
+    <button onclick="imprimirContenido()">Imprimir</button>
+
+ <script>
+        function imprimirContenido() {
+            // Abre el cuadro de diálogo de impresión del navegador
+            window.print();
+        }
+   </script>
