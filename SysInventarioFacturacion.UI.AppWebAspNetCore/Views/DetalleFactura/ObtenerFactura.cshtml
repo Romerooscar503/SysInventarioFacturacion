@@ -5,82 +5,86 @@
     SysInventarioFacturacion.EntidadesDeNegocio.Factura factura = ViewBag.Facturas as SysInventarioFacturacion.EntidadesDeNegocio.Factura;
     List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
 }
-<div id="contenidoImprimir">
+
+<div id="miDiv">
     <p class="ticket-header">Imperial Shoes</p>
-    <img src="~/IMG/Logo.png"  class="ImagenTicket"/>
+    <img src="~/IMG/Logo.png" class="ImagenTicket" />
     <p class="ticket-info">
         Dirección: Calle Principal #123<br>
         Teléfono: (123) 456-7890<br>
-        Correo Electrónico: info@empresa.xyz<br>
         NIT: 123456789-0
-    </p>
-    <hr />
+        <hr />
     <p class="ticket-info">
         Fecha:@factura.FechaFacturacion<br>
         N.Factura: @factura.NumeroFactura<br>
         <hr />
-        <p class ="ticket-info">
+    <p class="ticket-info">
         Cliente: @factura.Descripcion<br>
         Direcion: @factura.Direccion<br>
         Correo: @factura.Correo<br>
         Telefono: @factura.Telefono<br>
-        </p>
-       
+    </p>
+
     </p>
 
     <div>
-    <table class="table">
-        <thead>
-            <tr>
-
-
-                <th>
-                    Producto
-                </th>
-                <th>
-                    Descripción
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cantidad)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ValorTotal)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        <table class="table">
+            <thead>
                 <tr>
 
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Producto.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Producto.Descripcion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cantidad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ValorTotal)
-                    </td>
+                    <th>
+                        Producto
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                            @Html.DisplayNameFor(model => model.Cantidad)
+                    </th>
+                    <th>
+                            @Html.DisplayNameFor(model => model.ValorTotal)
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <p class="DatosFacturaDetalle">
-        @factura.TotalPagado
-    </p>
+            </thead>
+            <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
 
+
+                        <td>
+                                @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.Producto.Descripcion)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.Cantidad)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.ValorTotal)
+                        </td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+        <p class="DatosFacturaDetalle">
+                @factura.TotalPagado
+        </p>
+
+    </div>
 </div>
-    <button onclick="imprimirContenido()">Imprimir</button>
 
- <script>
-        function imprimirContenido() {
-            // Abre el cuadro de diálogo de impresión del navegador
-            window.print();
-        }
-   </script>
+<button onclick="imprimirDiv()">Imprimir Div</button>
+
+<script>
+    function imprimirDiv() {
+        var contenidoDiv = document.getElementById('miDiv').innerHTML;
+        var ventanaImpresion = window.open('', '', 'width=600,height=600');
+        ventanaImpresion.document.write(contenidoDiv);
+        ventanaImpresion.document.close();
+        ventanaImpresion.print();
+    }
+</script>
