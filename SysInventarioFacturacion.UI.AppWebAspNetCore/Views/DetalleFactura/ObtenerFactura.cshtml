@@ -5,49 +5,74 @@
     SysInventarioFacturacion.EntidadesDeNegocio.Factura factura = ViewBag.Facturas as SysInventarioFacturacion.EntidadesDeNegocio.Factura;
     List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
 }
+<div >
+    <p class="ticket-header">Imperial Shoes</p>
+    <img src="~/IMG/Logo.png"  class="ImagenTicket"/>
+    <p class="ticket-info">
+        Dirección: Calle Principal #123<br>
+        Teléfono: (123) 456-7890<br>
+        Correo Electrónico: info@empresa.xyz<br>
+        NIT: 123456789-0
+    </p>
+    <hr />
+    <p class="ticket-info">
+        Fecha:@factura.FechaFacturacion<br>
+        N.Factura: @factura.NumeroFactura<br>
+        <hr />
+        <p class ="ticket-info">
+        Cliente: @factura.Descripcion<br>
+        Direcion: @factura.Direccion<br>
+        Correo: @factura.Correo<br>
+        Telefono: @factura.Telefono<br>
+        </p>
+       
+    </p>
 
-<p>
-    @factura.FechaFacturacion
+    <div>
+    <table class="table">
+        <thead>
+            <tr>
 
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            
-            
-            <th>
-                Producto
-            </th>
-            <th>
-                Descripción
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cantidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ValorTotal)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-           
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Producto.Nombre)
-            </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Producto.Descripcion)
-                </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cantidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ValorTotal)
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+                <th>
+                    Producto
+                </th>
+                <th>
+                    Descripción
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cantidad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ValorTotal)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producto.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorTotal)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p class="DatosFacturaDetalle">
+        @factura.TotalPagado
+    </p>
+
+</div>
