@@ -329,7 +329,8 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             objdetalle.IdFactura = idFac;
             List<DetalleFactura> ListaDetalle = await detalle_facturaBL.BuscarIncluirFacturasYProductoAsync(objdetalle);
             ViewBag.Facturas = ListaDetalle.FirstOrDefault().Factura;
-            return View(ListaDetalle);
+            ViewBag.ListaDetalle = ListaDetalle;
+            return View();
         }
 
     }

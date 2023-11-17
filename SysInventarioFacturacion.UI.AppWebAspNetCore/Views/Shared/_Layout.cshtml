@@ -44,9 +44,7 @@
                     <!-- Por ejemplo, si es una imagen: -->
                     <img src="~/IMG/Logo.png" alt="Logo de la empresa" class="logo-container">
                 </div>
-                <div class="switch">
-                    <div class="slider"></div>
-                </div>
+               
 
 
                 <li class="Nombre">
@@ -56,6 +54,9 @@
 
                 @if (User.IsInRole("SuperAdmin"))
                 {
+                    <li class="nav-item">
+                        <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                    </li>
                     <li class="nav-item">
                         <a class="dashboard-nav-dropdown-item" asp-area="" asp-controller="Usuario" asp-action="Index">Usuario</a>
                     </li>

@@ -9,8 +9,15 @@
 
 <h1>Agregar Un Nuevo Producto</h1>
 <hr />
+<div>
+    <button type="submit" class="btn btn-success" style="margin-right: 10px; color:white">
+        <a asp-area="" asp-controller="Categoria" asp-action="Create">Crear categoria</a>
+    </button>
 
-
+<button>
+    <a  asp-area="" asp-controller="Proveedor" asp-action="Create">Crear proveedor</a>
+</button>
+</div>
 <form asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">

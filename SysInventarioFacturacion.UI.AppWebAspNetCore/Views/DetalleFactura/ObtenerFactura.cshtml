@@ -1,9 +1,9 @@
-﻿@model IEnumerable<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura>
-
+﻿
 @{
     ViewData["Title"] = "Index";
     SysInventarioFacturacion.EntidadesDeNegocio.Factura factura = ViewBag.Facturas as SysInventarioFacturacion.EntidadesDeNegocio.Factura;
     List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
+    List<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura> ListaDetalle = ViewBag.ListaDetalle as List<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura>;
 }
 
 <div id="miDiv">
@@ -40,16 +40,16 @@
                         Descripción
                     </th>
                     <th>
-                            @Html.DisplayNameFor(model => model.Cantidad)
+                           Cantidad
                     </th>
                     <th>
-                            @Html.DisplayNameFor(model => model.ValorTotal)
+                          ValorTotal
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in ListaDetalle)
                     {
                     <tr>
 
