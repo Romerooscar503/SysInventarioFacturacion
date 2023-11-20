@@ -499,8 +499,8 @@
 
             const rows = tablaBusqueda.querySelectorAll("tr");
             rows.forEach((row) => {
-                const codigoCell = row.querySelector("td:nth-child(1)");
-                const nombreCell = row.querySelector("td:nth-child(2)");
+                const codigoCell = row.querySelector("td:nth-child(2)");
+                const nombreCell = row.querySelector("td:nth-child(3)");
                 if (codigoCell && nombreCell) {
                     const codigoText = codigoCell.textContent.toLowerCase();
                     const nombreText = nombreCell.textContent.toLowerCase();
