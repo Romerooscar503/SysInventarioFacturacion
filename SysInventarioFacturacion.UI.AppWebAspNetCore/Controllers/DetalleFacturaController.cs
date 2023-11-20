@@ -305,7 +305,15 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             
             foreach (var detalle in detalleFacturas)
             {
-                
+                Producto objProducto = new Producto();
+                objProducto.IdProducto = detalle.IdProducto;
+                objProducto = await ProductoBL.ObtenerPorIdProductoAsync(objProducto); 
+
+               
+                objProducto.Cantidad = objProducto.Cantidad - detalle.Cantidad;
+                await ProductoBL.ModificarAsync(objProducto);
+
+
                 idFac = objFactura.IdFactura;
                 detalle.IdFactura = objFactura.IdFactura;
                 await detalle_facturaBL.CrearAsync(detalle);
