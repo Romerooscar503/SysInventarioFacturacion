@@ -80,9 +80,7 @@
                             @foreach (var item in productos)
                             {
                                 <tr data-page="@numPage">
-                                    <td class="PrimeraColumnaBusqueda">
-                                        @Html.DisplayFor(modelItem => item.IdProducto) 
-                                    </td>
+                                    
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Codigo)
                                     </td>
@@ -109,6 +107,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Talla)
                                     </td>
+                                  
                                     <td>
                                         @Html.DisplayFor(modelItem => item.PrecioUnitario)
                                     </td>
@@ -118,6 +117,7 @@
                                             data-codigo="@item.Codigo"
                                             data-nombre="@item.Nombre"
                                             data-descripcion="@item.Descripcion"
+                                            data-stock="@item.Cantidad"
                                             data-precio="@item.PrecioUnitario">
                                             <i class="fa fa-plus" aria-hidden="true"></i> Agregar
                                         </button>
@@ -226,7 +226,6 @@
                 <button id="btnTerminarGuardarVenta" type="submit" class="BtnImprimir" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@@getbootstrap">
                     <i class="fa fa-print" aria-hidden="true"></i> Imprimir y Terminar Venta
                 </button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@@getbootstrap">Open modal for @@getbootstrap</button>
             </div>
             <div class="card-body p-2 card-venta">
                 <div class="row align-items-star">
@@ -371,26 +370,49 @@
                 const codigo = button.getAttribute("data-codigo");
                 const nombre = button.getAttribute("data-nombre");
                 const descripcion = button.getAttribute("data-descripcion");
+                const stock = parseFloat(button.getAttribute("data-stock"));
                 const precio = parseFloat(button.getAttribute("data-precio"));
 
                 const cantidad = prompt(`Ingrese la cantidad para "${nombre}"`);
-                if (cantidad !== null && !isNaN(cantidad) && cantidad > 0) {
-                    const importeTotal = parseFloat(cantidad) * precio;
-                    detalleFacturas.push({
-                        productoid: productoid,
-                        codigo: codigo,
-                        nombre: nombre,
-                        descripcion: descripcion,
-                        cantidad: parseFloat(cantidad),
-                        precio: precio,
-                        importeTotal: importeTotal,
-                    });
-                    debugger;
-                    updateDetalleFacturaTable();
-                    calculateTotal();
+                if (cantidad !== null && !isNaN(cantidad)) {
+                    if (cantidad > 0 && cantidad <= stock) {
+                        agregarProducto(productoid, codigo, nombre, descripcion, cantidad, precio);
+                    } else {
+                        alert("La cantidad deseada no se encuentra en stock");
+                    }
                 }
             });
         });
+
+        function agregarProducto(productoid, codigo, nombre, descripcion, cantidad, precio) {
+            const importeTotal = parseFloat(cantidad) * precio;
+            detalleFacturas.push({
+                productoid: productoid,
+                codigo: codigo,
+                nombre: nombre,
+                descripcion: descripcion,
+                cantidad: parseFloat(cantidad),
+                precio: precio,
+                importeTotal: importeTotal,
+            });
+            updateDetalleFacturaTable();
+            calculateTotal();
+        }
+
+        function agregarProducto(productoid, codigo, nombre, descripcion, cantidad, precio) {
+            const importeTotal = parseFloat(cantidad) * precio;
+            detalleFacturas.push({
+                productoid: productoid,
+                codigo: codigo,
+                nombre: nombre,
+                descripcion: descripcion,
+                cantidad: parseFloat(cantidad),
+                precio: precio,
+                importeTotal: importeTotal,
+            });
+            updateDetalleFacturaTable();
+            calculateTotal();
+        }
 
         eliminarProductoButtons.forEach(function (button) {
             button.addEventListener("click", function () {
