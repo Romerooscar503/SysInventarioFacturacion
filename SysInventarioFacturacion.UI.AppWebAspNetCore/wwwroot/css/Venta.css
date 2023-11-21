@@ -25,6 +25,7 @@
         text-align: left; /* Alineación del texto en las celdas de datos */
         padding: 3px; /* Espaciado interno de las celdas de datos */
         border: 1px solid #ccc; /* Borde de 1 píxel con color gris claro */
+        position: sticky;
     }
 
 
