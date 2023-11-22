@@ -488,11 +488,11 @@ h1, .h1 {
     height: auto;
     width:25%;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 2px;
     padding: 10px;
     text-align: center;
     transition: box-shadow 0.3s ease-in-out;
-    margin-left:5%;
+    margin: 0%;
 }
 
     .action-card:hover {
