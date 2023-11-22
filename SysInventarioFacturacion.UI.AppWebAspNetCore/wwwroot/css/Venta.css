@@ -15,6 +15,10 @@
         color: white; /* Color de texto del encabezado */
         height: 40px; /* Alto de las celdas de encabezado */
         text-align: center; /* Alineación del texto en el encabezado */
+        position: sticky;
+        top: 0; /* La posición fija en la parte superior de la tabla */
+        z-index: 1;
+        
     }
 
     /* Estilo para las celdas de datos */
