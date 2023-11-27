@@ -3,20 +3,20 @@
 }
 <div class="row">
     <div class="action-card">
-        <img src="~/IMG/Usuario.jpg" alt="Descripción de la imagen">
+        <img src="~/IMG/Usuario-removebg-preview.png" alt="Descripción de la imagen">
         <a asp-area="" asp-controller="Usuario" asp-action="Create">Agregar Usuario</a>
     </div>
     <div class="action-card">
-        <img src="~/IMG/ZapatoIcon.jpg" alt="Descripción de la imagen">
+        <img src="~/IMG/ZapatoIcon-removebg-preview.png" alt="Descripción de la imagen">
         <a asp-area="" asp-controller="Producto" asp-action="Create">Agregar Producto</a>
     </div>
     <div class="action-card">
-        <img src="~/IMG/Carritocompra.jpg" alt="Descripción de la imagen">
+        <img src="~/IMG/Carritocompra-removebg-preview.png" alt="Descripción de la imagen">
         <a asp-area="" asp-controller="DetalleFactura" class="action-card-button" asp-action="Venta">Crear Venta</a>
     </div>
     <div class="action-card">
-        <img src="~/IMG/Nike.jpeg" alt="Descripción de la imagen">
-        <a asp-area="" asp-controller="Producto" asp-action="Create">Ir a la página</a>
+        <img src="~/IMG/LOS_REPORTES-removebg-preview.png" alt="Descripción de la imagen">
+        <a asp-area="" asp-controller="DetalleFactura" asp-action="Reportes">Ver Reportes</a>
     </div>
 </div>
 <div class="row">
@@ -68,13 +68,74 @@
 
     <!--Tarjetas-->
 </div>
+<style> 
+.textface {
+}
+
+.cardes {
+        height: 400px;
+        width: 350px;
+        color: white;
+        margin: 10px;
+        background-color: #003049;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9px;
+        box-shadow: -4px 8px 8px 8px rgba(0, 0, 0, 0.1);
+        float: left;
+    position: relative;
+    perspective: 1000px;
+}
+
+    .cardes:hover .carta {
+        transform: rotateY(180deg);
+            border-radius: 9px;
+    }
+
+.carta {
+    transform-style: preserve-3d;
+    transition: all 1s linear;
+}
+
+.cara {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+    .cara.detras {
+        transform: rotateY(180deg);
+    }
+
+   .texto {
+        font: bold 90% monospace;
+        color:white;
+        text-align: center;
+    }
+</style>
 <div>
-    <div class="sneaker-card">
-        <img class="sneaker-profile-pic" src="https://images.unsplash.com/photo-1608667508764-33cf0726b13a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" />
-        <h2>New Balance</h2>
-        <h3> 2022 New Balance</h3>
+    <div class="cardes" style="width: 18rem;">
+        <div class="carta" style="text-align: center;">
+            <div class="cara">
+
+                <div class="card-body">
+                    <img class="sneaker-profile-pic" src="https://images.unsplash.com/photo-1608667508764-33cf0726b13a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" />
+                </div>
+            </div>
+            <div class="cara detras" style="text-align: center;">
+                <div class="card-body">
+                    <h3 class="texto">
+                        Nike
+                    </h3>
+                    
+                    <h3 class="texto"> 2022 Nike Walking Selection</h3>
+                </div>
+            </div>
+        </div>
 
     </div>
+    
 
     <div class="sneaker-card">
         <img class="sneaker-profile-pic" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNuZWFrZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
