@@ -63,7 +63,7 @@ namespace SysInventarioFacturacion.AccesoADatos
             var DetalleFacturas = new List<DetalleFactura>();
             using (var bdContexto = new BDContexto())
             {
-                DetalleFacturas = await bdContexto.DetalleFactura.ToListAsync();
+                DetalleFacturas = await bdContexto.DetalleFactura.Include(p => p.Producto).ToListAsync();
             }
             return DetalleFacturas;
         }

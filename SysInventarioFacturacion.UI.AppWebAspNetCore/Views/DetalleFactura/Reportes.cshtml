@@ -15,43 +15,96 @@
 
 }
 
+<style>
+
+    .textface{
+        
+    }
+
+    .card {
+        width: 200px;
+        height: 250px;
+        position: relative;
+        perspective: 1000px;
+    }
+
+        .card:hover .carta {
+            transform: rotateY(180deg);
+        }
+
+    .carta {
+        transform-style: preserve-3d;
+        transition: all 1s linear;
+    }
+
+    .cara {
+        position: absolute;
+        backface-visibility: hidden;
+    }
+
+        .cara.detras {
+            transform: rotateY(180deg);
+        }
+</style>
 <h2>Reportes</h2>
 
 @if (facturas != null)
 {
     foreach (var Listafacturas in facturas)
     {
-        <div>
-            <h3>Factura # @Listafacturas.NumeroFactura</h3>
-            <p>Descripción: @Listafacturas.Descripcion</p>
-            <p>Total: @Listafacturas.Total</p>
-            <p>Descuento: @Listafacturas.Descuento</p>
-            <p>Impuesto: @Listafacturas.Impuesto</p>
-            <p>Total Pagado: @Listafacturas.TotalPagado</p>
-            <p>Fecha de Facturación: @Listafacturas.FechaFacturacion.ToShortDateString()</p>
-            <!-- Agrega más información de la factura según tus necesidades -->
+        <div class="card" style="width: 18rem;">
+            <div class="carta">
+                <div class="cara">
+                   
+                    <div class="card-body">
+                        <p class="textface">Factura # @Listafacturas.NumeroFactura</p>
+                        <p class="textface">Descripción: @Listafacturas.Descripcion</p>
+                        <p class="textface">Total: @Listafacturas.Total</p>
+                        <p class="textface">Descuento: @Listafacturas.Descuento</p>
+                        <p class="textface">Impuesto: @Listafacturas.Impuesto</p>
+                        <p class="textface">Total Pagado: @Listafacturas.TotalPagado</p>
+                        <p class="textface">Fecha de Facturación: @Listafacturas.FechaFacturacion.ToShortDateString()</p>
+                    </div>
+                </div>
+                <div class="cara detras">
+                    <div class="card-body">
+                        <table class="table table-responsive paginationjs">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Cantidad
+                                    </th>
+                                    <th>
+                                        Producto
+                                    </th>
+                                    <th>
+                                        Descripcion
+                                    </th>
+                                    <th>
+                                        Valor Total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var detalle in Listafacturas.DetalleFactura)
+                                {
+                                    <tr>
 
-            <h4>Detalles de Factura</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <!-- Agrega más columnas según tus necesidades -->
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var detalle in Listafacturas.DetalleFactura)
-                    {
-                        <tr>
-                            
-                            <td>@detalle.Cantidad</td>
-                            <!-- Agrega más celdas según tus necesidades -->
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                                        <td>@detalle.Cantidad</td>
+                                        <td>@detalle.Producto.Nombre</td>
+                                        <td>@detalle.Producto.Descripcion</td>
+                                        <td>@detalle.ValorTotal</td>
+                                        <!-- Agrega más celdas según tus necesidades -->
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <hr />
     }
 }
+
+

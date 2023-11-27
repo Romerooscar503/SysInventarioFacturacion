@@ -30,9 +30,9 @@ namespace SysInventarioFacturacion.AccesoADatos
             //optionsBuilder.UseSqlServer(@"Data Source=OSCARROMERO\SQLEXPRESS;Initial Catalog=SysInventarioFacturacion;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Factura>().HasMany(f => f.DetalleFactura).WithOne(df => df.Factura).HasForeignKey(df => df.IdFactura);
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Factura>().HasMany(f => f.DetalleFactura).WithOne(df => df.Factura).HasForeignKey(df => df.IdFactura);
+        //}
     }
 }

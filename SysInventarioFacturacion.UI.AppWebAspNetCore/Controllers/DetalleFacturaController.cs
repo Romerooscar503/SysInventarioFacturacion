@@ -344,7 +344,9 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
         public async Task<IActionResult> Reportes(DetalleFactura pDetalleFactura)
         {
             List<Factura> taskObtenerTodosFacturas = await FacturaBL.ObtenerTodosAsync();
-            var taskObtenerTodosProducto = ProductoBL.ObtenerTodosAsync();
+            List<DetalleFactura> detalleFacturas = await detalle_facturaBL.ObtenerTodosAsync();
+
+            ViewBag.Detalles = detalleFacturas;
 
             ViewBag.Facturas = taskObtenerTodosFacturas;
            
