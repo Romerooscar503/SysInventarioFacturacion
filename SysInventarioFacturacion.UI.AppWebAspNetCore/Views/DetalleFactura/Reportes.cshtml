@@ -18,12 +18,21 @@
 <style>
 
     .textface{
-        
+        font-family: 'Verdana', sans-serif; /* Cambia el tipo de letra */
+        font-size: 15px; /* Cambia el tamaño de la letra */
+        line-height: 1.5; /* Cambia la altura de línea para mejorar la legibilidad */
     }
 
+   .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px; /* Espacio entre las cartas */
+  align-content:flex-end;
+}
+
     .card {
-        width: 200px;
-        height: 250px;
+        width: 500px;
+        height:350px;
         position: relative;
         perspective: 1000px;
     }
@@ -44,67 +53,96 @@
 
         .cara.detras {
             transform: rotateY(180deg);
+            width: 500px;
+        height:350px;
+            overflow-y: auto;
+           
         }
+
+    table {
+        width: 10%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        width:150%;
+    }
+
+    th, td {
+        width:10%;
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .tableContainer{
+        width:30px;
+        height:30px;
+    }
+
 </style>
 <h2>Reportes</h2>
-
 @if (facturas != null)
 {
-    foreach (var Listafacturas in facturas)
-    {
-        <div class="card" style="width: 18rem;">
-            <div class="carta">
-                <div class="cara">
-                   
-                    <div class="card-body">
-                        <p class="textface">Factura # @Listafacturas.NumeroFactura</p>
-                        <p class="textface">Descripción: @Listafacturas.Descripcion</p>
-                        <p class="textface">Total: @Listafacturas.Total</p>
-                        <p class="textface">Descuento: @Listafacturas.Descuento</p>
-                        <p class="textface">Impuesto: @Listafacturas.Impuesto</p>
-                        <p class="textface">Total Pagado: @Listafacturas.TotalPagado</p>
-                        <p class="textface">Fecha de Facturación: @Listafacturas.FechaFacturacion.ToShortDateString()</p>
+    <div class="card-container">
+        @foreach (var Listafacturas in facturas)
+        {
+            <div class="card">
+                <div class="carta">
+                    <div class="cara">
+                        <div class="card-body">
+                            <p class="textface">
+                                Factura # @Listafacturas.NumeroFactura<br>
+                                Cliente: @Listafacturas.Descripcion<br>
+                                Total: @Listafacturas.Total<br>
+                                Fecha de Facturación: @Listafacturas.FechaFacturacion.ToShortDateString()
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="cara detras">
-                    <div class="card-body">
-                        <table class="table table-responsive paginationjs">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Cantidad
-                                    </th>
-                                    <th>
-                                        Producto
-                                    </th>
-                                    <th>
-                                        Descripcion
-                                    </th>
-                                    <th>
-                                        Valor Total
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var detalle in Listafacturas.DetalleFactura)
-                                {
-                                    <tr>
+                    <div class="cara detras">
+                        <div class="card-body">
+                            <div class="tableContainer">
 
-                                        <td>@detalle.Cantidad</td>
-                                        <td>@detalle.Producto.Nombre</td>
-                                        <td>@detalle.Producto.Descripcion</td>
-                                        <td>@detalle.ValorTotal</td>
-                                        <!-- Agrega más celdas según tus necesidades -->
+                            <table class="table table-responsive paginationjs"  >
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Cantidad
+                                        </th>
+                                        <th>
+                                            Producto
+                                        </th>
+                                        <th>
+                                            Descripcion
+                                        </th>
+                                        <th>
+                                            Valor Total
+                                        </th>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach (var detalle in Listafacturas.DetalleFactura)
+                                    {
+                                        <tr>
+                                            <td>@detalle.Cantidad</td>
+                                            <td>@detalle.Producto.Nombre</td>
+                                            <td>@detalle.Producto.Descripcion</td>
+                                            <td>@detalle.ValorTotal</td>
+                                            <!-- Agrega más celdas según tus necesidades -->
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-    }
+        }
+    </div>
 }
 
 
