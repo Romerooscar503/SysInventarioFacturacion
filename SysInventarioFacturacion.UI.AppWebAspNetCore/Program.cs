@@ -1,10 +1,14 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-// Configurar la autentificacion 
+
+//builder.Services.AddDbContext<SysInventarioFacturacion.AccesoADatos.BDContexto>(options => options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll));
+
+    // Configurar la autentificacion 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie((o) =>
 {
     o.LoginPath = new PathString("/Usuario/Login");

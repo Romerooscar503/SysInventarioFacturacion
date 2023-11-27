@@ -341,6 +341,44 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Reportes(DetalleFactura pDetalleFactura)
+        {
+            List<Factura> taskObtenerTodosFacturas = await FacturaBL.ObtenerTodosAsync();
+            var taskObtenerTodosProducto = ProductoBL.ObtenerTodosAsync();
+
+            ViewBag.Facturas = taskObtenerTodosFacturas;
+           
+
+            return View();
+        }
+
+        //public async Task<IActionResult> Reportes(DetalleFactura pDetalleFactura)
+        //{
+        //    var taskObtenerTodosFacturas = FacturaBL.ObtenerTodosAsync();
+        //    var taskObtenerTodosProducto = ProductoBL.ObtenerTodosAsync();
+        //    var taskObtenerTodosDeallesFacturas = detalle_facturaBL.ObtenerTodosAsync();
+        //    var facturas = await taskObtenerTodosFacturas;
+
+        //    // Cargar detalles de facturas para cada factura
+        //    foreach (var factura in facturas)
+        //    {
+        //        DetalleFactura objdetalle = new DetalleFactura();
+        //        objdetalle.IdFactura = idFac;
+        //        List<DetalleFactura> ListaDetalles = await detalle_facturaBL.BuscarIncluirFacturasYProductoAsync(objdetalle);
+
+
+        //        ViewBag.ListaDetalles = ListaDetalles;
+
+        //    }
+
+        //    ViewBag.Facturas = await taskObtenerTodosFacturas;
+        //    ViewBag.Producto = await taskObtenerTodosProducto;
+        //    ViewBag.DetalleFactura = await taskObtenerTodosDeallesFacturas;
+
+        //    return View();
+        //}
+
+
     }
 
 

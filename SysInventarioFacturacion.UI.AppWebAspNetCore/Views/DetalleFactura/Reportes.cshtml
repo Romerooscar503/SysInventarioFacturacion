@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura>
+
+@{
+    ViewData["Title"] = "Reporte de Ventas";
+    int numPage = 1;
+    int numRegistros = 0;
+    int numRegistrosPorPage = 10;
+    int[] tops = { 10, 20, 50, 100, 500, 1000, 10000, -1 };
+    int topActual = Convert.ToInt32(ViewBag.Top);
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Factura> facturas = ViewBag.Facturas as List<SysInventarioFacturacion.EntidadesDeNegocio.Factura>;
+    List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
+    List<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura> listaVentas = ViewBag.ListaVentas as List<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura>;
+
+    ViewBag.listaventas = listaVentas;
+
+}
+
+<h2>Reportes</h2>
+
+@if (facturas != null)
+{
+    foreach (var Listafacturas in facturas)
+    {
+        <div>
+            <h3>Factura # @Listafacturas.NumeroFactura</h3>
+            <p>Descripción: @Listafacturas.Descripcion</p>
+            <p>Total: @Listafacturas.Total</p>
+            <p>Descuento: @Listafacturas.Descuento</p>
+            <p>Impuesto: @Listafacturas.Impuesto</p>
+            <p>Total Pagado: @Listafacturas.TotalPagado</p>
+            <p>Fecha de Facturación: @Listafacturas.FechaFacturacion.ToShortDateString()</p>
+            <!-- Agrega más información de la factura según tus necesidades -->
+
+            <h4>Detalles de Factura</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <!-- Agrega más columnas según tus necesidades -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var detalle in Listafacturas.DetalleFactura)
+                    {
+                        <tr>
+                            
+                            <td>@detalle.Cantidad</td>
+                            <!-- Agrega más celdas según tus necesidades -->
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <hr />
+    }
+}
