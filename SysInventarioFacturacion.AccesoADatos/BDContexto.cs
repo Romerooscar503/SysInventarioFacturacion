@@ -22,11 +22,13 @@ namespace SysInventarioFacturacion.AccesoADatos
         public DbSet<Proveedor> Proveedor { get; set; }
         public DbSet<Factura> Factura { get; set; }
 
-       
-       
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"workstation id=SysInventarioFacturacion503.mssql.somee.com;packet size=4096;user id=romerooscar_SQLLogin_1;pwd=awaosafn8m;data source=SysInventarioFacturacion503.mssql.somee.com;persist security info=False;initial catalog=SysInventarioFacturacion503;Encrypt=False;TrustServerCertificate=False;");
+            //optionsBuilder.UseSqlServer(@"workstation id=SysInventarioFacturacion503.mssql.somee.com;packet size=4096;user id=romerooscar_SQLLogin_1;pwd=awaosafn8m;data source=SysInventarioFacturacion503.mssql.somee.com;persist security info=False;initial catalog=SysInventarioFacturacion503;Encrypt=False;TrustServerCertificate=False;");
+            optionsBuilder.UseSqlServer(@"workstation id=SysInventarioFacturacion38.mssql.somee.com;packet size=4096;user id=Corteznestor_SQLLogin_1;pwd=v1f8t8p9b9;data source=SysInventarioFacturacion38.mssql.somee.com;persist security info=False;initial catalog=SysInventarioFacturacion38;Encrypt=False;TrustServerCertificate=False;");
+
             //optionsBuilder.UseSqlServer(@"Data Source=OSCARROMERO\SQLEXPRESS;Initial Catalog=SysInventarioFacturacion;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 

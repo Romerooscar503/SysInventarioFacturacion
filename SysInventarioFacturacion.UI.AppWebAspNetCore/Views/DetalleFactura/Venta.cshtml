@@ -25,18 +25,15 @@
             <div class="card border-info">
                 <h6 class="TextLitlle">Busca tus productos</h6>
                 <div class="card-body p-2 card-venta">
-                <div class="FormContent">
-                    <div class="row align-items-star">
+                    <div class="FormContent">
+                        <div class="row align-items-star">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Buscar</label>
                                     <input type="text" id="txtBuscar" class="form-control" name="buscar" />
                                 </div>
                             </div>
-
-
-                    </div>
-
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,7 +45,7 @@
                     <table id="tablaBusqueda" class="tablaBusqueda">
                         <thead>
                             <tr class="Bordes">
-                                
+
 
                                 <th>Cod</th>
 
@@ -74,7 +71,7 @@
                             @foreach (var item in productos)
                             {
                                 <tr data-page="@numPage">
-                                    
+
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Codigo)
                                     </td>
@@ -101,7 +98,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Talla)
                                     </td>
-                                  
+
                                     <td>
                                         @Html.DisplayFor(modelItem => item.PrecioUnitario)
                                     </td>
@@ -144,78 +141,78 @@
 
 <hr class="Separation" />
 <form asp-controller="DetalleFactura" asp-action="ProcesarFactura" method="post">
-<div class="row mt-3">
-    <div class="col-sm-11">
-        <div class="table-responsive-sm">
+    <div class="row mt-3">
+        <div class="col-sm-11">
+            <div class="table-responsive-sm">
 
-            <table id="tablaDetalleFactura" class="tablaDetalles">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Cantidad</th>
-                        <th>Producto</th>
-                        <th>Descripcion</th>
-                        <th>Precio Unidad</th>
-                        <th>Importe Total</th>
-                        <th colspan="1">Borrar</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <table id="tablaDetalleFactura" class="tablaDetalles">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Cantidad</th>
+                            <th>Producto</th>
+                            <th>Descripcion</th>
+                            <th>Precio Unidad</th>
+                            <th>Importe Total</th>
+                            <th colspan="1">Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    @foreach (var item in detalleFacturas)
-                     
-                    {
-                        <tr data-page="@numPage">
+                        @foreach (var item in detalleFacturas)
+
+                        {
+                            <tr data-page="@numPage">
                                 <td class="PrimeraColumnaBusqueda">
                                     @Html.DisplayFor(modelItem => item.IdProducto)
                                 </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Cantidad)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Producto.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Producto.Descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Producto.PrecioUnitario)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ValorTotal)
-                            </td>
-                               
-                            <td class="botonestabla">
-                                <button class="eliminar-producto btn btn-danger" data-id="@item.IdDetalleFactura">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cantidad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Producto.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Producto.PrecioUnitario)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ValorTotal)
+                                </td>
+
+                                <td class="botonestabla">
+                                    <button class="eliminar-producto btn btn-danger" data-id="@item.IdDetalleFactura">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
                                 <input type="hidden" id="detalleFacturas" name="detalleFacturas" />
-                        </tr>
-                        numRegistros++;
-                        if (numRegistros == numRegistrosPorPage)
-                        {
-                            numPage++;
-                            numRegistros = 0;
+                            </tr>
+                            numRegistros++;
+                            if (numRegistros == numRegistrosPorPage)
+                            {
+                                numPage++;
+                                numRegistros = 0;
+                            }
                         }
-                    }
-                    @{
-                        if (numRegistros == 0)
-                        {
-                            numPage--;
+                        @{
+                            if (numRegistros == 0)
+                            {
+                                numPage--;
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
-<br />
-<div class="ContentFormCustomer">
-    <div class="card border-info">
+    <br />
+    <div class="ContentFormCustomer">
+        <div class="card border-info">
 
-       
+
             <div class="BarraSuperior">
                 <button id="btnTerminarGuardarVenta" type="submit" class="BtnImprimir" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@@getbootstrap">
                     <i class="fa fa-print" aria-hidden="true"></i> Imprimir y Terminar Venta
@@ -251,16 +248,16 @@
                 </div>
                 <br />
                 <div class="row align-items-star">
-                <div class="col-sm-4">
-                    <div class="input-group input-group-sm mb-2">
-                        <div class="input-group-prepend">
-                            <label class="DataCustomer" for="inputGroupSelect01">Monto Base</label>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <label class="DataCustomer" for="inputGroupSelect01">Monto Base</label>
+                            </div>
+                            <input id="txttotal" name="total" readonly type="text" class="form-control" value="0">
                         </div>
-                        <input id="txttotal" name="total" readonly type="text" class="form-control" value="0">
                     </div>
-                </div>
-               
-                   
+
+
                     <div class="col-sm-4">
                         <div class="input-group input-group-sm mb-2">
                             <div class="input-group-prepend">
@@ -277,7 +274,7 @@
                             <input id="txtsubtotal" name="totalpagado" readonly type="text" class="form-control" value="0">
                         </div>
                     </div>
-                   
+
                     <div class="col-sm-4">
                         <div class="input-group input-group-sm mb-2">
                             <div class="input-group-prepend">
@@ -314,9 +311,9 @@
                     </div>
                 </div>
             </div>
-       
+
+        </div>
     </div>
-</div>
 </form>
 
 
@@ -431,20 +428,20 @@
                 indeceFila++;
                 const row = document.createElement("tr");
                 row.innerHTML = `
-                        <td><input name='detalleFacturas[${indeceFila}].IdProducto' value='${detalle.productoid}'  readonly="readonly" class="PrimeraColumna"/></td>
-                         <td><input name='detalleFacturas[${indeceFila}].Cantidad' value='${detalle.cantidad}'  readonly="readonly" class="SiguientesColumnas" /></td>
-                         <td><input name='detalleFacturas[${indeceFila}].Nombre' value='${detalle.nombre}'  readonly="readonly" class="SiguientesColumnas"/></td>
-                         <td><input name='detalleFacturas[${indeceFila}].Descripcion' value='${detalle.descripcion}'  readonly="readonly" class="SiguientesColumnas" /></td>
-                        <td><input name='detalleFacturas[${indeceFila}].Precio' value='${detalle.precio}'  readonly="readonly" class="SiguientesColumnas"/></td>
-                         <td><input name='detalleFacturas[${indeceFila}].ValorTotal' value='${detalle.importeTotal}'  readonly="readonly" class="SiguientesColumnas" /></td>
+                            <td><input name='detalleFacturas[${indeceFila}].IdProducto' value='${detalle.productoid}'  readonly="readonly" class="PrimeraColumna"/></td>
+                             <td><input name='detalleFacturas[${indeceFila}].Cantidad' value='${detalle.cantidad}'  readonly="readonly" class="SiguientesColumnas" /></td>
+                             <td><input name='detalleFacturas[${indeceFila}].Nombre' value='${detalle.nombre}'  readonly="readonly" class="SiguientesColumnas"/></td>
+                             <td><input name='detalleFacturas[${indeceFila}].Descripcion' value='${detalle.descripcion}'  readonly="readonly" class="SiguientesColumnas" /></td>
+                            <td><input name='detalleFacturas[${indeceFila}].Precio' value='${detalle.precio}'  readonly="readonly" class="SiguientesColumnas"/></td>
+                             <td><input name='detalleFacturas[${indeceFila}].ValorTotal' value='${detalle.importeTotal}'  readonly="readonly" class="SiguientesColumnas" /></td>
 
 
-                        <td>
-                            <button class="eliminar-producto btn btn-danger" data-index="${index}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    `;
+                            <td>
+                                <button class="eliminar-producto btn btn-danger" data-index="${index}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        `;
                 tbody.appendChild(row);
             });
 
@@ -569,7 +566,7 @@
     });
 
 
-   
+
 
     var exampleModal = document.getElementById('exampleModal');
     exampleModal.addEventListener('show.bs.modal', function (event) {
@@ -595,37 +592,37 @@
         let indexRow;
         console.table(detalleFacturas),
 
-        // ... Tu código existente para manejar la tabla y los detalles aquí ...
+            // ... Tu código existente para manejar la tabla y los detalles aquí ...
 
-        // Al hacer clic en el botón "Terminar Venta", actualiza el campo oculto con los detalles
-        $("#btnTerminarVenta").on("click", function (event) {
-            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+            // Al hacer clic en el botón "Terminar Venta", actualiza el campo oculto con los detalles
+            $("#btnTerminarVenta").on("click", function (event) {
+                event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
-            // Recopila y almacena los detalles en el arreglo
-            detalleFacturas = []; // Limpia el arreglo
-            $("#tablaDetalleFactura tbody tr").each(function () {
-                var detalle = {
-                    Cantidad: $(this).find("td:eq(0)").text(),
-                    Producto: $(this).find("td:eq(1)").text(),
-                    Descripcion: $(this).find("td:eq(2)").text(),
-                    PrecioUnitario: $(this).find("td:eq(3)").text(),
-                    ValorTotal: $(this).find("td:eq(4)").text()
-                };
-                detalleFacturas.push(detalle);
+                // Recopila y almacena los detalles en el arreglo
+                detalleFacturas = []; // Limpia el arreglo
+                $("#tablaDetalleFactura tbody tr").each(function () {
+                    var detalle = {
+                        Cantidad: $(this).find("td:eq(0)").text(),
+                        Producto: $(this).find("td:eq(1)").text(),
+                        Descripcion: $(this).find("td:eq(2)").text(),
+                        PrecioUnitario: $(this).find("td:eq(3)").text(),
+                        ValorTotal: $(this).find("td:eq(4)").text()
+                    };
+                    detalleFacturas.push(detalle);
+                });
+
+                // Actualiza el valor del campo oculto con los detalles en formato JSON
+                $("#detalleFacturas").val(JSON.stringify(detalleFacturas));
+
+                // Envía el formulario
+                $("form").submit();
             });
-
-            // Actualiza el valor del campo oculto con los detalles en formato JSON
-            $("#detalleFacturas").val(JSON.stringify(detalleFacturas));
-
-            // Envía el formulario
-            $("form").submit();
-        });
     });
 
     // Supongamos que tienes una variable listaDeDatos que quieres enviar
 
 
-// Enviar la solicitud AJAX al controlador
+    // Enviar la solicitud AJAX al controlador
     // Su variable que desea enviar
     var myVariable = detalleFacturas;
     debugger;
