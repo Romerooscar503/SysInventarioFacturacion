@@ -27,10 +27,10 @@
                 <div class="card-body p-2 card-venta">
                     <div class="FormContent">
                         <div class="row align-items-star">
-                            <div class="col-md-4">
+                            <div class="col-md-20">
                                 <div class="form-group">
-                                    <label class="control-label">Buscar</label>
-                                    <input type="text" id="txtBuscar" class="form-control" name="buscar" />
+                                    <label class="control-label"><i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i> Buscar</label>
+                                    <input type="text" id="txtBuscar" class="form-control" name="buscar" placeholder="Buscar producto"/>
                                 </div>
                             </div>
                         </div>
@@ -214,7 +214,7 @@
 
 
             <div class="BarraSuperior">
-                <button id="btnTerminarGuardarVenta" type="submit" class="BtnImprimir" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@@getbootstrap">
+                <button id="btnTerminarGuardarVenta" type="submit" class="BtnImprimir">
                     <i class="fa fa-print" aria-hidden="true"></i> Imprimir y Terminar Venta
                 </button>
             </div>
@@ -434,8 +434,6 @@
                              <td><input name='detalleFacturas[${indeceFila}].Descripcion' value='${detalle.descripcion}'  readonly="readonly" class="SiguientesColumnas" /></td>
                             <td><input name='detalleFacturas[${indeceFila}].Precio' value='${detalle.precio}'  readonly="readonly" class="SiguientesColumnas"/></td>
                              <td><input name='detalleFacturas[${indeceFila}].ValorTotal' value='${detalle.importeTotal}'  readonly="readonly" class="SiguientesColumnas" /></td>
-
-
                             <td>
                                 <button class="eliminar-producto btn btn-danger" data-index="${index}">
                                     <i class="fas fa-trash"></i>
@@ -564,28 +562,6 @@
             console.log("Producto seleccionado:", seleccionado);
         });
     });
-
-
-
-
-    var exampleModal = document.getElementById('exampleModal');
-    exampleModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        var recipient = button.getAttribute('data-bs-whatever');
-
-        $.get('/ObtenerFactura', function (data) {
-            console.log(data);
-            var modalTitle = exampleModal.querySelector('.modal-title');
-            modalTitle.textContent = 'ObtenerFactura' + recipient;
-
-            var modalBody = exampleModal.querySelector('.modal-body');
-            modalBody.innerHTML = data;
-        });
-    });
-
-
-
-
 
     $(document).ready(function () {
         var detalleFacturas = []; // Arreglo para almacenar los detalles de la factura

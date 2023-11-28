@@ -1,88 +1,100 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     SysInventarioFacturacion.EntidadesDeNegocio.Factura factura = ViewBag.Facturas as SysInventarioFacturacion.EntidadesDeNegocio.Factura;
     List<SysInventarioFacturacion.EntidadesDeNegocio.Producto> productos = ViewBag.Producto as List<SysInventarioFacturacion.EntidadesDeNegocio.Producto>;
     List<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura> ListaDetalle = ViewBag.ListaDetalle as List<SysInventarioFacturacion.EntidadesDeNegocio.DetalleFactura>;
 }
-
-<div id="miDiv">
-    <p class="ticket-header">Imperial Shoes</p>
-    <img src="~/IMG/Logo.png" class="ImagenTicket" />
-    <p class="ticket-info">
-        Dirección: Calle Principal #123<br>
-        Teléfono: (123) 456-7890<br>
-        NIT: 123456789-0
+<div class="row">
+    <div id="miDiv" style=" text-align: justify;">
+        <div class="container">
+        <p class="ticket-header">Imperial Shoes</p>
+        <img src="~/IMG/Logo.png" class="ImagenTicket" />
+        <p class="ticket-info">
+            Dirección: Calle Principal #123<br>
+            Teléfono: (123) 456-7890<br>
+            NIT: 123456789-0
+        </p>
         <hr />
-    <p class="ticket-info">
-        Fecha:@factura.FechaFacturacion<br>
-        N.Factura: @factura.NumeroFactura<br>
+
+        <p class="ticket-info">
+            Fecha:@factura.FechaFacturacion<br>
+            N.Factura: @factura.NumeroFactura<br>
+        </p>
         <hr />
-    <p class="ticket-info">
-        Cliente: @factura.Descripcion<br>
-        Direcion: @factura.Direccion<br>
-        Correo: @factura.Correo<br>
-        Telefono: @factura.Telefono<br>
-    </p>
 
-    </p>
+        <p class="ticket-info">
+            Cliente: @factura.Descripcion<br>
+            Direcion: @factura.Direccion<br>
+            Correo: @factura.Correo<br>
+            Telefono: @factura.Telefono<br>
+        </p>
+        </div>
 
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-
-
-                    <th>
-                        Producto
-                    </th>
-                    <th>
-                        Descripción
-                    </th>
-                    <th>
-                           Cantidad
-                    </th>
-                    <th>
-                          ValorTotal
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                    @foreach (var item in ListaDetalle)
-                    {
+        <div>
+            <table class="table">
+                <thead>
                     <tr>
 
 
-                        <td>
+                        <th>
+                            Producto
+                        </th>
+                        <th>
+                            Descripción
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            ValorTotal
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ListaDetalle)
+                    {
+                        <tr>
+
+
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Producto.Nombre)
-                        </td>
-                        <td>
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Producto.Descripcion)
-                        </td>
-                        <td>
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Cantidad)
-                        </td>
-                        <td>
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.ValorTotal)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="1">Total</td>
+                        <td>
+                            <b>  $ @factura.TotalPagado</b>
                         </td>
                     </tr>
-                    }
-            </tbody>
-        </table>
-        <p class="DatosFacturaDetalle">
-                @factura.TotalPagado
-        </p>
 
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <button class="btn btn-primary" onclick="imprimirDiv()"><i class="fa-solid fa-print" style="color: #ffffff;"></i> Imprimir</button>
     </div>
 </div>
-
-<button onclick="imprimirDiv()">Imprimir Div</button>
-
 <script>
     function imprimirDiv() {
         var contenidoDiv = document.getElementById('miDiv').innerHTML;
         var ventanaImpresion = window.open('', '', 'width=600,height=600');
+        ventanaImpresion.document.write('<style>@@page { margin: 0; }</style>');
         ventanaImpresion.document.write(contenidoDiv);
         ventanaImpresion.document.close();
         ventanaImpresion.print();
