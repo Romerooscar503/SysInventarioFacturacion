@@ -10,8 +10,8 @@
         <p class="ticket-header">Imperial Shoes</p>
         <img src="~/IMG/Logo.png" class="ImagenTicket" />
         <p class="ticket-info">
-            Dirección: Calle Principal #123<br>
-            Teléfono: (123) 456-7890<br>
+            Dirección:Calle San Antonio del monte avenida monserrat<br>
+            Teléfono: +503 70989762 <br>
             NIT: 123456789-0
         </p>
         <hr />
@@ -46,6 +46,9 @@
                             Cantidad
                         </th>
                         <th>
+                            Precio
+                        </th>
+                        <th>
                             ValorTotal
                         </th>
                         <th></th>
@@ -63,9 +66,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Producto.Descripcion)
                             </td>
-                            <td>
+                                <td>
                                 @Html.DisplayFor(modelItem => item.Cantidad)
                             </td>
+                             <td>
+                                @Html.DisplayFor(modelItem => item.Producto.PrecioUnitario)
+                            </td>
+
                             <td>
                                 @Html.DisplayFor(modelItem => item.ValorTotal)
                             </td>
@@ -74,7 +81,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="2"></td>
+                        <td colspan="3"></td>
                         <td colspan="1">Total</td>
                         <td>
                             <b>  $ @factura.TotalPagado</b>
@@ -96,7 +103,6 @@
         var ventanaImpresion = window.open('', '', 'width=600,height=600');
         ventanaImpresion.document.write('<style>@@page { margin: 0; }</style>');
         ventanaImpresion.document.write(contenidoDiv);
-        ventanaImpresion.document.close();
         ventanaImpresion.print();
     }
 </script>
