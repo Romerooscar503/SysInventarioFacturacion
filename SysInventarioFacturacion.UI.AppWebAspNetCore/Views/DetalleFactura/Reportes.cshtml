@@ -60,148 +60,39 @@
     }
 </style>
 
-@*<style>
+<form method="post" asp-action="Reportes">
+    <div class="row">
+        <div class="mb-3 col-md-3">
+            <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+            <input type="date" id="fInicio" name="fInicio" class="form-control" />
+        </div>
 
-    .textface {
-        font-family: 'Verdana', sans-serif; /* Cambia el tipo de letra */
-        font-size: 15px; /* Cambia el tamaño de la letra */
-        line-height: 1.5; /* Cambia la altura de línea para mejorar la legibilidad */
-    }
+        <div class="mb-3 col-md-3">
+            <label for="fechaFin" class="form-label">Fecha de Fin</label>
+            <input type="date" id="fFinal" name="fFinal" class="form-control" />
+        </div>
 
-    .card-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 40px; /* Espacio entre las cartas */
-        align-content: flex-end;
-    }
+        <div class="mb-3 col-md-3">
+            <label for="NumeroFactura" class="form-label">N.de factura</label>
+            <input type="number" id="NumeroFactura" name="NumeroFactura" class="form-control" />
+        </div>
 
-    .card {
-        width: 500px;
-        height: 350px;
-        position: relative;
-        perspective: 1000px;
-    }
-
-        .card:hover .carta {
-            transform: rotateY(180deg);
-        }
-
-    .carta {
-        transform-style: preserve-3d;
-        transition: all 1s linear;
-    }
-
-    .cara {
-        position: absolute;
-        backface-visibility: hidden;
-    }
-
-        .cara.detras {
-            transform: rotateY(180deg);
-            width: 500px;
-            height: 350px;
-            overflow-y: auto;
-        }
-
-    table {
-        width: 10%;
-        border-collapse: collapse;
-        margin-top: 10px;
-        width: 150%;
-    }
-
-    th, td {
-        width: 10%;
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    .tableContainer {
-        width: 30px;
-        height: 30px;
-    }
-
-</style>
-<h2>Reportes</h2>
-@if (facturas != null)
-{
-    <div class="card-container">
-        @foreach (var Listafacturas in facturas)
-        {
-            <div class="card">
-                <div class="carta">
-                    <div class="cara">
-                        <div class="card-body">
-                            <p class="textface">
-                                Factura # @Listafacturas.NumeroFactura<br>
-                                Cliente: @Listafacturas.Descripcion<br>
-                                Total: @Listafacturas.Total<br>
-                                Fecha de Facturación: @Listafacturas.FechaFacturacion.ToShortDateString()
-                            </p>
-                        </div>
-                    </div>
-                    <div class="cara detras">
-                        <div class="card-body">
-                            <div class="tableContainer">
-
-                                <table class="table table-responsive paginationjs">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Cantidad
-                                            </th>
-                                            <th>
-                                                Producto
-                                            </th>
-                                            <th>
-                                                Descripcion
-                                            </th>
-                                            <th>
-                                                Valor Total
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var detalle in Listafacturas.DetalleFactura)
-                                        {
-                                            <tr>
-                                                <td>@detalle.Cantidad</td>
-                                                <td>@detalle.Producto.Nombre</td>
-                                                <td>@detalle.Producto.Descripcion</td>
-                                                <td>@detalle.ValorTotal</td>
-                                                <!-- Agrega más celdas según tus necesidades -->
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
+        <div class="mb-3 col-md-3 align-self-end">
+            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+        </div>
     </div>
-}*@
+</form>
 
 @if (facturas != null)
 {
     <!-- Agrega las referencias y los estilos de los calendarios -->
-
-
-
-
     @foreach (var Listafacturas in facturas)
     {
         <div>
             <div class="customer-card">
                 <div class="customer-details">
                     <div class="customer-name">Fecha Venta: @Listafacturas.FechaFacturacion</div>
+                    <div class="customer-name">NFactura: @Listafacturas.NumeroFactura</div>
                     <div class="customer-name">Cliente: @Listafacturas.Descripcion</div>
                     <div>Total: $@Listafacturas.Total</div>
                 </div>
@@ -223,4 +114,13 @@
 }
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+ <script>
+    // Aquí puedes agregar lógica JavaScript para manejar la búsqueda y filtrado
+    function buscar() {
+        // Implementa la lógica de búsqueda aquí
+    }
+</script>
 

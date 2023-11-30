@@ -15,6 +15,7 @@ using SysInventarioFacturacion.AccesoADatos;
 using SysInventarioFacturacion.UI.AppWebAspNetCore.Models;
 
 
+
 namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 {
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
@@ -302,14 +303,14 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             DetalleFacturas.Codigo = random.Next(100000, 999999);
             DetalleFacturas.FechaEmision = DateTime.Now;
             DetalleFacturas.FormaDePago = 1;
-            
+
             foreach (var detalle in detalleFacturas)
             {
                 Producto objProducto = new Producto();
                 objProducto.IdProducto = detalle.IdProducto;
-                objProducto = await ProductoBL.ObtenerPorIdProductoAsync(objProducto); 
+                objProducto = await ProductoBL.ObtenerPorIdProductoAsync(objProducto);
 
-               
+
                 objProducto.Cantidad = objProducto.Cantidad - detalle.Cantidad;
                 await ProductoBL.ModificarAsync(objProducto);
 
@@ -332,7 +333,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 
         public async Task<IActionResult> ObtenerFactura()
         {
-           
+
             DetalleFactura objdetalle = new DetalleFactura();
             objdetalle.IdFactura = idFac;
             List<DetalleFactura> ListaDetalle = await detalle_facturaBL.BuscarIncluirFacturasYProductoAsync(objdetalle);
@@ -341,18 +342,28 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Reportes(DetalleFactura pDetalleFactura)
+        public async Task<IActionResult> Reportes(DetalleFactura pDetalleFactura, DateTime fInicio, DateTime fFinal, int NumeroFactura)
         {
-            List<Factura> taskObtenerTodosFacturas = await FacturaBL.ObtenerTodosAsync();
+            List<Factura> facturas = await FacturaBL.ObtenerTodosAsync();
             List<DetalleFactura> detalleFacturas = await detalle_facturaBL.ObtenerTodosAsync();
 
+            if (NumeroFactura != 0)
+            {
+                ViewBag.Facturas = facturas.Where(r => r.NumeroFactura == NumeroFactura).ToList();
+            }
+            else if (fInicio.Year != 1 && fFinal.Year != 1)
+            {
+                ViewBag.Facturas = facturas.Where(r => r.FechaFacturacion.Date >= fInicio.Date && r.FechaFacturacion.Date <= fFinal.Date).ToList();
+            }
+         
+            ViewBag.Facturas = facturas;
             ViewBag.Detalles = detalleFacturas;
-
-            ViewBag.Facturas = taskObtenerTodosFacturas;
-           
 
             return View();
         }
+
+
+
 
         //public async Task<IActionResult> Reportes(DetalleFactura pDetalleFactura)
         //{
