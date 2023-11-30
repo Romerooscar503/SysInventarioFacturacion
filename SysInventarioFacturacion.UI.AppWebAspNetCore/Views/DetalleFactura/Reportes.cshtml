@@ -17,22 +17,67 @@
 
 <style>
 
-    .textface{
+
+    h1 {
+        color: #333;
+        text-align: center;
+    }
+
+
+    .customer-card {
+        width: 80%;
+        margin-top: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .customer-details {
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .customer-name {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .product-list {
+        padding: 20px;
+    }
+
+    .product-item {
+        margin-bottom: 10px;
+    }
+
+    .product-name {
+        font-weight: bold;
+    }
+</style>
+
+@*<style>
+
+    .textface {
         font-family: 'Verdana', sans-serif; /* Cambia el tipo de letra */
         font-size: 15px; /* Cambia el tamaño de la letra */
         line-height: 1.5; /* Cambia la altura de línea para mejorar la legibilidad */
     }
 
-   .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px; /* Espacio entre las cartas */
-  align-content:flex-end;
-}
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px; /* Espacio entre las cartas */
+        align-content: flex-end;
+    }
 
     .card {
         width: 500px;
-        height:350px;
+        height: 350px;
         position: relative;
         perspective: 1000px;
     }
@@ -54,20 +99,19 @@
         .cara.detras {
             transform: rotateY(180deg);
             width: 500px;
-        height:350px;
+            height: 350px;
             overflow-y: auto;
-           
         }
 
     table {
         width: 10%;
         border-collapse: collapse;
         margin-top: 10px;
-        width:150%;
+        width: 150%;
     }
 
     th, td {
-        width:10%;
+        width: 10%;
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
@@ -77,9 +121,9 @@
         background-color: #f2f2f2;
     }
 
-    .tableContainer{
-        width:30px;
-        height:30px;
+    .tableContainer {
+        width: 30px;
+        height: 30px;
     }
 
 </style>
@@ -105,36 +149,36 @@
                         <div class="card-body">
                             <div class="tableContainer">
 
-                            <table class="table table-responsive paginationjs"  >
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Cantidad
-                                        </th>
-                                        <th>
-                                            Producto
-                                        </th>
-                                        <th>
-                                            Descripcion
-                                        </th>
-                                        <th>
-                                            Valor Total
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var detalle in Listafacturas.DetalleFactura)
-                                    {
+                                <table class="table table-responsive paginationjs">
+                                    <thead>
                                         <tr>
-                                            <td>@detalle.Cantidad</td>
-                                            <td>@detalle.Producto.Nombre</td>
-                                            <td>@detalle.Producto.Descripcion</td>
-                                            <td>@detalle.ValorTotal</td>
-                                            <!-- Agrega más celdas según tus necesidades -->
+                                            <th>
+                                                Cantidad
+                                            </th>
+                                            <th>
+                                                Producto
+                                            </th>
+                                            <th>
+                                                Descripcion
+                                            </th>
+                                            <th>
+                                                Valor Total
+                                            </th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var detalle in Listafacturas.DetalleFactura)
+                                        {
+                                            <tr>
+                                                <td>@detalle.Cantidad</td>
+                                                <td>@detalle.Producto.Nombre</td>
+                                                <td>@detalle.Producto.Descripcion</td>
+                                                <td>@detalle.ValorTotal</td>
+                                                <!-- Agrega más celdas según tus necesidades -->
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
 
                             </div>
                         </div>
@@ -143,6 +187,40 @@
             </div>
         }
     </div>
+}*@
+
+@if (facturas != null)
+{
+    <!-- Agrega las referencias y los estilos de los calendarios -->
+
+
+
+
+    @foreach (var Listafacturas in facturas)
+    {
+        <div>
+            <div class="customer-card">
+                <div class="customer-details">
+                    <div class="customer-name">Fecha Venta: @Listafacturas.FechaFacturacion</div>
+                    <div class="customer-name">Cliente: @Listafacturas.Descripcion</div>
+                    <div>Total: $@Listafacturas.Total</div>
+                </div>
+                <div id="contentToExport">
+                    @foreach (var detalle in Listafacturas.DetalleFactura)
+                    {
+                        <div class="product-list">
+                            <div class="product-item">
+                                <div class="product-name">Producto: @detalle.Producto.Nombre</div>
+                                <div>Cantidad: @detalle.Cantidad</div>
+                                <div>Valor Total: @detalle.ValorTotal</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
 }
+
 
 
