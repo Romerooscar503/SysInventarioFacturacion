@@ -355,8 +355,11 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
             {
                 ViewBag.Facturas = facturas.Where(r => r.FechaFacturacion.Date >= fInicio.Date && r.FechaFacturacion.Date <= fFinal.Date).ToList();
             }
-         
-            ViewBag.Facturas = facturas;
+            else
+            {
+                ViewBag.Facturas = facturas;
+            }
+
             ViewBag.Detalles = detalleFacturas;
 
             return View();
