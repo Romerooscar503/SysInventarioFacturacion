@@ -368,6 +368,7 @@ namespace SysInventarioFacturacion.UI.AppWebAspNetCore.Controllers
 
 
 
+
         //public async Task<IActionResult> Reportes(DetalleFactura pDetalleFactura)
         //{
         //    var taskObtenerTodosFacturas = FacturaBL.ObtenerTodosAsync();
