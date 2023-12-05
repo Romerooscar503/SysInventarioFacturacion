@@ -7,6 +7,7 @@
     background-color: #f2f2f2; /* Color de fondo de la tabla */
     overflow-y: auto;
     overflow-x: auto;
+    table-layout:initial;
 }
 
     /* Estilo para las celdas de encabezado */
@@ -30,6 +31,7 @@
         padding: 3px; /* Espaciado interno de las celdas de datos */
         border: 1px solid #ccc; /* Borde de 1 píxel con color gris claro */
         position: sticky;
+        
     }
 
 

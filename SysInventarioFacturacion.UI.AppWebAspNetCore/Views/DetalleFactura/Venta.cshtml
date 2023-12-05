@@ -44,7 +44,7 @@
                 <div class="table-container">
                     <table id="tablaBusqueda" class="tablaBusqueda">
                         <thead>
-                            <tr class="Bordes">
+                            <tr>
 
 
                                 <th>Cod</th>
@@ -214,9 +214,10 @@
 
 
             <div class="BarraSuperior">
-                <button id="btnTerminarGuardarVenta" type="submit" class="BtnImprimir">
+                <button id="btnTerminarGuardarVenta" type="submit" class="BtnImprimir" onclick="return confirmarTerminarVenta()">
                     <i class="fa fa-print" aria-hidden="true"></i> Imprimir y Terminar Venta
                 </button>
+
             </div>
             <div class="card-body p-2 card-venta">
                 <div class="row align-items-star">
@@ -547,60 +548,13 @@
         });
     });
 
-    $(document).ready(function () {
-        var detalleFacturas = []; // Arreglo para almacenar los detalles de la factura
-        let indexRow;
-        console.table(detalleFacturas),
+    function confirmarTerminarVenta() {
+        var respuesta = confirm("¿Seguro que desea terminar la venta y guardarla?");
 
-            // ... Tu código existente para manejar la tabla y los detalles aquí ...
-
-            // Al hacer clic en el botón "Terminar Venta", actualiza el campo oculto con los detalles
-            $("#btnTerminarVenta").on("click", function (event) {
-                event.preventDefault(); // Evita que el formulario se envíe automáticamente
-
-                // Recopila y almacena los detalles en el arreglo
-                detalleFacturas = []; // Limpia el arreglo
-                $("#tablaDetalleFactura tbody tr").each(function () {
-                    var detalle = {
-                        Cantidad: $(this).find("td:eq(0)").text(),
-                        Producto: $(this).find("td:eq(1)").text(),
-                        Descripcion: $(this).find("td:eq(2)").text(),
-                        PrecioUnitario: $(this).find("td:eq(3)").text(),
-                        ValorTotal: $(this).find("td:eq(4)").text()
-                    };
-                    detalleFacturas.push(detalle);
-                });
-
-                // Actualiza el valor del campo oculto con los detalles en formato JSON
-                $("#detalleFacturas").val(JSON.stringify(detalleFacturas));
-
-                // Envía el formulario
-                $("form").submit();
-            });
-    });
-
-    // Supongamos que tienes una variable listaDeDatos que quieres enviar
+        return respuesta;
+    }
 
 
-    // Enviar la solicitud AJAX al controlador
-    // Su variable que desea enviar
-    var myVariable = detalleFacturas;
-    debugger;
-
-    // Su URL de controlador de UI
-    var url = "https://DetalleFactura/ProcesarFactura";
-
-    // Enviar datos a través de Fetch API
-    fetch(url, {
-        method: 'POST', // o 'GET' dependiendo de sus necesidades
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ myVariable: myVariable })
-    })
-        .then(response => response.json())
-        .then(data => console.log('Success:', data))
-        .catch((error) => console.error('Error:', error));
 
 
 </script>
